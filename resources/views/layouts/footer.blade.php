@@ -11,9 +11,9 @@
             <div class="col-md-3 " style="margin-top: 20px; ">
                 <div style="font-size:20px; color:white; "><b>CUSTOMER SERVICE</b></div>
                 <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="contact.php" style="color: white; ">Contact Us</a></li>
-                    <li><a href="refundandreturn.php" style="color: white; ">Refund Policy</a></li>
-                    <li><a href="refundandreturn.php" style="color: white; ">Return Policy</a></li>
+                    <li><a href="{{ route('contact_us') }}" style="color: white; ">Contact Us</a></li>
+                    <li><a href="{{ route('pages', 'refund-policy') }}" style="color: white; ">Refund Policy</a></li>
+                    <li><a href="{{ route('pages', 'return-policy') }}" style="color: white; ">Return Policy</a></li>
                     <li><a href="" style="color: white; ">Warranty Policy</a></li>
                     <li><a href="" style="color: white; ">Track your order</a></li>
                 </ul>
@@ -21,18 +21,18 @@
             <div class="col-md-3 " style="margin-top: 20px; ">
                 <div style="font-size:20px; color: white; "><b>ABOUT US</b></div>
                 <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="aboutus.php"  style="color: white; ">About us</a></li>
-                    <li><a href="career.php"  style="color: white; ">Careers</a></li>
+                    <li><a href="{{ route('pages', 'about-us') }}"  style="color: white; ">About us</a></li>
+                    <li><a href="{{ route('career') }}"  style="color: white; ">Careers</a></li>
                     <li><a href="#"  style="color: white; ">Terms & conditions</a></li>
-                    <li><a href="privacypolicy.php"  style="color: white; ">Privacy agreement</a></li>
+                    <li><a href=""  style="color: white; ">Privacy agreement</a></li>
                     <li><a href="#"  style="color: white; ">NTN Number : 5270812-7</a></li>
                 </ul>
             </div>
             <div class="col-md-3 " style="margin-top: 20px; " >
                 <div style="font-size:20px; color: white; "><b>SELL WITH SHOPPER</b></div>
                 <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="sellonshopker.php"  style="color: white; ">Sell with Shopker</a></li>
-                    <li><a href="contactseller.php"  style="color: white; ">Contact for wholesale</a></li>
+                    <li><a href="{{ route('sell_with_us') }}"  style="color: white; ">Sell with Shopker</a></li>
+                    <li><a href="{{ route('wholesale') }}"  style="color: white; ">Contact for wholesale</a></li>
                 </ul>
             </div>
             <div class="col-md-3 " style="margin-top: 20px; margin-bottom: 20px; ">

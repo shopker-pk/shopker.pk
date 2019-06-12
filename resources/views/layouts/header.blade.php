@@ -12,10 +12,14 @@
 					</div>
 					<div class="top_bar_content ml-auto">
 						<div class="top_bar_user">
-							<div><a href="contactseller.php" style="color: white;" id="contactcheck">Contact for wholesale</a></div>
-							<div><a href="sellonshopker.php" style="color: white; margin-left: 20px;">Sell with us</a></div>
-							<div><a href="userregistration.php" style="color: white; margin-left: 10px;">Register</a></div>
-							<div><a href="userlogin.php" style="color: white; margin-left: 20px;">Sign in</a></div>
+							<div><a href="{{ route('wholesale') }}" style="color: white;" id="contactcheck">Contact for wholesale</a></div>
+							<div><a href="{{ route('sell_with_us') }}" style="color: white; margin-left: 20px;">Sell with us</a></div>
+							@if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
+							<div><a href="{{ route('dashboard') }}" style="color: white; margin-left: 20px;">Dashboard</a></div>
+							@else
+							<div><a href="{{ route('customer_sign_up') }}" style="color: white; margin-left: 10px;">Register</a></div>
+							<div><a href="{{ route('customer_sign_in') }}" style="color: white; margin-left: 20px;">Sign in</a></div>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -30,7 +34,7 @@
 				<div class="col-lg-2 col-sm-3 col-3 order-1">
 					<div class="logo_container" style="margin-left: 7%;">
 						<div class="logo">
-							<a href="{{ route('home') }}"><img src="{{ asset('public/assets/images/shop.png') }}" width="180" height="65" /></a>
+							<a href="{{ route('home') }}"><img src="{{ $site_settings['header_image'] }}" width="180" height="65" alt="{{ $site_settings['site_title'] }}"/></a>
 						</div>
 					</div>
 				</div>
@@ -39,22 +43,8 @@
 					<div class="header_search">
 						<div class="header_search_content">
 							<div class="header_search_form_container">
-								<form action="#" class="header_search_form clearfix" >
-									<input type="search" required="required" class="header_search_input" placeholder="Search for products..." style="width: 100%; border: 1px solid grey !important;" >
-									<div class="custom_dropdown" style="display: none;">
-										<div class="custom_dropdown_list">
-											<span class="custom_dropdown_placeholder clc">All Categories</span>
-											<i class="fas fa-chevron-down"></i>
-											<ul class="custom_list clc">
-												<li><a class="clc" href="#">All Categories</a></li>
-												<li><a class="clc" href="#">Computers</a></li>
-												<li><a class="clc" href="#">Laptops</a></li>
-												<li><a class="clc" href="#">Cameras</a></li>
-												<li><a class="clc" href="#">Hardware</a></li>
-												<li><a class="clc" href="#">Smartphones</a></li>
-											</ul>
-										</div>
-									</div>
+								<form action="{{ route('search_products') }}" method="get" class="header_search_form clearfix">
+									<input type="search" id="name" name="name" class="header_search_input" placeholder="Search for products..." style="width: 100%; border: 1px solid grey !important;" >
 									<button type="submit" style="background-image: linear-gradient(to left, green, #31f93f);" class="header_search_button trans_300" value="Submit"><img src="{{ asset('public/assets/images/search.png') }}" alt=""></button>
 								</form>
 							</div>
@@ -64,29 +54,51 @@
 
 				<!-- Wishlist -->
 				<div class="col-lg-2 col-9 order-lg-3 order-2">
-					<div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-						<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-							<div class="wishlist_icon"><img src="{{ asset('public/assets/images/heart41.png') }}" alt=""></div>
-							<div class="wishlist_content">
-								<div class="wishlist_text"><a href="#">Wishlist</a></div>
-								<div class="wishlist_count">115</div>
-							</div>
-						</div>
-
-						<!-- Cart -->
-						<div class="cart">
-							<div class="cart_container d-flex flex-row align-items-center justify-content-end">
-								<div class="cart_icon">
-									<img src="{{ asset('public/assets/images/cart41.png') }}" alt="">
-									<div class="cart_count"><span>10</span></div>
-								</div>
-								<div class="cart_content">
-									<div class="cart_text"><a href="cart.php">Cart</a></div>
-									<div class="cart_price">$85</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				    <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+				        <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+				            <div class="">
+				            	<img src="{{ asset('public/assets/images/heart41.png') }}" alt="" width="20" height="20" style="margin-right: -20px;">
+				            </div>
+				            <div class="wishlist_content">
+				            	<div class="wishlist_text"><b><a href="{{ route('manage_wishlist') }}">Wishlist</a></b></div>
+				                @if(!empty(Session::get('wishlists')))
+								<div class="wishlist_count">{{ count(Session::get('wishlists')) }}</div>
+								@else
+								<div class="wishlist_count">0</div>
+								@endif
+				            </div>
+				        </div>
+				        <!-- Cart -->
+				        <div class="cart">
+				            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+				                <div class="">
+				                    <img src="{{ asset('public/assets/images/cart41.png') }}" width="20" height="20" alt="">
+				                    @if(!empty(Session::get('cart')))
+									<div class="cart_count">
+										<span>{{ count(Session::get('cart')) }}</span>
+									</div>
+									@else
+									<div class="cart_count">
+										<span>0</span>
+									</div>
+									@endif
+				                </div>
+				                <div class="cart_content">
+				                    <div class="cart_text"><a href="{{ route('view_cart') }}">Cart</a></div>
+									@if(!empty(Session::get('cart')))
+										@foreach(Session::get('cart') as $row)
+										<input type="hidden" value="{{ $sub_total[] = $row['price'] * $row['quantity'] }}">
+										@endforeach
+									@endif
+									@if(!empty($sub_total))
+									<div class="cart_price">{{ array_sum($sub_total) }}</div>
+									@else
+									<div class="cart_price">00.00</div>
+									@endif
+				                </div>
+				            </div>
+				        </div>
+				    </div>
 				</div>
 			</div>
 		</div>

@@ -5,12 +5,11 @@ function mega_menus(){
     $query = \DB::table('tbl_parent_categories')
                  ->select('id as parent_id', 'slug as parent_slug', 'name as parent_name')
                  ->where('status', 0)
-                 ->orderBy('id')
-                 ->limit(10);
+                 ->orderBy('sorting_order', 'ASC');
  	$parent_categories = $query->get();
 
  	$html = '';
- 	if(!empty($parent_categories)){
+ 	if(!empty(count($parent_categories) > 0)){
  		foreach($parent_categories as $parent_category){
  			$html .= '
 	            <li class="hassubs" id="'.$parent_category->parent_slug.'" style="height: 30px;">

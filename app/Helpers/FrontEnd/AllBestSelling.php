@@ -12,8 +12,8 @@ function all_best_selling(){
  	$result = $query->paginate(40);
 
     //Query For Getting those latest products who have ratings
-    $query = DB::table('tbl_products_rating')
-                 ->select('product_id', DB::raw('AVG(tbl_products_rating.stars) as total_stars'))
+    $query = DB::table('tbl_products_reviews')
+                 ->select('product_id', DB::raw('AVG(tbl_products_reviews.buyer_stars) as total_stars'))
                  ->groupBy('product_id');
     $rated_products = $query->get();
 
@@ -24,7 +24,7 @@ function all_best_selling(){
     } 
 
     //Check if Query is null or not
-    if(!empty($result)){
+    if(!empty(count($result) > 0)){
         if(count($result) >= 40){
             $pagination = $result->links();
         }else{
@@ -41,14 +41,14 @@ function all_best_selling(){
             
             //Count Discount Percentage
             if(!empty($row->sale_price)){
-                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price)[0];
+                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
             }else{
                 $discount = 0;
             }
 
             //Result Array
             $data[] = array(
-                'image' => env('ADMIN_URL').'public/assets/admin/images/ecommerce/products/'.$row->featured_image,
+                'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
                 'slug' => $row->slug,

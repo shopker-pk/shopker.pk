@@ -14,12 +14,15 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
+        $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
-        $result['header_banners'] = header_banners(1);
+        $result['header_banners'] = header_banners(0);
+        $result['bottom_top_banners'] = bottom_top_banners(0);
+        $result['bottom_center_banners'] = bottom_center_banners(0);
         $result['daily_deals'] = daily_deals();
         $result['best_selling'] = best_selling();
         $result['latest_products'] = latest_products();
-         
+        
         //Call Page
         return view('pages.index', $result);
 	}
@@ -32,8 +35,10 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
+        $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
         $result['products_by_categories'] = products_by_categories($slug);
+        $result['side_filter'] = side_filter($slug);
 
         //Call Page
         return view('pages.products', $result);
@@ -48,6 +53,7 @@ class PagesController extends Controller{
                 'meta_description' => product_details($slug)['meta_description'],
             );
 
+            $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
             $result['product_details'] = product_details($slug); 
             $result['product_images'] = product_images($result['product_details']['product_id']); 
@@ -72,6 +78,7 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
+        $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
         $result['daily_deals'] = all_daily_deals(); 
 
@@ -87,10 +94,96 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
+        $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
         $result['best_selling'] = all_best_selling(); 
 
         //Call Page
         return view('pages.best_selling', $result);
+    }
+
+    function stores(Request $request, $slug){
+        if(!empty(get_stores($slug) == false)){
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Your given store not found !!');
+            
+            return redirect()->route('home');
+        }else{
+            //Necessary Page Data For header Page
+            $result = array(
+                'page_title' => 'Shopker | '.get_stores($slug)[0]['store_name'].'',
+                'meta_keywords' => '',
+                'meta_description' => '',
+            );
+
+            $result['site_settings'] = site_settings();
+            $result['mega_menus'] = mega_menus();
+            $result['store_details'] = get_stores($slug); 
+            $result['store_products'] = get_stores_products(get_stores($slug)[0]['owner_id']); 
+
+            //Call Page
+            return view('pages.stores', $result);
+        }
+    }
+    
+    function wholesale(Request $request){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => 'Shopker | Wholesale Contact Form',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['mega_menus'] = mega_menus();
+        $result['site_settings'] = site_settings();
+
+        //Call Page
+        return view('pages.wholesale', $result);
+    }
+
+    function contact_us(Request $request){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => 'Shopker | Contact Us',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['mega_menus'] = mega_menus();
+        $result['site_settings'] = site_settings();
+
+        //Call Page
+        return view('pages.contact_us', $result);
+    }
+
+    function career(Request $request){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => 'Shopker | Career',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['mega_menus'] = mega_menus();
+        $result['site_settings'] = site_settings();
+
+        //Call Page
+        return view('pages.career', $result);
+    }
+
+    function pages(Request $request, $slug){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => pages($slug)['title'],
+            'meta_keywords' => pages($slug)['meta_keywords'],
+            'meta_description' => pages($slug)['meta_description'],
+        );
+
+        $result['site_settings'] = site_settings();
+        $result['mega_menus'] = mega_menus();
+        $result['pages'] = pages($slug); 
+
+        //Call Page
+        return view('pages.pages', $result);
     }
 }

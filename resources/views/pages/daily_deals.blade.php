@@ -2,11 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>Shopker</title>
+    <title>{{ $page_title }}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="OneTech shop project">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ $meta_description }}" />
+    <meta name="keywords" content="{{ $meta_keywords }}" /> 
+    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
+    @include('layouts.style')
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     @include('layouts.style')
@@ -148,7 +152,7 @@
         }
         
         .imgcolslider {
-            padding-bottom: 40px;
+            padding-bottom: 10px;
             padding-top: 30px;
             cursor: pointer;
         }
@@ -261,11 +265,11 @@
         .badge {
             background: #b20c0c;
             position: absolute;
-            height: 40px;
-            width: 40px;
+            height: 36px;
+            width: 36px;
             border-radius: 50%;
             line-height: 20px;
-            font-size: 12px;
+            font-size: 10px;
             top: 5px;
             right: 6%;
         }
@@ -274,6 +278,12 @@
             margin-top: 50px;
             border: 1px solid #ccc;
             margin-bottom: 10px;
+        }
+        .cost_price{
+            margin-left: 60px;
+        }
+        .sale_price{
+            margin-left: 7px;
         }
     </style>
 </head>
@@ -294,68 +304,73 @@
         @include('layouts.messages')
         <section id="service">
             <div class="row" style="margin-top: 10px;">
-                <div class="col-md-10">
+                <div class="col-md-2 mt-3" style="padding: 0px;">
+                    <div class="" id="sortby" style="border:1px solid #ccc; padding-left: 9px; padding-right: 9px;">
+                        <h4 class="text-uppercase">Sort By</h4>
+                        <hr/>
+                        @include('layouts.products_filter')
+                    </div>
+                     <div class="col-md-10">
                     <div class="row ">
                         <div class="col">
                             <div class="container-fluid">
                                 <div class="row" style="margin-top: 10px;">
                                     @if(!empty($daily_deals))
                                         @foreach($daily_deals as $row)
-                                    <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider imagespace">
+                                    <div class="col-xs-6 col-sm-6 col-md-3 imgcolslider imagespace">
                                         <a href="{{ route('product_details', $row['slug']) }}"><img src="{{ $row['image'] }}" class="img-responsive center-block" alt="{{ $row['image_alt'] }}"></a>
-                                        @if($row['total_discount'] > 0)
-                                        <span class="badge">Off<div style="margin-top: -7px;"> {{ $row['total_discount'] }}%</div></span>
-                                        @endif
-                                        <h4 class="text-center textmanage"><a href="{{ route('product_details', $row['slug']) }}">{{ $row['name'] }}</a></h4>
-                                        @if(!empty($row['sale_price']) > 0)
-                                        <h5 class="text-center">Rs. {{ $row['sale_price'] }}</h5>
-                                        @else
-                                        <h5 class="text-center">Rs. {{ $row['cost_price'] }}</h5>
-                                        @endif
-                                        @if(!empty($row['sale_price']) > 0)
-                                        <h6 class="text-center"><strike>Rs. {{ $row['cost_price'] }}</strike></h6>
+                                    @if($row['total_discount'])
+                                    <span class="badge">Off<div style="margin-top: -7px;"> {{ $row['total_discount'] }}%</div></span>
+                                    @endif
+                                    <h4 class="text-center textmanage"><a href="{{ route('product_details', $row['slug']) }}">{{ $row['name'] }}</a></h4>
+                                    <div class="row">
+                                        @if(!empty($row['sale_price']))
+                                        <h6 class="text-right cost_price"><strike>Rs. {{ $row['cost_price'] }}</strike></h6>
+                                        <h5 class="text-center sale_price">Rs. {{ $row['sale_price'] }}</h5>
                                         @else
                                         <h6 class="text-center" style="visibility:hidden"><strike>Rs. 00.00</strike></h6>
+                                        <h5 class="text-center sale_price" style="margin-left: 5px;">Rs. {{ $row['cost_price'] }}</h5>
                                         @endif
-                                        <div align="center" class="ratings">
-                                        @if($row['total_stars'] == 5)
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                        @elseif($row['total_stars'] == 4)
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        @elseif($row['total_stars'] == 3)
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        @elseif($row['total_stars'] == 2)
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        @elseif($row['total_stars'] == 1)
-                                            <i style="color:#008000;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        @else 
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        @endif
-                                        </div>
+                                    </div>
+                                    <div align="center" class="ratings">
+                                    @if($row['total_stars'] == 5)
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                    @elseif($row['total_stars'] == 4)
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                    @elseif($row['total_stars'] == 3)
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                    @elseif($row['total_stars'] == 2)
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                    @elseif($row['total_stars'] == 1)
+                                        <i style="color:#008000;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                    @else 
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                    @endif
+                                    </div>
                                         <div align="center" id="displayviewbtnhover">
                                             <a href="{{ route('product_details', $row['slug']) }}" class="btn btn-sm btnview">View more</a>
                                         </div>
@@ -375,6 +390,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+               
             </div>
         </section>
     </div>

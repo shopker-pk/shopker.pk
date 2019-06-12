@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $meta_description }}" />
     <meta name="keywords" content="{{ $meta_keywords }}" /> 
-    <link rel="icon" type="icon/gif" href="{{ asset('public/assets/images/favicon.png') }}">
+    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
     @include('layouts.style')
     <style type="text/css">
         .cat_menu_container:hover ul {
@@ -131,20 +131,20 @@
             width: 100%
         }
         
-        #itemslider h4 {
+     #itemslider h4 {
             font-weight: 400;
             margin: 25px auto 3px
         }
         
         #itemslider h5 {
             font-weight: 700;
-            margin: 10px auto 2px
+            margin-left: 9px;
         }
         
         #itemslider h6,
         #itemslider h6 {
             font-size: 14px;
-            margin: 5px auto
+            margin-left: 20px;   
         }
         
         .ratings {
@@ -169,7 +169,7 @@
         }
         
         .imgcolslider {
-            padding-bottom: 40px;
+            padding-bottom: 10px;
             padding-top: 30px;
             cursor: pointer;
         }
@@ -282,11 +282,11 @@
         .badge {
             background: #b20c0c;
             position: absolute;
-            height: 40px;
-            width: 40px;
+            height: 36px;
+            width: 36px;
             border-radius: 50%;
             line-height: 20px;
-            font-size: 12px;
+            font-size: 10px;
             top: 5px;
             right: 6%;
         }
@@ -1175,8 +1175,8 @@
                 <div>
                     <a href="{{ route('home') }}" id="breadcumbs">Home</a> <i class="fas fa-angle-right"></i>
                     <a href="{{ route('products_by_categories', $product_details['parent_slug']) }}" id="breadcumbs">{{ $product_details['parent_category'] }}</a> <i class="fas fa-angle-right"></i>
-                    <a href="{{ route('products_by_categories', $product_details['child_slug']) }}" id="breadcumbs">{{ $product_details['child_slug'] }} </a><i class="fas fa-angle-right"></i>
-                    <a href="{{ route('products_by_categories', $product_details['sub_child_slug']) }}" id="breadcumbs">{{ $product_details['sub_child_category'] }} </a><i class="fas fa-angle-right"></i>
+                    <a href="{{ route('products_by_categories', $product_details['child_slug']) }}" id="breadcumbs">{{ $product_details['child_category'] }}</a> <i class="fas fa-angle-right"></i>
+                    <a href="{{ route('products_by_categories', $product_details['sub_child_slug']) }}" id="breadcumbs">{{ $product_details['sub_child_category'] }}</a> <i class="fas fa-angle-right"></i>
                     <a href="{{ route('product_details', $product_details['product_slug']) }}" id="breadcumbs">{{ $product_details['product_name'] }}</a>
                 </div>
             </div>
@@ -1198,20 +1198,23 @@
                 <div class="wrapper">
                     <div align="center">
                         <a class="magnifier-thumb-wrapper demo" id="bigimage" href="{{ asset('public/assets/images/blog_2.jpg') }}">
-                            @foreach($product_images as $row)
-                            <img id="thumb-inside" src="{{ $row }}" width="100%" height="350" data-mode="inside" data-zoomable="true">
-                            @endforeach
+                            <img id="thumb-inside" src="{{ $product_details['featured_image'] }}" width="100%" height="350" data-mode="inside" data-zoomable="true" alt="{{ $product_details['featured_image_alt'] }}">
                         </a>
                     </div>
                 </div>
                 <div id="thumbnail-slider">
                     <div class="inner">
                         <ul>
-                            @foreach($product_images as $row)
+                            <li>
+                                <a class="thumb" href="{{ $product_details['featured_image'] }}" onclick="clickimage(this.href)"></a>
+                            </li>
+                            @if(!empty($product_images))
+                                @foreach($product_images as $row)
                             <li>
                                 <a class="thumb" href="{{ $row }}" onclick="clickimage(this.href)"></a>
                             </li>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -1275,23 +1278,23 @@
                         <div class="col-md-4 col-xs-4">
                             <div align="center">
                                 <i class="fas fa-share-alt" id="shareproducticon" onclick="socialicon()"></i>
-                                <i class="far fa-heart" onclick="wishcolor()" id="wishproducticon1"></i>
+                                <a href="{{ route('add_wishlists', $product_details['product_id']) }}"><i class="far fa-heart" id="wishproducticon1"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12" align="center">
                             <div class="popup mb-2" id="social">
-                                <i class="fab fa-facebook" id="facebookicons"></i>
-                                <i class="fab fa-instagram" id="instagramicons"></i>
-                                <i class="fab fa-twitter" id="twittericons"></i>
-                                <i class="fab fa-whatsapp" id="whatsappicons"></i>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product_details', $product_details['product_slug'])) }}&display=popup" target="_blank"><i class="fab fa-facebook" id="facebookicons"></i></a>
+                                <a href="https://www.instagram.com/?url={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fab fa-instagram" id="instagramicons"></i></a>
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fab fa-twitter" id="twittericons"></i></a>
+                                <a href="https://api.whatsapp.com/send?text={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fab fa-whatsapp" id="whatsappicons"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="row pb-3">
                         <div class="col-md-12">
-                            <span>Brand : <a href="javascript::void(0)";>{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0)";>More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</a></span>
+                            <span>Brand : <a href="{{ route('search_products', 'name='.$product_details['brand_slug']) }}">{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0)";>More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</a></span>
                         </div>
                     </div>
                     <div class="row" id="first">
@@ -1340,14 +1343,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 col-xs-6 mt-1">
+                        <div class="col-md-4 col-xs-6">
                             <a href="cart.php">
-                                <button class="btn buybtn" style="font-size: 20px; color: white;"><i class="fas fa-shopping-basket"></i> Buy Now</button>
+                                <button class="btn buybtn" style="font-size: 20px; color: white; height: 40px;"><i class="fas fa-shopping-basket"></i> Buy Now</button>
                             </a>
                         </div>
 
-                        <div class="col-md-5 col-xs-6 mt-1">
-                            <button class="btn buybtn" style="font-size: 20px; color: white;" onclick="abc()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        <div class="col-md-5 col-xs-6">
+                            <form method="post" action="{{ route('add_to_cart') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="product_id" name="product_id" value="{{ $product_details['product_id'] }}">
+                                @if(!empty($product_details['sale_price']))
+                                <input type="hidden" id="product_price" name="product_price" value="{{ $product_details['sale_price'] }}">
+                                <input type="hidden" id="product_type" name="product_type" value="0">
+                                @else
+                                <input type="hidden" id="product_price" name="product_price" value="{{ $product_details['cost_price'] }}">
+                                <input type="hidden" id="product_type" name="product_type" value="1">
+                                @endif
+                                <input type="hidden" id="quantity" name="quantity" value="1">
+                                <div class="shop-product__buttons mb-40">
+                                    <button class="btn buybtn" style="font-size: 20px; color: white; height: 40px;"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -1355,7 +1372,7 @@
             <div class="col-md-2">
                 <div class="" style="color: white;">.</div>
                 <div class="delieve">
-                    <h4 align="center"><img src="{{ asset('public/assets/images/shop.png') }}" width="150" height="80"></h4>
+                    <h4 align="center"><img src="{{ $product_details['store_logo'] }}" width="150" height="80" alt="{{ $product_details['store_logo_alt'] }}"></h4>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-9">
@@ -1381,7 +1398,7 @@
                         <div class="col-md-9">
                             <div class="">
                                 <h5 align="center" class="homemargin"><i class="fas fa-home" style="color: green; margin-right: 10px;"></i> <b>Home Delievery</b> <br> Rs. 500</h5>
-                                <h5 align="center" class="homemargin"> <b>SOLD BY</b> <br> <a href="javascript::void(0)";> {{ $product_details['store_name'] }}</a></h5>
+                                <h5 align="center" class="homemargin"> <b>SOLD BY</b> <br> <a href="{{ route('get_stores', $product_details['store_slug']) }}"> {{ $product_details['store_name'] }}</a></h5>
                                 <h5 align="center" class="homemargin"> <b>WARRANTY</b> <br> {{ $product_details['warranty_type'] }}</h5>
                                 <h5 align="center" class="homemargin"> <b>DELIEVERY</b> <br> 3 to 7 Working Days</h5>
                             </div>
@@ -1389,7 +1406,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 text-center bg-inverse">
-                            <a href="vendorstore.php"><h5 class="text-uppercase">go to store</h5></a>
+                            <a href="{{ route('get_stores', $product_details['store_slug']) }}"><h5 align="center" class="homemargin"><h5 class="text-uppercase">go to store</h5></a>
                         </div>
                     </div>
                 </div>
@@ -1405,7 +1422,7 @@
                 <li><a href="#2" data-toggle="tab">Specification</a></li>
                 <li><a href="#3" data-toggle="tab">Video</a></li>
                 <li><a href="#4" data-toggle="tab">Others Information</a></li>
-                <li><a href="#5" data-toggle="tab">Reviews</a></li>
+                <li><a href="#5" data-toggle="tab">Product Reviews</a></li>
             </ul>
             <div class="tab-content ">
                 <!--Tab 1-->
@@ -1429,7 +1446,7 @@
                     <h3><b>Videos</b></h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <iframe width="100%" height="345" src="https://www.youtube.com/embed/0LHmevWVvpc"></iframe>
+                            <iframe width="100%" height="345" src="{{ $product_details['video_url'] }}"></iframe>
                         </div>
                     </div>
                     <hr/>
@@ -1589,7 +1606,7 @@
                             </div>
                             <div class="col-md-7"></div>
                             <div class="col-md-2">
-                                <p class="text-center" style="font-size: 12px;">{{ date('D M Y', strtotime($row['created_date'])) }} {{ date('h:i:s A', strtotime($row['created_time'])) }}</p>
+                                <p class="text-center" style="font-size: 12px;">{{ date('D M Y', strtotime($row['buyer_created_date'])) }} {{ date('h:i:s A', strtotime($row['buyer_created_time'])) }}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -1601,15 +1618,17 @@
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-md-1"></div>
+                                    @if(!empty($row['vendor_comment']))
                                     <div class="col-md-10" id="replyreview">
                                         <div class="mt-3 mb-3">
                                             <img src="{{ asset('public/assets/images/shield.png') }}" class="ml-2 mt-1 mb-2" width="18" height="18">
-                                            <span class="ml-2" style="color: #00dc7f;">@if(!empty($row['store_name'])) @else Admin @endif{{ $row['store_name'] }} - {{ date('D M Y', strtotime($row['created_date'])) }} {{ date('h:i:s A', strtotime($row['created_time'])) }}</span>
+                                            <span class="ml-2" style="color: #00dc7f;">{{ $row['store_name'] }} - {{ date('D M Y', strtotime($row['vendor_created_date'])) }} {{ date('h:i:s A', strtotime($row['vendor_created_time'])) }}</span>
                                         </div>
                                         <p class="ml-3">
                                             {{ $row['vendor_comment'] }}
                                         </p>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -1617,31 +1636,33 @@
                         @endforeach
                     @endif
                     <div class="reviewproductoption">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>HOW DO YOU RATE THIS PRODUCT?</h4>
-                                <div class="row mb-5">
-                                    <div class="col-md-12">
-                                        <div class="rate">
-                                            <input type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="5 Star" style="font-size: 40px;">5 stars</label>
-                                            <input type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="4 Star" style="font-size: 40px;">4 stars</label>
-                                            <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="3 Star" style="font-size: 40px;">3 stars</label>
-                                            <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="2 Star" style="font-size: 40px;">2 stars</label>
-                                            <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="1 Star" style="font-size: 40px;">1 star</label>
+                        <form action="{{ route('insert_products_reviews') }}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" id="product_id" name="product_id" value="{{ $product_details['product_id'] }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>HOW DO YOU RATE THIS PRODUCT?</h4>
+                                    <div class="row mb-5">
+                                        <div class="col-md-12">
+                                            <div class="rate">
+                                                <input type="radio" id="star5" name="rate" value="5" />
+                                                <label for="star5" title="5 Star" style="font-size: 40px;">5 stars</label>
+                                                <input type="radio" id="star4" name="rate" value="4" />
+                                                <label for="star4" title="4 Star" style="font-size: 40px;">4 stars</label>
+                                                <input type="radio" id="star3" name="rate" value="3" />
+                                                <label for="star3" title="3 Star" style="font-size: 40px;">3 stars</label>
+                                                <input type="radio" id="star2" name="rate" value="2" />
+                                                <label for="star2" title="2 Star" style="font-size: 40px;">2 stars</label>
+                                                <input type="radio" id="star1" name="rate" value="1" />
+                                                <label for="star1" title="1 Star" style="font-size: 40px;">1 star</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <h4>WRITE YOUR OWN REVIEW</h4>
-                                <form>
+                                    <h4>WRITE YOUR OWN REVIEW</h4>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label>Review</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="7"></textarea>
+                                            <textarea class="form-control" id="review" name="review" rows="7"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1649,14 +1670,14 @@
                                             <button class="btn btnview1">Send</button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6" align="center">
-                                <div class="wow rotateIn">
-                                    <img src="{{ asset('public/assets/images/customerreview.png') }}" height="280" width="280" id="reviewimage">
+                                </div>
+                                <div class="col-md-6" align="center">
+                                    <div class="wow rotateIn">
+                                        <img src="{{ asset('public/assets/images/customerreview.png') }}" height="280" width="280" id="reviewimage">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <hr/>
                     </div>
                 </div>
@@ -1680,68 +1701,246 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="carousel carousel-showmanymoveone slide" id="itemslider">
                             <div class="carousel-inner">
+                                @if(!empty($related_products))
                                 <div class="item active">
-                                    @if(!empty($related_products))
-                                    @foreach($related_products as $row)
-                                <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider">
-                                    <a href="{{ route('product_details', $row['slug']) }}"><img src="{{ $row['image'] }}" class="img-responsive center-block" alt="{{ $row['image_alt'] }}"></a>
-                                    <span class="badge">Off <div style="margin-top: -7px;"> {{ $row['total_discount'] }}%</div></span>
-                                    <h4 class="text-center textmanage"><a href="{{ route('product_details', $row['slug']) }}">{{ $row['name'] }}</h4></a>
-                                    <h5 class="text-center">Rs. {{ $row['sale_price'] }}</h5>
-                                    <h6 class="text-center"><strike>Rs. {{ $row['cost_price'] }}</strike></h6>
-                                    <div align="center" class="ratings">
-                                    @if($row['total_stars'] == 5)
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                    @elseif($row['total_stars'] == 4)
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                    @elseif($row['total_stars'] == 3)
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                    @elseif($row['total_stars'] == 2)
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                    @elseif($row['total_stars'] == 1)
-                                        <i style="color:#008000;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                    @else 
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                        <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                    @endif
+                                    <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider">
+                                        <a href="{{ route('product_details', $related_products[0]['slug']) }}"><img src="{{ $related_products[0]['image'] }}" class="img-responsive center-block" alt="{{ $related_products[0]['image_alt'] }}"></a>
+                                        @if($related_products[0]['total_discount'])
+                                        <span class="badge">Off<div style="margin-top: -7px;"> {{ $related_products[0]['total_discount'] }}%</div></span>
+                                        @endif
+                                        <h4 class="text-center textmanage"><a href="{{ route('product_details', $related_products[0]['slug']) }}">{{ $related_products[0]['name'] }}</a></h4>
+                                        <div class="row">
+                                            @if(!empty($related_products[0]['sale_price']))
+                                            <h6 class="text-right cost_price"><strike>Rs. {{ $related_products[0]['cost_price'] }}</strike></h6>
+                                            <h5 class="text-center sale_price">Rs. {{ $related_products[0]['sale_price'] }}</h5>
+                                            @else
+                                            <h6 class="text-center" style="visibility:hidden"><strike>Rs. 00.00</strike></h6>
+                                            <h5 class="text-center sale_price" style="margin-left: 5px;">Rs. {{ $related_products[0]['cost_price'] }}</h5>
+                                            @endif
+                                        </div>
+                                        <div align="center" class="ratings">
+                                        @if($related_products[0]['total_stars'] == 5)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 4)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 3)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 2)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 1)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @else 
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @endif
+                                        </div>
+                                    <div align="center" id="displayviewbtnhover">
+                                        <a href="{{ route('product_details', $related_products[0]['slug']) }}" class="btn btn-sm btnview">View more</a>
                                     </div>
-                                    <div align="center" class="mb-2 mt-4">
-                                        <span style="border: 1px solid #ccc; padding: 8px; border-radius: 5px;">40</span>
-                                        <span>-</span>
-                                        <span style="border: 1px solid #ccc; padding: 8px; border-radius: 5px;">23</span>
-                                        <span>-</span>
-                                        <span style="border: 1px solid #ccc; padding: 8px; border-radius: 5px;">01</span>
                                     </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider" id="secproslide">
+                                        <a href="{{ route('product_details', $related_products[0]['slug']) }}"><img src="{{ $related_products[0]['image'] }}" class="img-responsive center-block" alt="{{ $related_products[0]['image_alt'] }}"></a>
+                                        @if($related_products[0]['total_discount'])
+                                        <span class="badge">Off<div style="margin-top: -7px;"> {{ $related_products[0]['total_discount'] }}%</div></span>
+                                        @endif
+                                        <h4 class="text-center textmanage"><a href="{{ route('product_details', $related_products[0]['slug']) }}">{{ $related_products[0]['name'] }}</a></h4>
+                                        <div class="row">
+                                            @if(!empty($related_products[0]['sale_price']))
+                                            <h6 class="text-right cost_price"><strike>Rs. {{ $related_products[0]['cost_price'] }}</strike></h6>
+                                            <h5 class="text-center sale_price">Rs. {{ $related_products[0]['sale_price'] }}</h5>
+                                            @else
+                                            <h6 class="text-center" style="visibility:hidden"><strike>Rs. 00.00</strike></h6>
+                                            <h5 class="text-center sale_price" style="margin-left: 5px;">Rs. {{ $related_products[0]['cost_price'] }}</h5>
+                                            @endif
+                                        </div>
+                                        <div align="center" class="ratings">
+                                        @if($related_products[0]['total_stars'] == 5)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 4)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 3)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 2)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($related_products[0]['total_stars'] == 1)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @else 
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @endif
+                                        </div>
+                                    <div align="center" id="displayviewbtnhover">
+                                        <a href="{{ route('product_details', $related_products[0]['slug']) }}" class="btn btn-sm btnview">View more</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                @foreach(array_slice($related_products, 1) as $row)
+                                <div class="item">
+                                    <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider">
+                                         <a href="{{ route('product_details', $row['slug']) }}"><img src="{{ $row['image'] }}" class="img-responsive center-block" alt="{{ $row['image_alt'] }}"></a>
+                                        @if($row['total_discount'])
+                                        <span class="badge">Off<div style="margin-top: -7px;"> {{ $row['total_discount'] }}%</div></span>
+                                        @endif
+                                        <h4 class="text-center textmanage"><a href="{{ route('product_details', $row['slug']) }}">{{ $row['name'] }}</a></h4>
+                                        <div class="row">
+                                            @if(!empty($row['sale_price']))
+                                            <h6 class="text-right cost_price"><strike>Rs. {{ $row['cost_price'] }}</strike></h6>
+                                            <h5 class="text-center sale_price">Rs. {{ $row['sale_price'] }}</h5>
+                                            @else
+                                            <h6 class="text-center" style="visibility:hidden"><strike>Rs. 00.00</strike></h6>
+                                            <h5 class="text-center sale_price" style="margin-left: 5px;">Rs. {{ $row['cost_price'] }}</h5>
+                                            @endif
+                                        </div>
+                                        <div align="center" class="ratings">
+                                        @if($row['total_stars'] == 5)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 4)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 3)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 2)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 1)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @else 
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @endif
+                                        </div>
                                     <div align="center" id="displayviewbtnhover">
                                         <a href="{{ route('product_details', $row['slug']) }}" class="btn btn-sm btnview">View more</a>
                                     </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-2 imgcolslider" id="secproslide">
+                                        <a href="{{ route('product_details', $row['slug']) }}"><img src="{{ $row['image'] }}" class="img-responsive center-block" alt="{{ $row['image_alt'] }}"></a>
+                                        @if($row['total_discount'])
+                                        <span class="badge">Off<div style="margin-top: -7px;"> {{ $row['total_discount'] }}%</div></span>
+                                        @endif
+                                        <h4 class="text-center textmanage"><a href="{{ route('product_details', $row['slug']) }}">{{ $row['name'] }}</a></h4>
+                                        <div class="row">
+                                            @if(!empty($row['sale_price']))
+                                            <h6 class="text-right cost_price"><strike>Rs. {{ $row['cost_price'] }}</strike></h6>
+                                            <h5 class="text-center sale_price">Rs. {{ $row['sale_price'] }}</h5>
+                                            @else
+                                            <h6 class="text-center" style="visibility:hidden"><strike>Rs. 00.00</strike></h6>
+                                            <h5 class="text-center sale_price" style="margin-left: 5px;">Rs. {{ $row['cost_price'] }}</h5>
+                                            @endif
+                                        </div>
+                                        <div align="center" class="ratings">
+                                        @if($row['total_stars'] == 5)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 4)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 3)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 2)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @elseif($row['total_stars'] == 1)
+                                            <i style="color:#008000;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @else 
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                            <i style="color:#d8d8d8;" class="fas fa-star"></i>
+                                        @endif
+                                        </div>
+                                    <div align="center" id="displayviewbtnhover">
+                                        <a href="{{ route('product_details', $row['slug']) }}" class="btn btn-sm btnview">View more</a>
+                                    </div>
+                                    </div>
                                 </div>
-                                    @endforeach
+                                @endforeach
                                 @endif
-                                </div>
                             </div>
                             <div id="slider-control">
                                 <a class="left carousel-control" href="#itemslider" data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a>

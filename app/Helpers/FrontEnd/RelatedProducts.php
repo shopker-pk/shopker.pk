@@ -13,8 +13,8 @@ function related_products($slug){
     $products = $query->get();
 
     //Query For Getting those latest products who have ratings
-    $query = DB::table('tbl_products_rating')
-                 ->select('product_id', DB::raw('AVG(tbl_products_rating.stars) as total_stars'))
+    $query = DB::table('tbl_products_reviews')
+                 ->select('product_id', DB::raw('AVG(tbl_products_reviews.buyer_stars) as total_stars'))
                  ->groupBy('product_id');
     $rated_products = $query->get();
     
@@ -35,15 +35,15 @@ function related_products($slug){
             }
                 
             //Count Discount Percentage
-            if(!empty($row->from_date && $row->to_date)){
-                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price)[0];
+            if(!empty($row->sale_price)){
+                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
             }else{
                 $discount = 0;
             }
             
             //Result Array
             $data[] = array(
-                'image' => env('ADMIN_URL').'public/assets/admin/images/ecommerce/products/'.$row->featured_image,
+                'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
                 'slug' => $row->slug,

@@ -1,5 +1,5 @@
 <div class="container-fluid menucontainer" style="margin-top: -40px;">
-    <div class="row" style="background-image: linear-gradient(to left, #fd0000, black);">
+    <div class="row categorydiv" style="background-image: linear-gradient(to left, #fd0000, black);">
         <div class="col-md-2">
             <div class="main_nav_content d-flex flex-row" style="width: 100%; background-color:  #f70000;">
                 <!-- Categories Menu -->

@@ -12,12 +12,12 @@ function header_banners($page_id){
                  ->orderBy('id', 'DESC');
  	$result = $query->get();
 
-    if(!empty($result)){
+    if(!empty(count($result) > 0)){
         foreach($result as $row){
             //Result Array
             $data[] = array(
                 'id' => $row->id,
-                'image' => env('ADMIN_URL').'public/assets/admin/images/advertisements/banners/'.$row->image,
+                'image' => env('ADMIN_URL').'images/advertisements/banners/'.$row->image,
                 'image_alt' => $row->image,
                 'url' => $row->url,
             );

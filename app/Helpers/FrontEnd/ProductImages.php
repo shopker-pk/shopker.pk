@@ -10,10 +10,10 @@ function product_images($id){
                      ->orderBy('tbl_products_images.product_id', 'DESC');
         $product_images = $query->get();
 
-        if(!empty($product_images)){
+        if(!empty(count($product_images) > 0)){
             $count = 1;
             foreach($product_images as $product_image){
-                $products_images['"product_image_'.$count.'"'] = env('ADMIN_URL').'public/assets/admin/images/ecommerce/products/'.$product_image->image;
+                $products_images['"product_image_'.$count.'"'] = env('ADMIN_URL').'images/ecommerce/products/'.$product_image->image;
                 $count++;
             }
             

@@ -115,10 +115,10 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
+/*::selection
 {
 	
-}
+}*/
 p::selection
 {
 	
@@ -766,6 +766,8 @@ select option
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	margin-left: 10px;
+    margin-bottom: -22px;
 }
 .wishlist_text a:hover
 {

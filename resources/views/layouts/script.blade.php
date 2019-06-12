@@ -10,3 +10,7 @@
 <script src="{{ asset('public/assets/plugins/slick-1.8.0/slick.js') }}"></script>
 <script src="{{ asset('public/assets/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
+<script src="{{ asset('public/assets/js/shopker_custom.js') }}"></script>
+<script src="{{ asset('public/assets/js/single_image_upload_with_preview.js') }}"></script>
+<script src="{{ asset('public/assets/js/deal_timer.js') }}"></script>
+<script src="{{ asset('public/assets/js/bootstrap-slider.min.js') }}"></script>

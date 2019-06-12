@@ -82,7 +82,7 @@ body {font-family: Verdana, sans-serif;}
 }
 
 #catory{
-    margin-top: -30px;
+    margin-top: -37px;
 }
 
 
@@ -717,7 +717,7 @@ body {font-family: Verdana, sans-serif;}
     margin-top: 100px;
     font-weight: bold;
 
-  background: linear-gradient(to right, black, #31f93f);
+  background: linear-gradient(to right, green, green);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -771,7 +771,7 @@ body {font-family: Verdana, sans-serif;}
     height: 40px;
     margin-top: 20px;
  }
-.loginbtn button{
+.loginbtn button,.applycoupon input{
     margin-top: 20px;
     margin-bottom: 100px;
     padding: 5px 30px 5px 30px;
@@ -783,10 +783,12 @@ body {font-family: Verdana, sans-serif;}
     transition: background 1s ease-out;
 
  }
+
  .loginbtn button:hover{
-  
-    background-image: linear-gradient(to right, black, #31f93f);
-    
+    background-image: linear-gradient(to right, black, #31f93f);    
+ } 
+ .applycoupon input:hover{
+    background-image: linear-gradient(to right, black, #31f93f);    
  }
 .forgetPassword{
     margin-top: 10px;
@@ -799,14 +801,14 @@ body {font-family: Verdana, sans-serif;}
     font-size: 24px;
     font-weight: bold;
     margin-top: 30px;
-    background: linear-gradient(to right, black, #31f93f);
+    background: linear-gradient(to right, green, green);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .personaldetails{
     font-size: 20px;
     font-weight: bold;
-    background: linear-gradient(to right, black, #31f93f);
+    background: linear-gradient(to right, green, green);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
     
@@ -1009,7 +1011,7 @@ body {font-family: Verdana, sans-serif;}
 }
 #accordion .panel-title a.collapsed:after{
     width: 19px;
-    background: #06db0d;
+    background: green;
 }
 #accordion .panel-body{
     
@@ -1272,18 +1274,18 @@ color: white;
     content: '★ ';
 }
 .rate > input:checked ~ label {
-    color: #ffb800;    
+    color: green;    
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #ffb800;  
+    color: green;  
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #ffb800;
+    color: green;
 }
 
 
@@ -1307,7 +1309,7 @@ color: white;
 
 }
 .buybtn:hover{
-    background-color: #06db0d;
+    background-color: #008000;
 }
 .delieve{
     border: 1px solid #ccc;
@@ -1382,7 +1384,7 @@ color: white;
     font-size: 15px;
 }
 #breadcumbs{
-    color: #7fbe3f;
+    color: green;
     font-size: 13px;
     margin-left: 4px;
     text-decoration: none;

@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/styles/Mycss.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/styles/bootstrap3.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/styles/safarifile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/css/bootstrap-slider.min.css') }}">
 <link href="{{ asset('public/assets/slidercss/half-slider.css') }}" rel="stylesheet">    
 <script src="{{ asset('public/assets/js/jquery2.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/bootstrap3.min.js') }}"></script>

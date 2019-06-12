@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Karachi',
 
     /*
     |--------------------------------------------------------------------------
@@ -133,6 +133,9 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+
+    //Custom Global Variables
+    'admin_url' => $_SERVER['DOCUMENT_ROOT'].'/shopker_admin/public/assets/admin/',
 
     'providers' => [
         /* Laravel Framework Service Providers*/

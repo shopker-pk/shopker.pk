@@ -915,3 +915,160 @@
 {
 	
 }
+
+
+
+//Media query css
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .logo a img{
+  	margin-top: 30px;
+  }
+  .wishlist{
+  	margin-top: 30px;
+  }
+  .cart{
+  	margin-top: 30px;
+  }
+  .categorydiv{
+  	margin-top: 50px;
+  }
+  .top_bar_user{
+  	margin-top: 8px;
+  }
+
+  .imgcolslider{
+  	width: 25%;
+  }
+
+  .cost_price{
+  	margin-left: 50px;
+  }
+  .sale_price{
+  	margin-left: 50px;
+  }
+
+ /* Product details page*/
+
+ .productsidebar h4,h5{
+ 	font-size: 12px;
+ }
+ .productsidebar{
+ 	margin-left: -20px;
+ }
+ 
+ .firstdiv{
+ 	display: none;
+ }
+ .buybtn{
+ 	font-size: 12px !important;
+ }
+
+ .product_title{
+ 	margin-top:30px; 
+ }
+
+
+ .product_title h3{
+ 	font-size: 18px !important;
+ }
+ .emptydiv{
+ 	display: none;
+ }
+ 
+ .brand_names{
+ 	margin-top: 20px;
+ } 
+ .colors a{
+ 	font-size: 14px !important;
+ }
+ #colorbtn{
+ 	font-size: 12px !important;
+ }
+ .homemargin{
+ 	margin-left: -10px;
+ }
+ .homemargin b{
+ 	font-size: 12px !important;
+ }
+ .homemargin i{
+ 	margin-right: 0px !important;
+ }
+ .related_productssidediv{
+ 	display: none;
+ }
+ #coupon_code{
+ 	width: 150px !important;
+ }
+
+ #colmobilehide{
+ 	display: block;
+ }
+ #dailydealres{
+ 	text-align: left !important;
+ 	margin-left: 10px !important;
+ }
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  //CSS
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  //CSS
+  
+}
