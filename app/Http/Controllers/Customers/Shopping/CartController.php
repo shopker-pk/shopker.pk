@@ -33,7 +33,7 @@ class CartController extends Controller{
         $result['customer_details'] = customer_details();
         $result['countries'] = countries(); 
         $result['shipping_prices'] = shipping_prices(); 
-        dd($request->session()->get('cart'));
+
         //call page
         return view('pages.viewcart', $result); 
     }
