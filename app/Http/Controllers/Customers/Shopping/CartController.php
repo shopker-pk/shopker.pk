@@ -129,4 +129,18 @@ class CartController extends Controller{
 
         return redirect()->route('home');
     }
+
+    function buy_now(Request $request){
+        $cart = buy_now($request->all());
+
+        if(!empty($cart)){
+            //Flash Success Message
+            $request->session()->flash('alert-success', 'Product has been added in cart successfully');
+        }else{
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Something went wrong !!');
+        }
+
+        return redirect()->route('view_cart');
+    }
 }

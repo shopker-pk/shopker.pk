@@ -1344,9 +1344,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-xs-6">
-                            <a href="cart.php">
-                                <button class="btn buybtn" style="font-size: 20px; color: white; height: 40px;"><i class="fas fa-shopping-basket"></i> Buy Now</button>
-                            </a>
+                            <form method="post" action="{{ route('buy_now') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="product_id" name="product_id" value="{{ $product_details['product_id'] }}">
+                                @if(!empty($product_details['sale_price']))
+                                <input type="hidden" id="product_price" name="product_price" value="{{ $product_details['sale_price'] }}">
+                                <input type="hidden" id="product_type" name="product_type" value="0">
+                                @else
+                                <input type="hidden" id="product_price" name="product_price" value="{{ $product_details['cost_price'] }}">
+                                <input type="hidden" id="product_type" name="product_type" value="1">
+                                @endif
+                                <input type="hidden" id="quantity" name="quantity" value="1">
+                                <div class="shop-product__buttons mb-40">
+                                    <button class="btn buybtn" style="font-size: 20px; color: white; height: 40px;"><i class="fas fa-shopping-basket"></i> Buy Now</button>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="col-md-5 col-xs-6">

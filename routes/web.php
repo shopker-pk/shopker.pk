@@ -54,6 +54,7 @@
 		Route::get('/remove-product-from-cart/{id}', 'Customers\Shopping\CartController@remove_product')->name('remove_product');
 		Route::get('/apply-coupon', 'Customers\Shopping\CartController@apply_coupon');
 		Route::post('/check-out', 'Customers\Shopping\CartController@check_out')->name('check_out');
+		Route::post('/buy-now', 'Customers\Shopping\CartController@buy_now')->name('buy_now');
 	//Shopping Routes End
 	
 	//Customer Dashboard Route Start
