@@ -442,11 +442,7 @@
                                     <a href="{{ route('product_details', $row['slug']) }}" style="text-decoration: none;"><p style="color: black;font-size: 16px;">{{ $row['name'] }}</p></a>
                                 </h5>
                                 <h3 class="vendor-name" style="font-size: 14px;margin-top: -4px;">
-                                    @if($row['store_slug'] != '#')
-                                        <p>Seller: <a href="{{ route('get_stores', $row['store_slug']) }}" style="text-decoration: none;">{{ $row['store_name'] }}</a></p>
-                                    @else
-                                    <p>Seller: Sold BY Shopker</p>
-                                    @endif
+                                    <p>Seller: <a href="{{ route('get_stores', $row['store_slug']) }}" style="text-decoration: none;">{{ $row['store_name'] }}</a></p>
                                 </h3>
                                 <p style="font-size: 12px;">Size : L</p>
                                 <a href="{{ route('remove_product', $row['id']) }}" title="Remove item" class="btn-remove btn-remove2">

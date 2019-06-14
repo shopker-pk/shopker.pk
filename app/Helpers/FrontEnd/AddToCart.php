@@ -11,6 +11,14 @@ function add_to_cart($data){
 			              ->where('tbl_products.id', $data['product_id']);
 	      	$result = $query->first();
 
+	      	if($result->store_name == ''){
+	            $store_name = 'Shopker';
+	            $store_slug = '#';
+	        }else{
+	        	$store_name = $result->store_name;
+	            $store_slug = $result->store_slug;
+	        }
+
 			$cart = Session::get('cart');
             $cart = array(
             	'id' => $data['product_id'],
@@ -22,8 +30,8 @@ function add_to_cart($data){
 				'price' => Request::input('product_price'),
 				'type' => Request::input('product_type'),
 				'seller_id' => $result->user_id,
-				'store_name' => $result->store_name,
-				'store_slug' => $result->store_slug,
+				'store_name' => $store_name,
+				'store_slug' => $store_slug,
 			);
 
             $cart = \Session::put('cart.'.$data['product_id'], $cart);
@@ -37,6 +45,14 @@ function add_to_cart($data){
 			              ->where('tbl_products.id', $data['product_id']);
 	      	$result = $query->first();
 
+	      	if($result->store_name == ''){
+	            $store_name = 'Shopker';
+	            $store_slug = '#';
+	        }else{
+	        	$store_name = $result->store_name;
+	            $store_slug = $result->store_slug;
+	        }
+	        
 			$cart = Session::get('cart');
 			$cart[$data['product_id']] = array(
 				'id' => $data['product_id'],
@@ -48,8 +64,8 @@ function add_to_cart($data){
 				'price' => $data['product_price'],
 				'type' => $data['product_type'],
 				'seller_id' => $result->user_id,
-				'store_name' => $result->store_name,
-				'store_slug' => $result->store_slug,
+				'store_name' => $store_name,
+				'store_slug' => $store_slug,
 			);
 
 			$cart = \Session::put('cart', $cart);
