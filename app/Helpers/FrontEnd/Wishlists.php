@@ -29,7 +29,7 @@ function wishlists($id){
                     'id' => $id,
                 );
 
-                $wishlists = \Session::put('wishlists', $wishlists);
+                $wishlists = \Session::put('wishlists.'.$id, $wishlists);
 
                 return 0;
             }else{
