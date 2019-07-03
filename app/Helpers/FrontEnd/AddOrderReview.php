@@ -24,7 +24,7 @@ function add_order_review($user_id, $order_no, $params){
     	'buyer_ip_address' => Request::ip(),
         'buyer_id' => $user_id,
         'order_no' => $order_no,
-        'stars' => $stars,
+        'buyer_stars' => $stars,
         'buyer_comment' => $review,
         'buyer_review_created_date' => date('Y-m-d'),
         'buyer_review_created_time' => date('h:i:s'),

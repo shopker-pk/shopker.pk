@@ -10,6 +10,13 @@ function wishlists($id){
         $result = $query->first();
         
         if(empty($result->product_id)){
+            //Query For Getting Product Details For View Cart
+            $query = \DB::table('tbl_products')
+                          ->select('tbl_products.user_id', 'name', 'slug', 'featured_image')
+                          ->LeftJoin('tbl_products_featured_images', 'tbl_products_featured_images.product_id', '=', 'tbl_products.id')
+                          ->where('tbl_products.id', $id);
+            $result = $query->first();
+
             //Set Field data according to table column
             $array = array(
                 'ip_address' => Request::ip(),
@@ -27,6 +34,9 @@ function wishlists($id){
                 $wishlists = Session::get('wishlists');
                 $wishlists = array(
                     'id' => $id,
+                    'name' => \Str::limit($result->name, 23),
+                    'slug' => $result->slug,
+                    'image' => env('ADMIN_URL').'images/ecommerce/products/'.$result->featured_image,
                 );
 
                 $wishlists = \Session::put('wishlists.'.$id, $wishlists);

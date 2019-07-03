@@ -115,6 +115,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => $image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
@@ -155,6 +156,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => $image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
@@ -192,6 +194,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
@@ -229,6 +232,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
@@ -266,6 +270,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,
@@ -303,6 +308,7 @@ function search(){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,

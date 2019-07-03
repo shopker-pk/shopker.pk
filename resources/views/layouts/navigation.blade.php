@@ -1,19 +1,33 @@
-<div class="container-fluid menucontainer" style="margin-top: -40px;">
-    <div class="row categorydiv" style="background-image: linear-gradient(to left, #fd0000, black);">
-        <div class="col-md-2">
-            <div class="main_nav_content d-flex flex-row" style="width: 100%; background-color:  #f70000;">
-                <!-- Categories Menu -->
-                <div class="cat_menu_container checkmenu" style="background-image: linear-gradient(to left, #2c0000, black);">
-                    <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                        <div class="cat_burger"><span></span><span></span><span></span></div>
-                        <div class="cat_menu_text" style="padding: 0px 80px 0px 0px;font-size: 15px; ">categories</div>
-                    </div>
-                    <ul class="cat_menu mymenu" style="height: auto; width: 220px;">
-                        <!-- Mega menus Start -->
-                        @if(!empty($mega_menus))
-                            {!! str_replace('\xc2\xa0',' ', html_entity_decode($mega_menus)) !!}
-                        @endif
-                        <!-- Mega menus End -->
+<div class="col-lg-7 col-md-3 col-sm-3 col-xs-6 midle-content">
+    <div class="header-nav container-vertical-wapper ">
+        <div class="header-nav-inner">
+            <div class="box-header-nav">
+                <div class=" container-wapper">
+                    <a class="menu-bar mobile-navigation" href="#">
+                        <span class="icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="text">Main Menu</span>
+                    </a>
+                    <a href="#" class="header-top-menu-mobile"><span class="fa fa-cog" aria-hidden="true"></span></a>
+                    <ul id="menu-main-menu" class="main-menu clone-main-menu ovic-clone-mobile-menu box-has-content">
+                        <li class="menu-item">
+                            <a href="{{ route('home') }}" class="kt-item-title ovic-menu-item-title" title="Home">HOME</a>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="#" class="kt-item-title ovic-menu-item-title" title="PAGES">My Account</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Checkout</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Shopping Cart</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="kt-item-title ovic-menu-item-title" title="Track my order">TRACK MY ORDER</a>
+                        </li>
                     </ul>
                 </div>
             </div>

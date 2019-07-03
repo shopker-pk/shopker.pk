@@ -8,11 +8,11 @@ function bottom_top_banners($page_id){
                  ->where('type', 1)
                  ->where('status', 0)
                  ->where('start_date', '<=', date('Y-m-d'))
-                 ->where('end_date', '>', date('Y-m-d'))
+                 ->where('end_date', '>=', date('Y-m-d'))
                  ->orderBy('id', 'DESC');
  	$result = $query->get();
 
-    if(!empty(count($result) > 0)){
+    if(count($result) > 0){
         foreach($result as $row){
             //Result Array
             $data = array(

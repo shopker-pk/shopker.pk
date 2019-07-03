@@ -10,6 +10,7 @@ function side_filter($slug){
 	             ->leftJoin('tbl_product_brands', 'tbl_product_brands.product_id', '=', 'tbl_products.id')
 	             ->leftJoin('tbl_brands_for_products', 'tbl_brands_for_products.id', '=', 'tbl_product_brands.brand_id')
 	             ->leftJoin('tbl_variations_for_products', 'tbl_variations_for_products.id', '=', 'tbl_products.variation_id')
+	             ->leftJoin('tbl_store_settings', 'tbl_store_settings.vendor_id', '=', 'tbl_products.user_id')
 	             ->select('tbl_parent_categories.slug as parent_slug', 'tbl_parent_categories.name as parent_name', 'tbl_child_categories.slug as child_slug', 'tbl_child_categories.name as child_name', 'tbl_sub_child_categories.slug as sub_child_slug', 'tbl_sub_child_categories.name as sub_child_name', 'tbl_brands_for_products.name as brand_name', 'tbl_brands_for_products.slug as brand_slug', 'tbl_products.regural_price as cost_price', 'tbl_products.sale_price', 'tbl_variations_for_products.id as variation_id', 'tbl_variations_for_products.value as variation_name')
 	             ->Orwhere('tbl_products.slug', 'Like', '%'.$slug.'%')
 	             ->Orwhere('tbl_parent_categories.slug', 'Like', '%'.$slug.'%')
@@ -51,7 +52,6 @@ function side_filter($slug){
 
  			$prices[] = array(
  				'cost_price' => $row->cost_price,
-				'sale_price' => $row->sale_price,
  			);
 
  			$variations[] = array(
@@ -72,7 +72,7 @@ function side_filter($slug){
  		$brands = array_column($brands, 'brand_name', 'brand_slug');
  		$brands = array_unique($brands);
 
- 		$min_price = array_column($prices, 'sale_price');
+ 		$min_price = array_column($prices, 'cost_price');
  		$min_price = min($min_price);
  		$max_price = array_column($prices, 'cost_price');
  		$max_price = max($max_price);

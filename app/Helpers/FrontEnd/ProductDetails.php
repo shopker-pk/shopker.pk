@@ -13,8 +13,8 @@ function product_details($slug){
                  ->LeftJoin('tbl_sub_child_categories', 'tbl_sub_child_categories.id', 'tbl_product_categories.sub_child_id')
                  ->LeftJoin('tbl_store_settings', 'tbl_store_settings.vendor_id', 'tbl_products.user_id')
                  ->LeftJoin('tbl_store_images', 'tbl_store_images.store_id', 'tbl_store_settings.id')
-                 ->where('tbl_products.status', 0)
-                 ->where('tbl_products.is_approved', 0)
+                 //->where('tbl_products.status', 0)
+                 //->where('tbl_products.is_approved', 0)
                  ->where('tbl_brands_for_products.status', 0)
                  ->where('tbl_products.slug', $slug);
     $product = $query->first();

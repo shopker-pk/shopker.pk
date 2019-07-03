@@ -1,37 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>{{ $page_title }}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="OneTech shop project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $meta_description }}" />
-    <meta name="keywords" content="{{ $meta_keywords }}" /> 
-    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
-    @include('layouts.style')
-</head>
-
-<body>
-    @include('layouts.header') 
-    @include('layouts.navigation')
-    @include('layouts.messages')
-    <div class="container">
-        <div class="row" style="margin-bottom: 100px;">
-            <div class="col-md-12 mb-5">
-                <div class="row mt-5">
-                    <div class="col-md-2">
-                        @include('customers.layouts.navigation')
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card card-info">
-                            <h4 class="card-header text-white" style="background-image: linear-gradient(to right,green, #31f93f)">
-                                <b>My Orders Reviews</b>
-                            </h4>
-                            <div class="card-body" id="tableoverflow">
-                                <table class="table">
-                                    <thead class="bg-light">
+@include('layouts.header')
+    <div class="main-content shop-page main-content-grid">
+        <div class="container">
+            @include('layouts.messages')
+            <div class="breadcrumbs">
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 content-offset">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4><b>My Orders Reviews</b></h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive table-striped">
+                                    <thead class="bg-info">
                                         <th>Order NO#</th>
                                         <th>Your Review</th>
                                         <th>Vendor Review</th>
@@ -40,100 +22,104 @@
                                         @if(!empty($orders_reviews))
                                             @foreach($orders_reviews as $row)
                                         <tr>
-                                            <td style="width: 142px;"><p class="mt-3 text-dark recentorderdate">{{ $row['order_no'] }}</p></td>
-                                            <td style="width: 424px;">
+                                            <td>{{ $row['order_no'] }}</td>
+                                            <td>
                                                 @if(!empty($row['buyer_comment']))
-                                                <div align="left" class="ratings">
-                                                @if($row['buyer_stars'] == 5)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                @elseif($row['buyer_stars'] == 4)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['buyer_stars'] == 3)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['buyer_stars'] == 2)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['buyer_stars'] == 1)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @else 
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @endif
+                                                <div class="rating">
+                                                    <ul class="list-star">
+                                                        @if($row['buyer_stars'] == 5)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['buyer_stars'] == 4)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['buyer_stars'] == 3)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['buyer_stars'] == 2)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['buyer_stars'] == 1)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @else
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @endif
+                                                    </ul>
                                                 </div>
-                                                <p class="mt-2 text-dark">{{ $row['buyer_review_date'].' '.$row['buyer_review_time'] }}</p>
-                                                <p class="text-dark">{{ $row['buyer_comment'] }}</p>
+                                                <br>
+                                                <br>
+                                                <p>{{ $row['buyer_review_date'].' '.$row['buyer_review_time'] }}</p>
+                                                <p>{{ $row['buyer_comment'] }}</p>
                                                 @else
-                                                    <a href="{{ route('add_order_review', $row['order_no']) }}"><p class="text-primary">Reply</p></a>
+                                                <a href="javascript::void(0);" data-toggle="modal" data-target="#reviewsModal_{{ $row['order_no'] }}">Reply</a>
                                                 @endif
                                             </td>
-                                            <td style="width: 424px;">
-                                                <p class="mt-2 text-dark">{{ $row['store_name'] }}</p>
+                                            <td>
+                                                <p>{{ $row['store_name'] }}</p>
                                                 @if(!empty($row['vendor_comment']))
-                                                <div align="left" class="ratings">
-                                                @if($row['vendor_stars'] == 5)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                @elseif($row['vendor_stars'] == 4)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['vendor_stars'] == 3)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['vendor_stars'] == 2)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @elseif($row['vendor_stars'] == 1)
-                                                    <i style="color:#008000;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @else 
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                    <i style="color:#d8d8d8;" class="fas fa-star"></i>
-                                                @endif
+                                                <div class="rating">
+                                                    <ul class="list-star">
+                                                        @if($row['vendor_stars'] == 5)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['vendor_stars'] == 4)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['vendor_stars'] == 3)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['vendor_stars'] == 2)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @elseif($row['vendor_stars'] == 1)
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @else
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                        @endif
+                                                    </ul>
                                                 </div>
-                                                <p class="mt-2 text-dark">{{ $row['vendor_review_date'].' '.$row['vendor_review_time'] }}</p>
-                                                <p class="text-dark">{{ $row['vendor_comment'] }}</p>
-                                                @else
-                                                    No review given by seller.
+                                                <p>{{ $row['vendor_review_date'].' '.$row['vendor_review_time'] }}</p>
+                                                <p>{{ $row['vendor_comment'] }}</p>
                                                 @endif
                                             </td>
                                         </tr>
@@ -141,15 +127,62 @@
                                         @endif
                                     </tbody>
                                 </table>
+                                @if(!empty($orders_reviews))
+                                    @foreach($orders_reviews as $row)
+                                <div class="modal fade" id="reviewsModal_{{ $row['order_no'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-uppercase" id="exampleModalLabel">How do you rate order NO#:{{ $row['order_no'] }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('insert_order_reviews', $row['order_no']) }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="add-review">
+                                                                <div class="rating">
+                                                                    <span class="text">Your rating</span>
+                                                                    <form>
+                                                                        <fieldset>
+                                                                            <span class="star-cb-group">
+                                                                                <input type="radio" id="rating-5" name="rate" value="5" /><label for="rating-5">5</label>
+                                                                                <input type="radio" id="rating-4" name="rate" value="4" /><label for="rating-4">4</label>
+                                                                                <input type="radio" id="rating-3" name="rate" value="3" /><label for="rating-3">3</label>
+                                                                                <input type="radio" id="rating-2" name="rate" value="2" /><label for="rating-2">2</label>
+                                                                                <input type="radio" id="rating-1" name="rate" value="1" /><label for="rating-1">1</label>
+                                                                                <input type="radio" id="rating-0" name="rate" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+                                                                            </span>
+                                                                        </fieldset>
+                                                                    </form>
+                                                                </div>
+                                                                <textarea id="review" name="review" rows="6" class="input-info input-content" placeholder="Your review"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row modal-footer">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-success">Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         {{ $orders_reviews[0]['pagination'] }}
                     </div>
                 </div>
+                @include('customers.layouts.navigation')
             </div>
         </div>
     </div>
-    @include('layouts.footer')
-</body>
-
-</html>
+@include('layouts.footer')

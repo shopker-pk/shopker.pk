@@ -77,9 +77,10 @@ function products_by_categories($slug){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => $image,
                 'image_alt' => $row->featured_image,
-                'name' => $row->name,
+                'name' => \Str::limit($row->name, 23),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
@@ -117,9 +118,10 @@ function products_by_categories($slug){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => $image,
                 'image_alt' => $row->featured_image,
-                'name' => $row->name,
+                'name' => \Str::limit($row->name, 23),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
@@ -154,9 +156,10 @@ function products_by_categories($slug){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
-                'name' => $row->name,
+                'name' => \Str::limit($row->name, 23),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,

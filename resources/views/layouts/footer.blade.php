@@ -1,107 +1,137 @@
-<div class="container-fluid" style="margin-top: 100px;">
-    <div class="row">
-        <div class="col-md-12" style="padding: 0px;">
-            <img src="{{ asset('public/assets/images/footerimage1.png') }}" class="footimage">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-content">
+                    <p class="text-justify">
+                        Shopker is an online marketplace that aims to be the best online shopping portal with the broadest range of products available. At shopker, we connect people & products by opening up a virtual world of possibility with the best available range of selection across so that you can get the greatest deals. We believe online shopping can be just as personal and engaging as entering a retail store. We promise to provide hassle-free online shopping experience all the way from product selection to timely delivery.
+                        <li>Clutter free presentation of products on the website.</li>
+                        <li>Easier selection process with expert reviews and description.</li>
+                        <li>Faster and timely delivery of your orders.</li>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-image">
+                    <img src="{{ asset('public/assets/images/footerimage1.png') }}">
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="container-fluid" style="background-color: #292d1b;">
-    <div class="container " >
-        <div class="row " style="margin-top: 40px; ">
-            <div class="col-md-3 " style="margin-top: 20px; ">
-                <div style="font-size:20px; color:white; "><b>CUSTOMER SERVICE</b></div>
-                <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="{{ route('contact_us') }}" style="color: white; ">Contact Us</a></li>
-                    <li><a href="{{ route('pages', 'refund-policy') }}" style="color: white; ">Refund Policy</a></li>
-                    <li><a href="{{ route('pages', 'return-policy') }}" style="color: white; ">Return Policy</a></li>
-                    <li><a href="" style="color: white; ">Warranty Policy</a></li>
-                    <li><a href="" style="color: white; ">Track your order</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 " style="margin-top: 20px; ">
-                <div style="font-size:20px; color: white; "><b>ABOUT US</b></div>
-                <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="{{ route('pages', 'about-us') }}"  style="color: white; ">About us</a></li>
-                    <li><a href="{{ route('career') }}"  style="color: white; ">Careers</a></li>
-                    <li><a href="#"  style="color: white; ">Terms & conditions</a></li>
-                    <li><a href=""  style="color: white; ">Privacy agreement</a></li>
-                    <li><a href="#"  style="color: white; ">NTN Number : 5270812-7</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 " style="margin-top: 20px; " >
-                <div style="font-size:20px; color: white; "><b>SELL WITH SHOPPER</b></div>
-                <ul style=" font-size: 16px; margin-top: 10px; ">
-                    <li><a href="{{ route('sell_with_us') }}"  style="color: white; ">Sell with Shopker</a></li>
-                    <li><a href="{{ route('wholesale') }}"  style="color: white; ">Contact for wholesale</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 " style="margin-top: 20px; margin-bottom: 20px; ">
-                <div style="font-size:20px; color: white; "><b>FOLLOW US</b></div>
-                <ul style="margin-left:10px; font-size: 16px; margin-top: 10px; ">
-                    <li>
-                        <a href="https://www.facebook.com/shopker.pk/" target="_blank"><i style="color:white; font-size: 25px;  color: #3b5998; cursor: pointer; " class="fab fa-facebook " title="Facebook"></i></a>
-                        <a href="https://twitter.com/shopkerpk" target="_blank"><i style="color:white; font-size: 25px; margin-left: 10px; color: #1DA1F2;cursor: pointer; " class="fab fa-twitter-square " title="Twitter"></i></a>
-                        <a href="https://www.instagram.com/shopker18/" target="_blank"><i style="color:white; font-size: 25px;margin-left: 10px; color: #fb3958; cursor: pointer;" class="fab fa-instagram " title="Instagram"></i></a>
-                        <a href="https://api.whatsapp.com/send?phone=923004128681" target="_blank"><i style="color:white; font-size: 25px;margin-left: 10px; color: #4AC959; cursor: pointer; " class="fab fa-whatsapp" title="Whatsapp"></i></a>
-                        <a href="https://www.youtube.com/channel/UChrPKhATn2nwz1GwmbFr5_Q/featured" target="_blank"><i style="color:white; font-size: 25px;margin-left: 10px; color: #FF0000; cursor: pointer; " class="fab fa-youtube" title="Youtube"></i></a>
-                    </li>
-                    <li style="font-size:20px; color : white; margin-top: 20px; "><b>PAYMENT METHODS:</b></li>
-                    <li>
-                        <div class="logos ml-sm-auto ">
-                            <ul class="logos_list ">
-                                <li><a href="# "><img src="{{ asset('public/assets/images/jazzcash.png') }}" width="70" height="70" alt=" "></a></li>
-                                <li><a href="# "><img src="{{ asset('public/assets/images/easypaisa.png') }}"  width="60" height="40" alt=" "></a></li>
-                                <li><a href="# "><img src="{{ asset('public/assets/images/cash.png') }}"  width="80" height="40" alt=" "></a></li>
+    <footer>
+        <div class="footer layout1 ">
+            <div class="container">
+                <div class="main-footer">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 col-ss-12">
+                            <div class="widget widget-text">
+                                <h3 class="widgettitle">Contact information</h3>
+                                <div class="content">
+                                    <h5 class="subtitle">Address</h5>
+                                    <p class="des">{{ $site_settings['site_address'] }}</p>
+                                    <h5 class="subtitle">Phone</h5>
+                                    <p class="des">{{ $site_settings['site_phone_number1'] }}</p>
+                                    <h5 class="subtitle">Email</h5>
+                                    <p class="des">{{ $site_settings['site_email1'] }}<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <ul class="list-socials">
+                                <li><a href="https://www.facebook.com/shopker.pk/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="https://twitter.com/shopkerpk"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/shopker18/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UChrPKhATn2nwz1GwmbFr5_Q/featured"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://api.whatsapp.com/send?phone=923004128681"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid" style="background-color: #b20c0c;">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h3 class="text-uppercase text-white pb-3"><i class="fas fa-location-arrow pr-3"></i>Newsletter Signup</h3>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="email" placeholder="Enter Your Email" class="form-control mt-4" name="">
-                    </div>
-                    <div class="col-md-2">
-                        <div style="padding-top: 23px;">
-                            <input type="radio" name="gender"><span style="color: white; font-size: 17px; margin-left: 10px;margin-right: 10px;">Male</span>
-                            <input type="radio" name="gender"><span style="color: white; font-size: 17px;margin-left: 10px;">Female</span>
+                        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 col-ss-12">
+                            <div class="newsletter-form layout1 box-has-content">
+                                <div class="widget widget-newsletter">
+                                    <h3 class="widgettitle">Newsletter</h3>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                            <p class="des">Get all the latest information on Events, Sales and Offers. Sign up for newsletter today.</p>
+                                        </div>
+                                        <div class="col-ts-12 col-xs-8 col-sm-12 col-md-6"> 
+                                            <div class="newsletter-block">
+                                                <div class="newsletter-inner">
+                                                    <input type="text" class="newsletter-info" placeholder="Enter Your e-mail...">
+                                                </div>
+                                                <a href="#" class="submit">Subscribe</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row auto-clear">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-ts-12 ">
+                                    <div class="widget widget-custom-menu">
+                                        <h3 class="widgettitle">My account</h3>
+                                        <ul >
+                                            <li><a href="{{ route('customer_sign_in') }}">Sign In</a></li>
+                                            <li><a href="{{ route('view_cart') }}">View Cart</a></li>
+                                            @if(!empty($customer_details[0]['id']))
+                                            <li><a href="{{ route('manage_wishlist') }}">My Wishlist</a></li>
+                                            <li><a href="{{ route('manage_orders') }}">Track My Order</a></li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-ts-12 ">
+                                    <div class="widget widget-custom-menu">
+                                        <h3 class="widgettitle">Sell With Shopker</h3>
+                                        <ul >
+                                            <li><a href="{{ route('sell_with_us') }}">Sell With Shopker</a></li>
+                                            <li><a href="{{ route('wholesale') }}">Contact for Wholesale</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-ts-12">
+                                    <div class="widget widget-custom-menu">
+                                        <h3 class="widgettitle">Customer Services</h3>
+                                        <ul >
+                                            <li><a href="{{ route('contact_us') }}">Contact us</a></li>
+                                            <li><a href="{{ route('pages', 'refund-policy') }}">Refund Policy</a></li>
+                                            <li><a href="{{ route('pages', 'return-policy') }}"> Return Policy</a></li>
+                                            <li><a href="#">Warranty Policy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-ts-12">
+                                    <div class="widget widget-custom-menu">
+                                        <h3 class="widgettitle">About Us</h3>
+                                        <ul >
+                                            <li><a href="{{ route('pages', 'about-us') }}">About</a></li>
+                                            <li><a href="{{ route('career') }}">Careers</a></li>
+                                            <li><a href="#">Terms and Conditions</a></li>
+                                            <li><a href="#">Privacy Agreement</a></li>
+                                            <li><a href="#">NTN Number: 5270812-7</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-1">
-                        <div style="padding-top: 18px;">
-                            <input type="submit" name="gender" value="Send" class="btn btnview5">
+                </div>
+                <div class="footer-note">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 left-content">
+                            <div class="coppy-right">
+                                <h3 class="content">© Copyright 2019 <span class="site-name"> Itechnocode</span> <span class="text">,</span>All rights reserved by Shopker.</h3>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 right-content">
+                            <ul class="list-payment">
+                                <li><a href="#"><img src="{{ asset('public/assets/images/jazzcash.png') }}" height="50" alt=""></a></li>
+                                <li><a href="#"><img src="{{ asset('public/assets/images/easypaisa.png') }}" height="30" alt=""></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="copyright " style="background-color: #292d1b; border-top: 1px solid white; ">
-    <div class="container ">
-        <div class="row ">
-            <div class="col-md-4 "></div>
-            <div class="col-md-6 ">
-                <div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start ">
-                    <div class="copyright_content " style="color: white;">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart " aria-hidden="true "></i> by <a href="https://itechnocode.com " target="_blank ">ITechnoCode</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@include('layouts.script')
+    </footer>
+    <a class="back-to-top" href="#"></a>
+    @include('layouts.script')
+</body>
+</html>

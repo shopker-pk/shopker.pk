@@ -14,7 +14,7 @@ class FiltersController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
-        $result['search_products'] = search();
+        $result['query'] = search();
         $result['side_filter'] = side_filter(utf8_encode($request->input('name')));
 
         //Call Page
@@ -31,7 +31,7 @@ class FiltersController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
-        $result['search_products'] = search_by_variations($slug);
+        $result['query'] = search_by_variations($slug);
         $result['side_filter'] = side_filter($slug);
 
         //Call Page

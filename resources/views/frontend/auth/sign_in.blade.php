@@ -1,68 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>{{ $page_title }}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="OneTech shop project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $meta_description }}" />
-    <meta name="keywords" content="{{ $meta_keywords }}" /> 
-    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
-    @include('layouts.style')
-
-    <style type="text/css">
-    	.cat_menu_container ul{display: none;}
-    	.cat_menu_container:hover ul{display: block;}
-    </style>
-</head>
-<body>
-	@include('layouts.header') 
-    @include('layouts.navigation')
-    @include('layouts.messages')
-
-	<div class="container-fluid mainloginform" style="margin-bottom:  100px;">
-		<div class="row">
-			<div class="col-md-6 newcustomer">
-				<div class="wow fadeInDown"><div class="new">NEW CUSTOMERS</div></div>
-				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8 ">
-						By creating an account with shopker, you will be able to enjoy the smooth journey of your shopping, we offer multiple store, different shipping addresses, view & track your orders in your account & many more exciting features.
-					</div>
-					<div class="col-md-2"></div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div align="center" class="createbtn"><a href="{{ route('customer_sign_up') }}"><button>Create Account</button></a></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 newcustomer">
-				<div class="wow fadeInDown"><div class="new">REGISTERED CUSTOMERS</div></div>
-					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-md-8 ">
-		                    <div class="loginform">
-		                        <form action="{{ route('validating_credentials') }}" method="post">
-		                        	{{ csrf_field() }}
-		                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"><br/>
-		                            <input type="password" class="form-control" id="password" name="password" placeholder="Password"><br/>
-		                            <div class="forgetPassword" style="margin-left: 5px;"><a href="{{ route('forget_password') }}">Forget Password?</a></div>
-		                            <div class="loginbtn" align="center">
-		                            	<button type="submit" class="btn btn-primary">Submit</button>
-		                            </div>
-		                        </form>
-		                    </div>
-	                    </div>
-	                    <div class="col-md-2"></div>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
+@include('layouts.header')
+    <div class="main-content shop-page login-page">
+        <div class="container">
+            @include('layouts.messages')
+            <div class="breadcrumbs">
+            </div>
+            <div class="login-register-form content-form row">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <form action="{{ route('validating_credentials') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="register-form">
+                            <h4 class="main-title">Sign In</h4>
+                            <h5 class="note-title">Personal Infomation</h5>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <span class="label-text">Email *</span>
+                                    <input type="text" id="email" name="email" class="input-info">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <span class="label-text">Password *</span>
+                                    <input type="password" id="password" name="password" class="input-info">  
+                                </div>
+                            </div>
+                            <div class="group-button"><button class="button submit">Sign In</button></div>        
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
 @include('layouts.footer')
-
-</body>
-</html>

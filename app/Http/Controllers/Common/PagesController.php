@@ -19,8 +19,8 @@ class PagesController extends Controller{
         $result['header_banners'] = header_banners(0);
         $result['bottom_top_banners'] = bottom_top_banners(0);
         $result['bottom_center_banners'] = bottom_center_banners(0);
-        $result['daily_deals'] = daily_deals();
         $result['best_selling'] = best_selling();
+        $result['daily_deals'] = daily_deals();
         $result['latest_products'] = latest_products();
         
         //Call Page
@@ -37,9 +37,9 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
-        $result['products_by_categories'] = products_by_categories($slug);
+        $result['query'] = products_by_categories($slug);
         $result['side_filter'] = side_filter($slug);
-
+        
         //Call Page
         return view('pages.products', $result);
     }
@@ -64,7 +64,7 @@ class PagesController extends Controller{
             return view('pages.product_details', $result);
         }else{
             //Flash Error Message
-            $request->session()->flash('alert-danger', 'Your Search product is not found !!');
+            $request->session()->flash('alert-danger', 'Product Not Found !!');
             
             return redirect()->route('home');
         }
@@ -119,7 +119,8 @@ class PagesController extends Controller{
             $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
             $result['store_details'] = get_stores($slug); 
-            $result['store_products'] = get_stores_products(get_stores($slug)[0]['owner_id']); 
+            $result['query'] = get_stores_products(get_stores($slug)[0]['owner_id']); 
+            $result['side_filter'] = side_filter($slug);
 
             //Call Page
             return view('pages.stores', $result);

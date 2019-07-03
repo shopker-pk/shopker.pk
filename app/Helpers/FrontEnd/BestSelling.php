@@ -9,6 +9,7 @@ function best_selling(){
                  ->where('tbl_products.status', 0)
                  ->where('tbl_products.is_approved', 0)
                  ->orderBy('tbl_orders.id', 'DESC')
+                 ->groupBy('tbl_orders.product_id')
                  ->limit(12);
  	$result = $query->get();
 
@@ -43,9 +44,10 @@ function best_selling(){
 
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
-                'name' => $row->name,
+                'name' => \Str::limit($row->name, 23),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,

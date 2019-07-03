@@ -52,8 +52,11 @@
 		Route::post('/add-to-cart', 'Customers\Shopping\CartController@add_to_cart')->name('add_to_cart');
 		Route::get('/view-cart', 'Customers\Shopping\CartController@view_cart')->name('view_cart');
 		Route::get('/remove-product-from-cart/{id}', 'Customers\Shopping\CartController@remove_product')->name('remove_product');
+		Route::get('/empty-cart', 'Customers\Shopping\CartController@empty_cart')->name('empty_cart');
+		Route::post('/update-cart', 'Customers\Shopping\CartController@update_cart')->name('update_cart');
 		Route::get('/apply-coupon', 'Customers\Shopping\CartController@apply_coupon');
-		Route::post('/check-out', 'Customers\Shopping\CartController@check_out')->name('check_out');
+		Route::get('/check-out', 'Customers\Shopping\CartController@checkout')->name('checkout');
+		Route::post('/check-out/add-order', 'Customers\Shopping\CartController@add_order')->name('add_order');
 		Route::post('/buy-now', 'Customers\Shopping\CartController@buy_now')->name('buy_now');
 	//Shopping Routes End
 	
@@ -92,10 +95,10 @@
 		Route::post('/reviews/pordersroducts/insert/{order_no}', 'Customers\Reviews\OrdersController@insert')->name('insert_order_reviews');
 	//Orders Reviews Routes End
 
-	//Filters Routes Start
+	//Filters Routes Startd
 		Route::get('/search', 'Common\FiltersController@search_by_text')->name('search_products');
 		Route::get('/products/filter/variations/{slug}', 'Common\FiltersController@search_by_variations')->name('filter_products');
-	//Filters Routes End
+	//Filters Routes En
 
 	//Product Details Routes Start
 		Route::get('/{product_slug}', 'Common\PagesController@product_details')->name('product_details');

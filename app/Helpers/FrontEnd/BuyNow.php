@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 function buy_now($data){
 	if(!empty($data['product_id'])){
@@ -22,9 +22,10 @@ function buy_now($data){
 			$cart = Session::get('cart');
             $cart = array(
             	'id' => $data['product_id'],
-				'name' => $result->name,
+				'name' => \Str::limit($result->name, 23),
 				'slug' => $result->slug,
 				'weight' => $result->weight,
+				'total_weight' => $result->weight * \Session::get('cart.'.Request::input('product_id'))['quantity'] + Request::input('quantity'),
 				'image' => env('ADMIN_URL').'images/ecommerce/products/'.$result->featured_image,
 				'quantity' => \Session::get('cart.'.Request::input('product_id'))['quantity'] + Request::input('quantity'),
 				'price' => Request::input('product_price'),
@@ -56,9 +57,10 @@ function buy_now($data){
 			$cart = Session::get('cart');
 			$cart[$data['product_id']] = array(
 				'id' => $data['product_id'],
-				'name' => $result->name,
+				'name' => \Str::limit($result->name, 23),
 				'slug' => $result->slug,
 				'weight' => $result->weight,
+				'total_weight' => $result->weight * $data['quantity'],
 				'image' => env('ADMIN_URL').'images/ecommerce/products/'.$result->featured_image,
 				'quantity' => $data['quantity'],
 				'price' => $data['product_price'],

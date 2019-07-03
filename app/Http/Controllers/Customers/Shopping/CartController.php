@@ -35,7 +35,7 @@ class CartController extends Controller{
         $result['shipping_prices'] = shipping_prices(); 
 
         //call page
-        return view('pages.viewcart', $result); 
+        return view('pages.view_cart', $result); 
     }
 
     function remove_product(Request $request, $id){
@@ -50,6 +50,88 @@ class CartController extends Controller{
         }
 
         return redirect()->back();
+    }
+
+    function empty_cart(Request $request){
+        if(!empty($request->session()->get('cart'))){
+            $request->session()->forget('cart');
+
+            //Flash Success Message
+            $request->session()->flash('alert-success', 'Cart has been clered successfully.');
+
+            return redirect()->back();
+        }else{
+            //Flash Success Message
+            $request->session()->flash('alert-danger', 'No product found in cart.');
+
+            return redirect()->back();
+        }
+    }
+
+    function update_cart(Request $request){
+        if(!empty($request->session()->get('cart'))){
+            $cart = update_cart($request->all());
+            
+            if($cart = 'success'){
+                //Flash Success Message
+                $request->session()->flash('alert-success', 'Cart has been updated successfully.');
+            }else{
+                //Flash Error Message
+                $request->session()->flash('alert-danger', 'Something went wrong !!');
+            }
+        }else{
+            //Flash Success Message
+            $request->session()->flash('alert-danger', 'Product not found for updating cart.');
+        }
+
+        return redirect()->back();
+    }
+
+    function buy_now(Request $request){
+        $cart = buy_now($request->all());
+
+        if(!empty($cart)){
+            //Flash Success Message
+            $request->session()->flash('alert-success', 'Product has been added in cart successfully');
+        }else{
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Something went wrong !!');
+        }
+
+        return redirect()->route('view_cart');
+    }
+
+    function checkout(Request $request){
+        //Header Data
+        $result = array(
+            'page_title' => 'Shopker | Check Out',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['mega_menus'] = mega_menus();
+        $result['site_settings'] = site_settings();
+        $result['customer_details'] = customer_details();
+        $result['countries'] = countries(); 
+        $result['shipping_prices'] = shipping_prices(); 
+
+        $subtotal = 0;
+        $total_weight = 0;
+        if(!empty($request->session()->get('cart'))){
+            foreach($request->session()->get('cart') as $row){
+                $subtotal += +$row['price'] * $row['quantity'];
+                $total_weight += $row['total_weight'];
+            }
+            
+            $result['subtotal'] = $subtotal;
+            $result['total_weight'] = $total_weight;
+        }else{
+            $result['subtotal'] = '0.00';
+            $result['total_weight'] = '0';
+        }
+
+        //call page
+        return view('pages.checkout', $result); 
     }
 
     function apply_coupon(Request $request){
@@ -73,6 +155,7 @@ class CartController extends Controller{
                     'ERROR' => 'TRUE',
                     'DATA' => 'Your voucher is expired.',
                 );
+
                 echo json_encode($ajax_response_data);
             }else{
                 //Create Coupon Array
@@ -94,6 +177,7 @@ class CartController extends Controller{
                     'ERROR' => 'FALSE',
                     'DATA' => $data,
                 );
+
                 echo json_encode($ajax_response_data);
             }
         }else{
@@ -101,46 +185,40 @@ class CartController extends Controller{
                 'ERROR' => 'TRUE',
                 'DATA' => 'Sorry, this voucher is not valid.',
             );
+
             echo json_encode($ajax_response_data);
         }
         die;
     }
 
-    function check_out(Request $request){
-        $cart = check_out($request->all());
+    function add_order(Request $request){
+        if(!empty($request->session()->get('cart'))){
+            $cart = add_order($request->all());
 
-        if(empty($request->session()->get('customer_details')['id'] && $request->session()->get('customer_details')['role'] == 3)){
-            //Flash Error Message
-            $request->session()->flash('alert-danger', 'You have to login first before proceeding to order.');
+            if(empty($request->session()->get('customer_details')['id'] && $request->session()->get('customer_details')['role'] == 3)){
+                //Flash Error Message
+                $request->session()->flash('alert-danger', 'You have to login first before proceeding to order.');
 
-            return redirect()->back();
-        }else{
-            if(!empty($cart == 0)){
-                //Flash Success Message
-                $request->session()->flash('alert-success', 'Your order has been placed successfully.');
-            }elseif(!empty($cart == 1)){
-                //Flash Error Message
-                $request->session()->flash('alert-danger', 'There is something wrong with your order request. please try again.');
-            }elseif(!empty($cart == 2)){
-                //Flash Error Message
-                $request->session()->flash('alert-danger', 'You to have to add atleast one product for checkout.');
+                return redirect()->back();
+            }else{
+                if(!empty($cart == 0)){
+                    //Flash Success Message
+                    $request->session()->flash('alert-success', 'Your order has been placed successfully.');
+                }elseif(!empty($cart == 1)){
+                    //Flash Error Message
+                    $request->session()->flash('alert-danger', 'There is something wrong with your order request. please try again.');
+                }elseif(!empty($cart == 2)){
+                    //Flash Error Message
+                    $request->session()->flash('alert-danger', 'You to have to add atleast one product for checkout.');
+                }
             }
-        }
 
-        return redirect()->route('home');
-    }
-
-    function buy_now(Request $request){
-        $cart = buy_now($request->all());
-
-        if(!empty($cart)){
-            //Flash Success Message
-            $request->session()->flash('alert-success', 'Product has been added in cart successfully');
+            return redirect()->route('home');
         }else{
-            //Flash Error Message
-            $request->session()->flash('alert-danger', 'Something went wrong !!');
-        }
+            //Flash Success Message
+            $request->session()->flash('alert-success', "You don't have any product in cart for checkout.");
 
-        return redirect()->route('view_cart');
+            return redirect()->route('home');
+        }
     }
 }

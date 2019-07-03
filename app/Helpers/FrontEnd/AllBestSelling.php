@@ -8,7 +8,8 @@ function all_best_selling(){
                  ->LeftJoin('tbl_products', 'tbl_products.id', '=', 'tbl_orders.product_id')
                  ->where('tbl_products.status', 0)
                  ->where('tbl_products.is_approved', 0)
-                 ->orderBy('tbl_orders.id', 'DESC');
+                 ->orderBy('tbl_orders.id', 'DESC')
+                 ->groupBy('tbl_orders.product_id');
  	$result = $query->paginate(40);
 
     //Query For Getting those latest products who have ratings
@@ -48,6 +49,7 @@ function all_best_selling(){
 
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,

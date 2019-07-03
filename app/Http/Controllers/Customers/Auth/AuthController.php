@@ -85,7 +85,7 @@ class AuthController extends Controller{
                 $request->session()->flash('alert-danger', 'You have given wrong credentials.');
             }
             
-            return redirect()->back();
+            return redirect()->route('home');
         }else{
             return redirect()->back();
         }

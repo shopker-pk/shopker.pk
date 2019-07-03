@@ -48,6 +48,7 @@ function get_stores_products($user_id){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->name,

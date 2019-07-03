@@ -44,14 +44,14 @@ function daily_deals(){
                 'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
-                'name' => $row->name,
+                'name' => \Str::limit($row->name, 23),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
                 'total_discount' => $discount,
-                'deal_hours' => date('h', strtotime($row->deal_start_time)),
-                'deal_minutes' => date('s', strtotime($row->deal_start_time)),
+                'deal_hours' => date('H', strtotime($row->deal_start_time)),
+                'deal_minutes' => date('i', strtotime($row->deal_start_time)),
                 'deal_seconds' => date('s', strtotime($row->deal_start_time)),
             );
         }
