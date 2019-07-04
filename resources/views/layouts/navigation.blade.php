@@ -19,10 +19,16 @@
                         <li class="menu-item menu-item-has-children">
                             <a href="#" class="kt-item-title ovic-menu-item-title" title="PAGES">My Account</a>
                             <ul class="sub-menu">
-                                <li><a href="#">Checkout</a></li>
-                                <li><a href="#">Login</a></li>
-                                <li><a href="#">Shopping Cart</a></li>
-                                <li><a href="#">My Wishlist</a></li>
+                                @if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
+                                <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li><a href="{{ route('view_cart') }}">Shopping Cart</a></li>
+                                <li><a href="{{ route('manage_wishlist') }}">My Wishlist</a></li>
+                                @else
+                                <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                                <li><a href="{{ route('customer_sign_in') }}">Login</a></li>
+                                <li><a href="{{ route('view_cart') }}">Shopping Cart</a></li>
+                                @endif
                             </ul>
                         </li>
                         <li class="menu-item">
