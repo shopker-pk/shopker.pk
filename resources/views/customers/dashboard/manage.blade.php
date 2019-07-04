@@ -13,7 +13,7 @@
                         <div class="panel-body">
                             <div class="panel">
                                 <div class="panel-body personal-account">
-                                    <h4>Personal Account</h4> | <a href="#">Edit</a>
+                                    <h4>Personal Account</h4> | <a href="{{ route('edit_profile_settings') }}">Edit</a>
                                     <h5>{{ $customer_details[0]['first_name'].' '.$customer_details[0]['last_name'] }}</h5>
                                     <p>{{ $customer_details[0]['email'] }}</p>
                                     <p>{{ $customer_details[0]['phone_no'] }}</p>
