@@ -12,3 +12,4 @@
 <script src="{{ asset('public/assets/js/chosen.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/frontend.js') }}"></script>
 <script src="{{ asset('public/assets/js/custom.js') }}"></script>
+<script src="{{ asset('public/assets/js/single_image_upload_with_preview.js') }}"></script>

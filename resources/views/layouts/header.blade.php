@@ -25,6 +25,7 @@
 						<li><a href="{{ route('sell_with_us') }}">Sell with us</a></li>
 						@if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
 						<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+						<li><a href="{{ route('sign_out') }}">Sign Out</a></li>
 						@else
 						<li><a href="{{ route('customer_sign_up') }}">Sign Up</a></li>
 						<li><a href="{{ route('customer_sign_in') }}">Sign in</a></li>
