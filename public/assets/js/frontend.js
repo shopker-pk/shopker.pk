@@ -592,3 +592,19 @@ $("#change").click(function(){
       log.html(me.attr('value'));
     });
 });
+
+var options = {
+    nav: true,
+    items: 1,
+    loop: false,
+    thumbs: true,
+    thumbImage: true,
+    thumbContainerClass: 'owl-thumbs',
+    thumbItemClass: 'owl-thumb-item'
+};
+
+if($('.owl-carousel').length < 1){
+   options.loop=true;
+}
+
+$('.owl-carousel.has-thumbs').owlCarousel(options);
