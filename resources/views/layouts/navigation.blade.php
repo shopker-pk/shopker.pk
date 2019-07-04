@@ -32,7 +32,9 @@
                             </ul>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="kt-item-title ovic-menu-item-title" title="Track my order">TRACK MY ORDER</a>
+                            @if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
+                            <a href="{{ route('manage_orders') }}" class="kt-item-title ovic-menu-item-title" title="Track my order">TRACK MY ORDER</a>
+                            @endif
                         </li>
                     </ul>
                 </div>

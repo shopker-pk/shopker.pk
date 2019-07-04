@@ -19,14 +19,14 @@ function search_by_variations($slug){
                  ->Orwhere('tbl_variations_for_products.value', 'Like', '%'.$slug.'%');
                  if(!empty(explode(',', $slug)[1])){
            $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%')
-                 ->Orwhere('tbl_products.regural_price', '<=', explode(',', $slug)[0])
-                 ->Orwhere('tbl_products.regural_price', '>=', explode(',', $slug)[1])
-                 ->Orwhere('tbl_products.sale_price', '<=', explode(',', $slug)[0])
-                 ->Orwhere('tbl_products.sale_price', '>=', explode(',', $slug)[1]);
+                 ->Orwhere('tbl_products.regural_price', '>=', explode(',', $slug)[0])
+                 ->Orwhere('tbl_products.regural_price', '<=', explode(',', $slug)[1])
+                 ->Orwhere('tbl_products.sale_price', '>=', explode(',', $slug)[0])
+                 ->Orwhere('tbl_products.sale_price', '<=', explode(',', $slug)[1]);
                  }else{
            $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%');
                  }
-    $result = $query->get();
+    $result = $query->paginate(40);
 
     //Query For Getting those latest products who have ratings
     $query = DB::table('tbl_products_reviews')
@@ -68,6 +68,7 @@ function search_by_variations($slug){
             
             //Result Array
             $data[] = array(
+                'id' => $row->id,
                 'image' => $image,
                 'image_alt' => $row->featured_image,
                 'name' => $row->product_name,

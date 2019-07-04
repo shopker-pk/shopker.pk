@@ -277,4 +277,16 @@ $(document).ready(function(){
 			}
 		});
 	//Getting Areas By City Id & Update Shipping Price End
+
+	//Navigate To Search Page Clicking Variant Start
+		$(document).on('click', '.variant', function(){
+			if(window.location.href.split('products')[0] == window.location.href.split('products')[0]){
+				var url = window.location.replace(window.location.href.split('products')[0].toString()+'products/filter/variations/'+$(this).val());
+			}
+		});
+
+		$(document).on('click', '#search_by_price', function(){
+			var url = window.location.replace(window.location.href.split('products')[0].toString()+'products/filter/variations/'+$('#from_price').val()+','+$('#to_price').val());
+		});
+	//Navigate To Search Page Clicking Variant End
 });
