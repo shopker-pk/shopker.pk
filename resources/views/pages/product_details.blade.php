@@ -69,7 +69,7 @@
                             <p class="description">Brand: <a href="{{ route('search_products', $product_details['brand_slug']) }}" >{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0)";>More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</p>
                             <div class="price">
                                 @if(!empty($product_details['sale_price']))
-                                <span class="del">Rs.{{ $product_details['cost_price'] }}</span>
+                                <span class="del"><strike>Rs.{{ $product_details['cost_price'] }}</strike></span>
                                 <span class="ins">Rs.{{ $product_details['sale_price'] }}</span>
                                 @else
                                 <span class="ins">Rs.{{ $product_details['cost_price'] }}</span>
