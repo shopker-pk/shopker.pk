@@ -20,9 +20,9 @@ function search_by_variations($slug){
                  if(!empty(explode(',', $slug)[1])){
            $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%')
                  ->Orwhere('tbl_products.regural_price', '>=', explode(',', $slug)[0])
-                 ->Orwhere('tbl_products.regural_price', '<=', explode(',', $slug)[1])
-                 ->Orwhere('tbl_products.sale_price', '>=', explode(',', $slug)[0])
-                 ->Orwhere('tbl_products.sale_price', '<=', explode(',', $slug)[1]);
+                 //->Orwhere('tbl_products.regural_price', '<=', explode(',', $slug)[1])
+                 ->Orwhere('tbl_products.sale_price', '>=', explode(',', $slug)[0]);
+                 //->Orwhere('tbl_products.sale_price', '<=', explode(',', $slug)[1]);
                  }else{
            $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%');
                  }

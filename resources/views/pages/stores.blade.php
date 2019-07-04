@@ -45,7 +45,6 @@
                                     </ul>
                                     @endif
                                     <div class="thumb">
-                                        <a href="#" class="quickview-button"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                         <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:214px; height:214px;"></a>
                                     </div>
                                     <div class="info">
