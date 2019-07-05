@@ -280,10 +280,7 @@ $(document).ready(function(){
 
 	//Navigate To Search Page Clicking Variant Start
 		$(document).on('click', '.variant', function(){
-			if(window.location.href.split('products')[0] == window.location.href.split('shopker.pk')[0]){
-				var url = window.location.replace(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/products/filter/variations/'+$(this).val());
-				alert(url);
-			}
+			var url = window.location.replace(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/products/filter/variations/'+$(this).val());
 		});
 
 		$(document).on('click', '#search_by_price', function(){
