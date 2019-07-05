@@ -1153,7 +1153,7 @@ input {
 }
 .vertical-menu .sub-menu1 {
   max-width: 650px;
-  background-image: url('../images/bg2.jpg');
+  /* background-image: url('../images/bg2.jpg'); */
   background-repeat: no-repeat;
   background-position: right bottom;
   padding: 30px 35px;

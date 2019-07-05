@@ -34,24 +34,23 @@ function mega_menus(){
 		 			//Query For Getting Sub Child Categories
 					$query = \DB::table('tbl_sub_child_categories')
 				                 ->select('id as sub_child_id', 'child_id as child_child_id', 'name as sub_child_name', 'slug as sub_child_slug')
+				                 ->where('parent_id', $parent_category->parent_id)
 				                 ->where('child_id', $child_category->child_id)
 				                 ->where('status', 0)
 				                 ->orderBy('id');
 				 	$sub_child_categories = $query->get();
 
-				 	if(count($sub_child_categories) > 0){
-				 		$html .= '
- 							<div class="widget-custom-menu col-xs-12 col-sm-12 col-md-4">
-								<a href="'.route('products_by_categories', $child_category->child_slug).'"><h5 class="title widgettitle">'.$child_category->child_name.'</h5></a>
-								<ul>
-							';
+				 	$html .= '
+							<div class="widget-custom-menu col-xs-12 col-sm-12 col-md-4">
+							<a href="'.route('products_by_categories', $child_category->child_slug).'"><h5 class="title widgettitle">'.$child_category->child_name.'</h5></a>
+							<ul>
+						';
 
-						foreach($sub_child_categories as $sub_child_category){
-							$html .= '
-									<li><a href="'.route('products_by_categories', $sub_child_category->sub_child_slug).'">'.$sub_child_category->sub_child_name.'</a></li>
-							';
-						}
-		 			}
+					foreach($sub_child_categories as $sub_child_category){
+						$html .= '
+								<li><a href="'.route('products_by_categories', $sub_child_category->sub_child_slug).'">'.$sub_child_category->sub_child_name.'</a></li>
+						';
+					}
 
 					$html .= '
 								</ul>

@@ -10,7 +10,7 @@ function latest_products(){
                  ->orderBy('tbl_products.id', 'DESC')
                  ->limit(50);
     $products = $query->get();
-
+    //dd($products);
     //Query For Getting those latest products who have ratings
     $query = DB::table('tbl_products_reviews')
                  ->select('product_id', DB::raw('AVG(tbl_products_reviews.buyer_stars) as total_stars'))
