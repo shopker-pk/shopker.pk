@@ -44,7 +44,7 @@
 									</div>
 								</div>
 								@include('layouts.navigation')	
-								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 right-content">
+								<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 right-content custom_right_header">
 									<ul class="header-control">							
 										@include('layouts.wishlist')	
 										@include('layouts.cart')
@@ -76,7 +76,7 @@
 								</div>
 							</div>
 							<div class="col-lg-7 col-md-5 col-sm-8 col-xs-8 col-ts-12 middle-content">
-								<form action="{{ route('search_products') }}" method="get">
+								<form action="{{ route('search_products') }}" method="get" id="search-form">
 									<div class="search-form layout2 box-has-content">
 										<div class="search-block">
 											<div class="search-choice parent-content">
@@ -87,7 +87,7 @@
 											<div class="search-inner">
 												<input type="text" id="name" name="name" class="search-info" placeholder="Searh entire store here...">
 											</div>
-											<button class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+											<a class="search-button" id="search-button"><i class="fa fa-search" aria-hidden="true"></i></a>
 										</div>
 									</div>		
 								</form>

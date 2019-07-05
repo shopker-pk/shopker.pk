@@ -13,6 +13,12 @@ $(document).ready(function(){
 		});
 	//Buy Now End
 
+	//Search Start
+	$(document).on('click', '#search-button', function(){
+			$('#search-form').submit();
+		});
+	//Search End
+
 	//Update Product Quantity And product Amount And total Start
 		$(document).on('click', '#view_cart_add_qty', function(){
 			//first update qty in hidden input

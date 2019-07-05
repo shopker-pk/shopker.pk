@@ -458,11 +458,10 @@ input {
   float: none;
 }
 .main-header .top-header {
-  padding: 35px 0 30px;
+  padding: 25px 0 20px;
 }
 .main-header .logo {
-  padding-top: 8px;
-  margin-top: -17px;
+  margin-top: -10px;
 }
 .header.layout1 .main-header .header-control {
   margin-top: -4px;
@@ -507,6 +506,7 @@ input {
   text-align: center;
   border-radius: 0 21px 21px 0 ;
   display: inline-block;
+  cursor: pointer;
 }
 .search-form .search-block .search-button:hover {
   background-color: #aaa;
@@ -4328,6 +4328,7 @@ body.home5 {
   padding: 0 10px;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 }
 .details-info .group-button .add-to-cart .icon {
   display: none;
@@ -7341,5 +7342,11 @@ and (max-device-width : 1024px){
   border-radius: 10px;
   color: white;
   padding: 3px;
+}
+.custom_right_header{
+  margin-top: 6px;
+}
+.custom_middle_header{
+  margin-top: 6px;
 }
 /*========================/*

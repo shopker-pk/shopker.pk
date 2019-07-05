@@ -1,4 +1,4 @@
-<div class="col-lg-7 col-md-3 col-sm-3 col-xs-6 midle-content">
+<div class="col-lg-7 col-md-3 col-sm-3 col-xs-6 midle-content custom_middle_header">
     <div class="header-nav container-vertical-wapper ">
         <div class="header-nav-inner">
             <div class="box-header-nav">
