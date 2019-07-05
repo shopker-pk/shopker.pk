@@ -135,14 +135,14 @@
                                 @else
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}">
+                                        <img src="{{ asset('public/assets/images/65864565_350196712312592_751187452198125568_n.png') }}" style="    height: 376px;">
                                     </div>
                                 </div>
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}">
+                                        <img src="{{ asset('public/assets/images/65864565_350196712312592_751187452198125568_n.png') }}" style="    height: 376px;">
                                     </div>
-                                </div> 
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -233,14 +233,14 @@
                                 @else
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        <h5>No Deal Available Today !!</h5>
+                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}" style="    height: 376px;">
                                     </div>
                                 </div>
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        <h5>No Deal Available Today !!</h5>
+                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}" style="    height: 376px;">
                                     </div>
-                                </div>   
+                                </div> 
                                 @endif
                             </div>
                         </div>
