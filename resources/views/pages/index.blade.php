@@ -133,7 +133,16 @@
                                 </div>
                                     @endforeach
                                 @else
-                                    No Best Selling Product Found !!
+                                <div class="product-item layout1">
+                                    <div class="product-inner equal-elem">
+                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}">
+                                    </div>
+                                </div>
+                                <div class="product-item layout1">
+                                    <div class="product-inner equal-elem">
+                                        <img src="{{ asset('public/assets/images/65762221_705145879945984_8909968625452974080_n.png') }}">
+                                    </div>
+                                </div> 
                                 @endif
                             </div>
                         </div>
@@ -222,7 +231,16 @@
                                 </div>
                                     @endforeach
                                 @else
-                                    No Daily Deal Found !!
+                                <div class="product-item layout1">
+                                    <div class="product-inner equal-elem">
+                                        <h5>No Deal Available Today !!</h5>
+                                    </div>
+                                </div>
+                                <div class="product-item layout1">
+                                    <div class="product-inner equal-elem">
+                                        <h5>No Deal Available Today !!</h5>
+                                    </div>
+                                </div>   
                                 @endif
                             </div>
                         </div>
@@ -316,7 +334,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row row-banner">
                 <div class="col-xs-12 col-sm-5">
                     <div class="banner banner-effect1">
@@ -333,6 +350,7 @@
                     </div>
                 </div>
             </div>
+            @if(!empty($daily_deals))
             <div class="group-product layout1">
                 <div class="kt-tab nav-tab-style1">
                     <div class="section-head box-has-content">
@@ -344,8 +362,7 @@
                         <div class="tab-content">
                             <div id="tab1" class="tab-panel active">
                                 <div class="owl-carousel product-list-owl nav-style2 equal-container" data-autoplay="false" data-nav="true" data-dots="false" data-loop="false" data-slidespeed="800" data-margin="0"  data-responsive = '{"0":{"items":1}, "480":{"items":2,"margin":0}, "700":{"items":3,"margin":-1}, "992":{"items":4}, "1200":{"items":5}}'>
-                                    @if(!empty($daily_deals))
-                                        @foreach($daily_deals as $row)
+                                    @foreach($daily_deals as $row)
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
@@ -419,16 +436,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                        @endforeach
-                                    @else
-                                        NO Daily Deal Found !!
-                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>  
             </div>
+            @endif
+            @if(!empty($best_selling))
             <div class="group-product layout1">
                 <div class="kt-tab nav-tab-style1">
                     <div class="section-head box-has-content">
@@ -440,8 +456,7 @@
                         <div class="tab-content">
                             <div id="tab1" class="tab-panel active">
                                 <div class="owl-carousel product-list-owl nav-style2 equal-container" data-autoplay="false" data-nav="true" data-dots="false" data-loop="false" data-slidespeed="800" data-margin="0"  data-responsive = '{"0":{"items":1}, "480":{"items":2,"margin":0}, "700":{"items":3,"margin":-1}, "992":{"items":4}, "1200":{"items":5}}'>
-                                    @if(!empty($best_selling))
-                                        @foreach($best_selling as $row)
+                                    @foreach($best_selling as $row)
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
@@ -514,10 +529,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                        @endforeach
-                                    @else
-                                        NO Best Selling Product Found !!
-                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -525,6 +537,7 @@
                 </div>  
             </div>      
         </div>
+        @endif
         <div class="products-view">
             <div class="container">
                 <div class="group-product layout1">
@@ -592,10 +605,9 @@
                                                                 <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
                                                                 @endif
                                                             </ul>
-                                                            <span class="count">5 Review(s)</span>
+                                                            <span class="count">{{ $row['total_stars'] }} Review(s)</span>
                                                         </div>
-                                                        <a href="detail.html" class="product-name">Rubberized Hard Case Older MacBook Pro 13.3"</a>
-                                                        <p class="description">Lorem Ipsum is simply dummy text of the printing and try. Lorem Ipsum has been the standard dummy text ever since the 1500s, when an unknown printer.</p>
+                                                        <a href="{{ route('product_details', $row['slug']) }}" class="product-name">{{ $row['name'] }}</a>
                                                         <div class="price">
                                                             @if(!empty($row['sale_price']))
                                                             <span class="del">Rs.{{ $row['cost_price'] }}</span>

@@ -77,7 +77,7 @@
                             </div>
                             <div class="group-social">
                                 <ul class="list-socials">
-                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('product_details', $product_details['product_slug'])) }}&display=popup" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urldecode(route('product_details', $product_details['product_slug'])) }}&picture={{ urlEncode($product_details['featured_image']) }}&title={{ urlEncode($product_details['product_name']) }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                     <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                     <li><a href="https://www.instagram.com/?url={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     <li><a href="https://api.whatsapp.com/send?text={{ urlencode(route('product_details', $product_details['product_slug'])) }}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
@@ -142,7 +142,6 @@
                                 <div class="additional">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                            <p>Lorem ipsum dolor sit amet isse potenti sesquam ante aliquet lacusemper elit. Cras neque nulla convallis non comodo euismod nonsese isse potent.</p>
                                             <ul>
                                                 @foreach($product_details['key_features'] as $row)
                                                 <li>{{ $row }}</li>
@@ -286,15 +285,29 @@
                         <div class="row">
                             <div class="col-ts-12 col-xs-4 col-sm-12 col-md-12 col-lg-12 featrue-item">
                                 <div class="featrue-box layout2 equal-elem">
+                                    @if(!empty($product_details['store_logo']))
                                     <img src="{{ $product_details['store_logo'] }}" height="70" alt="{{ $product_details['store_logo_alt'] }}">
+                                    @else
+                                    <img src="{{ $site_settings['header_image'] }}" height="70" alt="{{ $site_settings['site_title'] }}">
+                                    @endif
                                     <div class="block-inner">
                                         <p class="title parent-item">Sold By</p>
-                                        <p class="des child-item"><a href="{{ route('get_stores', $product_details['store_slug']) }}"> {{ $product_details['store_name'] }}</a></p>
+                                        <p class="des child-item">
+                                        @if(!empty($product_details['store_slug'] != 'javascipt:void(0);'))
+                                        <a href="{{ route('get_stores', $product_details['store_slug']) }}"> {{ $product_details['store_name'] }}</a></p>
+                                        @else
+                                        <a href="{{ $product_details['store_slug'] }}"> {{ $product_details['store_name'] }}</a></p>
+                                        @endif
+                                        </p>
                                         <p class="title parent-item">Warranty</p>
                                         <p class="des">{{ $product_details['warranty_type'] }}</p>
                                         <p class="title parent-item">Delivery</p>
                                         <p class="des">3 to 7 Working Days</p>
+                                        @if(!empty($product_details['store_slug'] != 'javascipt:void(0);'))
                                         <a href="{{ route('get_stores', $product_details['store_slug']) }}"><p class="title text-uppercase parent-item">go to store</p></a>
+                                        @else
+                                        <a href="{{ $product_details['store_slug'] }}"><p class="title text-uppercase parent-item">go to store</p></a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

@@ -132,10 +132,16 @@ function product_details($slug){
         //Get Vendor Store Name
         if($product->store_name == ''){
             $store_name = 'Shopker';
-            $store_slug = '#';
+            $store_slug = 'javascipt:void(0);';
         }else{
             $store_slug = $product->store_slug;
             $store_name = $product->store_name;
+        }
+
+        if(!empty($product->logo)){
+            $store_logo = env('ADMIN_URL').'images/stores_logo/'.$product->logo;
+        }else{
+            $store_logo = '';
         }
 
         //Result Array
@@ -168,7 +174,7 @@ function product_details($slug){
             'meta_description' => $product->meta_description,
             'store_name' => $store_name,
             'store_slug' => $store_slug,
-            'store_logo' => env('ADMIN_URL').'images/stores_logo/'.$product->logo,
+            'store_logo' => $store_logo,
             'store_logo_alt' => $product->logo,
             'five_stars' => $five_stars,
             'four_stars' => $four_stars,

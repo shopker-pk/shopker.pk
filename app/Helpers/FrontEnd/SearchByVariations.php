@@ -11,20 +11,19 @@ function search_by_variations($slug){
                  ->leftJoin('tbl_brands_for_products', 'tbl_brands_for_products.id', '=', 'tbl_product_brands.brand_id')
                  ->leftJoin('tbl_variations_for_products', 'tbl_variations_for_products.id', '=', 'tbl_products.variation_id')
                  ->LeftJoin('tbl_products_featured_images', 'tbl_products_featured_images.product_id', '=', 'tbl_products.id')
-                 ->select('tbl_parent_categories.slug as parent_slug', 'tbl_parent_categories.name as parent_name', 'tbl_child_categories.slug as child_slug', 'tbl_child_categories.name as child_name', 'tbl_sub_child_categories.slug as sub_child_slug', 'tbl_sub_child_categories.name as sub_child_name', 'tbl_brands_for_products.name as brand_name', 'tbl_brands_for_products.slug as brand_slug', 'tbl_products.id', 'tbl_products.name as product_name', 'tbl_products.slug as product_slug', 'tbl_products.regural_price as cost_price', 'tbl_products.sale_price', 'tbl_variations_for_products.id as variation_id', 'tbl_variations_for_products.value as variation_name', 'tbl_products_featured_images.featured_image')
-                 ->Orwhere('tbl_products.slug', 'Like', '%'.$slug.'%')
+                 ->select('tbl_parent_categories.slug as parent_slug', 'tbl_parent_categories.name as parent_name', 'tbl_child_categories.slug as child_slug', 'tbl_child_categories.name as child_name', 'tbl_sub_child_categories.slug as sub_child_slug', 'tbl_sub_child_categories.name as sub_child_name', 'tbl_brands_for_products.name as brand_name', 'tbl_brands_for_products.slug as brand_slug', 'tbl_products.id', 'tbl_products.name as product_name', 'tbl_products.slug as product_slug', 'tbl_products.regural_price as cost_price', 'tbl_products.sale_price', 'tbl_variations_for_products.id as variation_id', 'tbl_variations_for_products.value as variation_name', 'tbl_products_featured_images.featured_image');
+                 if(empty(explode(',', $slug)[1])){
+           $query->Orwhere('tbl_products.slug', 'Like', '%'.$slug.'%')
                  ->Orwhere('tbl_parent_categories.slug', 'Like', '%'.$slug.'%')
                  ->Orwhere('tbl_child_categories.slug', 'Like', '%'.$slug.'%')
                  ->Orwhere('tbl_sub_child_categories.slug', 'Like', '%'.$slug.'%')
-                 ->Orwhere('tbl_variations_for_products.value', 'Like', '%'.$slug.'%');
-                 if(!empty(explode(',', $slug)[1])){
-           $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%')
-                 ->Orwhere('tbl_products.regural_price', '>=', explode(',', $slug)[0])
+                 ->Orwhere('tbl_variations_for_products.value', 'Like', '%'.$slug.'%')
+                 ->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%');
+                 }elseif(!empty(explode(',', $slug)[1])){
+           $query->OrwhereBetween('tbl_products.regural_price', array(explode(',', $slug)[0], explode(',', $slug)[1]))
                  //->Orwhere('tbl_products.regural_price', '<=', explode(',', $slug)[1])
-                 ->Orwhere('tbl_products.sale_price', '>=', explode(',', $slug)[0]);
+                 ->OrwhereBetween('tbl_products.sale_price', array(explode(',', $slug)[0], explode(',', $slug)[1]));
                  //->Orwhere('tbl_products.sale_price', '<=', explode(',', $slug)[1]);
-                 }else{
-           $query->Orwhere('tbl_brands_for_products.slug', 'Like', '%'.$slug.'%');
                  }
     $result = $query->paginate(40);
 
