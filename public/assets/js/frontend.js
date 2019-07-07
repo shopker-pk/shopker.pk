@@ -397,7 +397,7 @@ jQuery(document).ready(function ($) {
             if ( $('body').hasClass('home') ) {
                 $.magnificPopup.open({
                     items: {
-                        src: '<div class="kt-popup-newsletter "><div class="popup-content"><h4 class="sub-title">Sign up <br> our <span>newsletter</span><br>And get our</h4><h5 class="title">Latest Deals <div class="input-block inner-content"><div class="input-inner"><br><br><input type="text" class="input-info" placeholder="Enter your email" name="input-info"><button class="submit">Subscribe</a></div></div></div></div></div>',
+                        src: '<div class="kt-popup-newsletter"><div class="popup-content"><h4 class="sub-title">Sign up <br> our <span>newsletter</span><br>And get</h4><h5 class="title">25 <span>%</span> Off</h5><h5 class="small-title">first purchase On all online store items.</h5><div class="input-block inner-content"><div class="input-inner"><input type="text" class="input-info" placeholder="Enter your email" name="input-info"><button class="submit">Subscribe</a></div></div><div class="dontshow dontshow_newletter_popup"><input type="checkbox" class="checkbox" id="check-email"><label for="check-email" class="text-label">Don’t show this popup again</span></div></div></div></div>',
                         type: 'inline'
                     }
                 });
@@ -567,7 +567,11 @@ jQuery(document).ready(function ($) {
         hover_product_item();
     });
     $(window).load(function () {
-        newletter_popup()
+        alert($.cookie);
+        if($.cookie() != 'undefined'){
+            newletter_popup()
+        }
+        
         better_equal_elems();
         kt_innit_carousel();
         quickview_popup();
@@ -591,6 +595,11 @@ $("#change").click(function(){
       var me = $(this);
       log.html(me.attr('value'));
     });
+});
+
+$(document).on('click', '.dontshow_newletter_popup', function(){
+    $.cookie = 'newletter_popup=dont_show_newletter_popup_again';
+    $.magnificPopup.close();
 });
 
 var options = {

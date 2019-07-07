@@ -20,17 +20,17 @@
                             <div class="register-form">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Fist name <span>*</span></span>
+                                        <span class="label-text">First Name <span>*</span></span>
                                         <input type="text" id="first_name" name="first_name" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Last name</span>
+                                        <span class="label-text">Last Name</span>
                                         <input type="text" id="last_name" name="last_name" class="input-info">  
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Phone number <span>*</span></span>
+                                        <span class="label-text">Phone Number <span>*</span></span>
                                         <input type="text" id="phone_no" name="phone_no" class="input-info" placeholder="03xx-xxxxxxx *">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -78,37 +78,37 @@
                             <div class="register-form">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Business name <span>*</span></span>
+                                        <span class="label-text">Business Name <span>*</span></span>
                                         <input type="text" id="bussiness_name" name="bussiness_name" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Store name</span>
+                                        <span class="label-text">Store Name</span>
                                         <input type="text" id="store_name" name="store_name" class="input-info">  
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Store email<span>*</span></span>
+                                        <span class="label-text">Store Email<span>*</span></span>
                                         <input type="text" id="store_email" name="store_email" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Phone number</span>
+                                        <span class="label-text">Phone Number</span>
                                         <input type="text" id="store_phone_no" name="store_phone_no" class="input-info" placeholder="03xx-xxxxxxx *">  
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Store cell no#<span>*</span></span>
+                                        <span class="label-text">Store Cell No#<span>*</span></span>
                                         <input type="text" id="store_cell_no" name="store_cell_no" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Phone cnic</span>
+                                        <span class="label-text">CNIC</span>
                                         <input type="text" id="cnic" name="cnic" class="input-info">  
                                     </div>
                                 </div>
-                                <span class="label-text">Store address <span>*</span></span>
+                                <span class="label-text">Store Address <span>*</span></span>
                                 <input type="text" id="store_address" name="store_address" class="input-info">
-                                <span class="label-text">Warehouse address <span>*</span></span>
+                                <span class="label-text">Warehouse Address <span>*</span></span>
                                 <input type="text" id="warehouse_address" name="warehouse_address" class="input-info">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -127,7 +127,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <span class="label-text">NTN number <span>*</span></span>
+                                <span class="label-text">NTN Number <span>*</span></span>
                                 <input type="text" id="ntn_no" name="ntn_no" class="input-info">
                             </div>
                         </div>
@@ -140,21 +140,21 @@
                             <div class="register-form">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Bank name <span>*</span></span>
+                                        <span class="label-text">Bank Name <span>*</span></span>
                                         <input type="text" id="name" name="name" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Bank title</span>
+                                        <span class="label-text">Bank Title</span>
                                         <input type="text" id="title" name="title" class="input-info">  
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Bank Ac <span>*</span></span>
+                                        <span class="label-text">Bank A/C <span>*</span></span>
                                         <input type="text" id="account_no" name="account_no" class="input-info">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Branch code</span>
+                                        <span class="label-text">Branch Code</span>
                                         <input type="text" id="branch_code" name="branch_code" class="input-info">  
                                     </div>
                                 </div>
