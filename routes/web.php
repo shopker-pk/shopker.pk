@@ -6,6 +6,7 @@
 		Route::get('/daily-deals', 'Common\PagesController@daily_deals')->name('daily_deals_products');
 		Route::get('/best-selling', 'Common\PagesController@best_selling')->name('best_selling_products');
 		Route::get('/products/{category_slug}', 'Common\PagesController@products_by_categories')->name('products_by_categories');
+		Route::get('/product-details/{id}', 'Common\PagesController@product_details_by_id');
 		Route::get('/wholesale', 'Common\PagesController@wholesale')->name('wholesale');
 		Route::get('/contact-us', 'Common\PagesController@contact_us')->name('contact_us');
 		Route::get('/career', 'Common\PagesController@career')->name('career');

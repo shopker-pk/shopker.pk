@@ -1,61 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>{{ $page_title }}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="OneTech shop project">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $meta_description }}" />
-    <meta name="keywords" content="{{ $meta_keywords }}" /> 
-    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
-    @include('layouts.style')
-
-    <style type="text/css">
-    	.cat_menu_container ul{display: none;}
-    	.cat_menu_container:hover ul{display: block;}
-    </style>
-</head>
-<body>
-	@include('layouts.header') 
-    @include('layouts.navigation')
-    @include('layouts.messages')
-
-	<div class="container-fluid mainloginform" style="margin-bottom:  100px;">
-		<div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-7">
-                        <div class="registercustomer">NEW PASSWORD</div>
-                        <div class="wow fadeInDown">
-                            <hr style="border: 1px outset red;" />
-                        </div>
-                        <div class="loginform">
-                            <form action="{{ route('updating_password') }}" method="post">
-	                        	{{ csrf_field() }}
-                                <p style="color: black; font-size: 12px;">Please Enter New Password.</p>
-                                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-                                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password">
-                                <div class="loginbtn">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
+@include('layouts.header')
+    <div class="main-content shop-page login-page">
+        <div class="container">
+            @include('layouts.messages')
+            <div class="breadcrumbs">
             </div>
-            <div class="col-md-4">
-                <div class="mt-5 pt-5">
-                    <div class="wow flipInX"><img src="{{ asset('public/assets/images/key.png') }}" width="200" height="200" style="transform: rotate(20deg);"></div>
+            <div class="login-register-form content-form row">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <form action="{{ route('updating_password') }}" method="post">
+                        {{ csrf_field() }}
+                        <div class="register-form">
+                            <h4 class="main-title">Change Password</h4>
+                            <h5 class="note-title"></h5>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <span class="label-text">Password *</span>
+                                    <input type="password" id="password" name="password" class="input-info">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                    <span class="label-text">Confirm Password *</span>
+                                    <input type="password" id="confirm_password" name="confirm_password" class="input-info">  
+                                </div>
+                            </div>
+                            <div class="group-button"><button class="button submit">Sign In</button></div>        
+                        </div>
+                    </form>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
             </div>
         </div>
-	</div>
+    </div>
 @include('layouts.footer')
-
-</body>
-</html>

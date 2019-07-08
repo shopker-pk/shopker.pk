@@ -24,9 +24,13 @@
                             </div>
                             <div class="group-button"><button class="button submit">Sign In</button></div>        
                         </div>
+                        <a href="{{ route('forget_password') }}">Forget Password ?</a>
                     </form>
+
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                </div>
             </div>
         </div>
     </div>

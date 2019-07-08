@@ -284,6 +284,155 @@ $(document).ready(function(){
 		});
 	//Getting Areas By City Id & Update Shipping Price End
 
+	//Quick View For Products Start Start 
+		function kt_get_scrollbar_width() {
+	        var $inner = jQuery('<div style="width: 100%; height:200px;">test</div>'),
+            $outer = jQuery('<div style="width:200px;height:150px; position: absolute; top: 0; left: 0; visibility: hidden; overflow:hidden;"></div>').append($inner),
+            inner = $inner[ 0 ],
+            outer = $outer[ 0 ];
+	        jQuery('body').append(outer);
+	        var width1 = parseFloat(inner.offsetWidth);
+	        $outer.css('overflow', 'scroll');
+	        var width2 = parseFloat(outer.clientWidth);
+	        $outer.remove();
+	        return (width1 - width2);
+	    }
+
+	    function kt_innit_carousel() {
+        //owl has thumbs 
+        $('.owl-carousel.has-thumbs').owlCarousel({
+            loop: true,
+            items: 1,
+            thumbs: true,
+            thumbImage: true,
+            thumbContainerClass: 'owl-thumbs',
+            thumbItemClass: 'owl-thumb-item'
+        });
+        // owl config
+        $(".owl-carousel").each(function (index, el) {
+            var config = $(this).data();
+            config.navText = [ '<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>' ];
+            var animateOut = $(this).data('animateout');
+            var animateIn = $(this).data('animatein');
+            var slidespeed = parseFloat($(this).data('slidespeed'));
+
+            if ( typeof animateOut != 'undefined' ) {
+                config.animateOut = animateOut;
+            }
+            if ( typeof animateIn != 'undefined' ) {
+                config.animateIn = animateIn;
+            }
+            if ( typeof (slidespeed) != 'undefined' ) {
+                config.smartSpeed = slidespeed;
+            }
+
+            if ( $('body').hasClass('rtl') ) {
+                config.rtl = true;
+            }
+
+            var owl = $(this);
+            owl.on('initialized.owl.carousel', function (event) {
+                var total_active = parseInt(owl.find('.owl-item.active').length,10);
+                var i = 0;
+                owl.find('.owl-item').removeClass('item-first item-last');
+                setTimeout(function () {
+                    owl.find('.owl-item.active').each(function () {
+                        i++;
+                        if ( i == 1 ) {
+                            $(this).addClass('item-first');
+                        }
+                        if ( i == total_active ) {
+                            $(this).addClass('item-last');
+                        }
+                    });
+                }, 100);
+            })
+            owl.on('refreshed.owl.carousel', function (event) {
+                var total_active = parseInt(owl.find('.owl-item.active').length,10);
+                var i = 0;
+                owl.find('.owl-item').removeClass('item-first item-last');
+                setTimeout(function () {
+                    owl.find('.owl-item.active').each(function () {
+                        i++;
+                        if ( i == 1 ) {
+                            $(this).addClass('item-first');
+                        }
+                        if ( i == total_active ) {
+                            $(this).addClass('item-last');
+                        }
+                    });
+
+                }, 100);
+            })
+            owl.on('change.owl.carousel', function (event) {
+                var total_active = parseInt(owl.find('.owl-item.active').length,10);
+                var i = 0;
+                owl.find('.owl-item').removeClass('item-first item-last');
+                setTimeout(function () {
+                    owl.find('.owl-item.active').each(function () {
+                        i++;
+                        if ( i == 1 ) {
+                            $(this).addClass('item-first');
+                        }
+                        if ( i == total_active ) {
+                            $(this).addClass('item-last');
+                        }
+                    });
+
+                }, 100);
+                owl.addClass('owl-changed');
+                setTimeout(function () {
+                    owl.removeClass('owl-changed');
+                }, config.smartSpeed)
+            })
+            owl.on('drag.owl.carousel', function (event) {
+                owl.addClass('owl-changed');
+                setTimeout(function () {
+                    owl.removeClass('owl-changed');
+                }, config.smartSpeed)
+            })
+            owl.owlCarousel(config);
+            // Sections backgrounds
+            if ( $(window).width() < 992 ) {
+                var itembackground = $(".item-background");
+                itembackground.each(function (index) {
+                    if ( $('.item-background').attr("data-background") ) {
+                        $(this).css("background-image", "url(" + $(this).data("background") + ")");
+                        $(this).css("height", $(this).closest('.owl-carousel').data("height") + 'px');
+                        $('.slide-img').css("display", 'none');
+                    }
+                });
+            }
+        });
+    }
+		var window_size = parseFloat(jQuery('body').innerWidth());
+        window_size += kt_get_scrollbar_width();
+        if ( window_size > 768 ) {
+            $(document).on('click', '.quickview-button', function(){
+            	$.ajax({
+		            url : document.location.href.split('shopker.pk/')[0].toString()+'shopker.pk/product-details/'+$(this).attr('data-id'),
+		            method : 'GET',
+		            
+		            success:function(response){
+		                json_data = $.parseJSON(response);
+		        		
+		        		if(json_data.ERROR == 'FALSE'){
+		        			$.magnificPopup.open({
+			                    items: {
+			                        src: json_data.DATA,
+			                        type: 'inline'
+			                    }
+			                });
+			                kt_innit_carousel();
+			                return false;
+		        		}
+		            }
+		        });
+                
+            });
+        }
+	//Quick View For Products Start End
+
 	//Navigate To Search Page Clicking Variant Start
 		$(document).on('click', '.variant', function(){
 			var url = window.location.replace(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/products/filter/variations/'+$(this).val());

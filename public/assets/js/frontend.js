@@ -405,14 +405,52 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function quickview_popup() {
+    /*function quickview_popup() {
         var window_size = parseFloat(jQuery('body').innerWidth());
         window_size += kt_get_scrollbar_width();
         if ( window_size > 768 ) {
             $(document).on('click', '.quickview-button', function () {
                 $.magnificPopup.open({
                     items: {
-                        src: '<div class="kt-popup-quickview "><div class="details-thumb col-xs-12 col-sm-6"><div class="owl-carousel nav-style4 has-thumbs" data-autoplay="false" data-nav="true" data-dots="false" data-loop="false" data-slidespeed="800"><div class="details-item"><img src="images/product25.jpg" alt=""></div><div class="details-item"><img src="images/product25.jpg" alt=""></div><div class="details-item"><img src="images/product25.jpg" alt=""></div></div></div><div class="details-info col-xs-12 col-sm-6"><a href="detail.html" class="product-name">DSLR Cameras Mirrorless System.</a><div class="rating"><ul class="list-star"><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li><li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li></ul><span class="count">5 Review(s)</span></div><p class="description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 making it over 2000 years old. Richard McClintock, a Latin at Hampden-Sydney College in Virginia.</p><div class="price"><span >$450.00</span></div><div class="availability">Availability: <a href="#">in Stock</a></div><div class="group-button"><div class="inner"><a href="#" class="add-to-cart"><span class="text">ADD TO CART</span><span class="icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span></a><a href="#" class="compare-button"><i class="fa fa-exchange" aria-hidden="true"></i></a><a href="#" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div></div></div></div>',
+                        src: '<div class="kt-popup-quickview">'
+                                +'<div class="details-thumb col-xs-12 col-sm-6">'
+                                    +'<div class="owl-carousel nav-style4 has-thumbs" data-autoplay="false" data-nav="true" data-dots="false" data-loop="false" data-slidespeed="800">'
+                                        +'<div class="details-item">'
+                                            +'<img src="images/product25.jpg" alt="">'
+                                        +'</div>'
+                                        +'<div class="details-item">'
+                                            +'<img src="images/product25.jpg" alt="">'
+                                        +'</div>'
+                                        +'<div class="details-item">'
+                                            +'<img src="images/product25.jpg" alt="">'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                                +'<div class="details-info col-xs-12 col-sm-6">'
+                                    +'<a href="detail.html" class="product-name">DSLR Cameras Mirrorless System.</a>'
+                                    +'<div class="rating">'
+                                        +'<ul class="list-star">'
+                                            +'<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>'
+                                            +'<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>'
+                                            +'<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>'
+                                            +'<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>'
+                                            +'<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>'
+                                        +'</ul>'
+                                        +'<span class="count">5 Review(s)</span>'
+                                    +'</div>'
+                                    +'<p class="description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 making it over 2000 years old. Richard McClintock, a Latin at Hampden-Sydney College in Virginia.</p>'
+                                    +'<div class="price">'
+                                        +'<span >$450.00</span>'
+                                    +'</div>'
+                                    +'<div class="availability">Availability: <a href="#">in Stock</a></div>'
+                                    +'<div class="group-button">'
+                                        +'<div class="inner">'
+                                            +'<a href="#" class="add-to-cart"><span class="text">ADD TO CART</span><span class="icon"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span></a>'
+                                            +'<a href="#" class="compare-button"><i class="fa fa-exchange" aria-hidden="true"></i></a><a href="#" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>',
                         type: 'inline'
                     }
                 });
@@ -420,7 +458,7 @@ jQuery(document).ready(function ($) {
                 return false;
             });
         }
-    }
+    }*/
     function mobile_config() {
         $('.header').prepend('<div class="header-mobile"><div class="container"><div class="logo"></div><div class="box-minicart"></div><a href="#" class="header-top-menu-mobile"><span class="fa fa-cog" aria-hidden="true"></span></a><a class="menu-bar menu-toggle" href="#"><span class="icon"><span></span><span></span><span></span></span><span class="text">Menu</span></a><div class="mobile-config"><a href="#" class="close-btn">x</a><div class="topbar"></div></div></div></div>');
         $('.header').find('.search-form').clone().appendTo('.mobile-config');
@@ -541,7 +579,7 @@ jQuery(document).ready(function ($) {
     mobile_config();
     kt_innit_carousel();
     better_equal_elems();
-    quickview_popup();
+    //quickview_popup();
     hover_product_item();
     click_function();
     slider_range_price();
@@ -563,18 +601,17 @@ jQuery(document).ready(function ($) {
         kt_verticalMegamenu();
         kt_innit_carousel();
         better_equal_elems();
-        quickview_popup();
+        //quickview_popup();
         hover_product_item();
     });
-    $(window).load(function () {
-        alert($.cookie);
-        if($.cookie() != 'undefined'){
+    $(window).load(function (){
+        if(decodeURIComponent(document.cookie).split('dont_show_newletter_popup_again')[0] != 'newletter_popup='){
             newletter_popup()
         }
         
         better_equal_elems();
         kt_innit_carousel();
-        quickview_popup();
+        //quickview_popup();
         hover_product_item();
 
     });
@@ -598,7 +635,7 @@ $("#change").click(function(){
 });
 
 $(document).on('click', '.dontshow_newletter_popup', function(){
-    $.cookie = 'newletter_popup=dont_show_newletter_popup_again';
+    document.cookie = 'newletter_popup=dont_show_newletter_popup_again';
     $.magnificPopup.close();
 });
 

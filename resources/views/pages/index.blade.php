@@ -69,6 +69,7 @@
                                         </ul>
                                         @endif
                                         <div class="thumb">
+                                            <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                             <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:290px; height:290px;"></a>
                                         </div>
                                         <div class="info">
@@ -166,6 +167,7 @@
                                         </ul>
                                         @endif
                                         <div class="thumb">
+                                            <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                             <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:290px; height:290px;"></a>
                                         </div>
                                         <div class="info">
@@ -263,6 +265,7 @@
                                         </ul>
                                         @endif
                                         <div class="thumb">
+                                           <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                             <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:290px; height:290px;"></a>
                                         </div>
                                         <div class="info">
@@ -345,7 +348,7 @@
                 <div class="col-xs-12 col-sm-7">
                     <div class="banner banner-effect1">
                         @if($bottom_center_banners)
-                        <a href="{{ $bottom_center_banners['url'] }}"><img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
+                        <a href="{{ $bottom_center_banners['url'] }}"><img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
@@ -372,6 +375,7 @@
                                                 </ul>
                                                 @endif
                                                 <div class="thumb">
+                                                    <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                                     <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:214px; height:214px;"></a>
                                                 </div>
                                                 <div class="info">
@@ -466,6 +470,7 @@
                                                 </ul>
                                                 @endif
                                                 <div class="thumb">
+                                                    <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                                     <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:214px; height:214px;"></a>
                                                 </div>
                                                 <div class="info">
@@ -562,6 +567,7 @@
                                                     </ul>
                                                     @endif
                                                     <div class="thumb">
+                                                        <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                                         <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:214px; height:214px;"></a>
                                                     </div>
                                                     <div class="info">

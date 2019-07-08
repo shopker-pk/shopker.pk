@@ -44,6 +44,10 @@ class PagesController extends Controller{
         return view('pages.products', $result);
     }
 
+    function product_details_by_id(Request $request, $id){
+        return ajax_product_quick_view($id);
+    }
+
     function product_details(Request $request, $slug){
         if(!empty(product_details($slug))){
             //Necessary Page Data For header Page
