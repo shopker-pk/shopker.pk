@@ -16,6 +16,8 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['header_banners'] = header_banners(0);
         $result['bottom_top_banners'] = bottom_top_banners(0);
         $result['bottom_center_banners'] = bottom_center_banners(0);
@@ -37,6 +39,8 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['query'] = products_by_categories($slug);
         $result['side_filter'] = side_filter($slug);
         
@@ -59,6 +63,8 @@ class PagesController extends Controller{
 
             $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
+            $result['parent_categories_menus'] = parent_categories_menu();
+            $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
             $result['product_details'] = product_details($slug); 
             $result['product_images'] = product_images($result['product_details']['product_id']); 
             $result['product_reviews'] = product_reviews($result['product_details']['product_id']); 
@@ -84,6 +90,8 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['daily_deals'] = all_daily_deals(); 
 
         //Call Page
@@ -100,6 +108,8 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['best_selling'] = all_best_selling(); 
 
         //Call Page
@@ -122,6 +132,8 @@ class PagesController extends Controller{
 
             $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
+            $result['parent_categories_menus'] = parent_categories_menu();
+            $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
             $result['store_details'] = get_stores($slug); 
             $result['query'] = get_stores_products(get_stores($slug)[0]['owner_id']); 
             $result['side_filter'] = side_filter($slug);
@@ -139,9 +151,11 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
-        $result['mega_menus'] = mega_menus();
         $result['site_settings'] = site_settings();
-
+        $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+        
         //Call Page
         return view('pages.wholesale', $result);
     }
@@ -154,8 +168,10 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
-        $result['mega_menus'] = mega_menus();
         $result['site_settings'] = site_settings();
+        $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
 
         //Call Page
         return view('pages.contact_us', $result);
@@ -169,8 +185,10 @@ class PagesController extends Controller{
             'meta_description' => '',
         );
 
-        $result['mega_menus'] = mega_menus();
         $result['site_settings'] = site_settings();
+        $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
 
         //Call Page
         return view('pages.career', $result);
@@ -186,6 +204,8 @@ class PagesController extends Controller{
 
         $result['site_settings'] = site_settings();
         $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['pages'] = pages($slug); 
 
         //Call Page

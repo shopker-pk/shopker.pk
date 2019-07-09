@@ -54,15 +54,23 @@ function add_to_cart($data){
 	            $store_slug = $result->store_slug;
 	        }
 	        
+	        if(!empty($data['quantity'])){
+	        	$quantity = $data['quantity'];
+	        	$total_weight = $result->weight * $data['quantity'];
+	        }else{
+	        	$quantity = 1;
+	        	$total_weight = $result->weight * 1;
+	        }
+
 			$cart = Session::get('cart');
 			$cart[$data['product_id']] = array(
 				'id' => $data['product_id'],
 				'name' => \Str::limit($result->name, 23), 
 				'slug' => $result->slug,
 				'weight' => $result->weight,
-				'total_weight' => $result->weight * $data['quantity'],
+				'total_weight' => $total_weight,
 				'image' => env('ADMIN_URL').'images/ecommerce/products/'.$result->featured_image,
-				'quantity' => $data['quantity'],
+				'quantity' => $quantity,
 				'price' => $data['product_price'],
 				'type' => $data['product_type'],
 				'seller_id' => $result->user_id,

@@ -1,15 +1,25 @@
 $(document).ready(function(){
 	//Add To Cart Start
 		$(document).on('click', '#add_to_cart_btn', function(){
-			$('#quantity_add_to_cart').val($('.detail_qty').val());
-			$('#add_to_cart_form').submit();
+			if($('.detail_qty').val() == 'undefined'){
+				$('#quantity_add_to_cart').val(1);
+				$('#add_to_cart_form').submit();
+			}else{
+				$('#quantity_add_to_cart').val($('.detail_qty').val());
+				$('#add_to_cart_form').submit();
+			}
 		});
 	//Add To Cart End
 
 	//Buy Now Start
 		$(document).on('click', '#buy_now_btn', function(){
-			$('#quantity_buy_now').val($('.detail_qty').val());
-			$('#buy_now_form').submit();
+			if($('.detail_qty').val() == 'undefined'){
+				$('#quantity_buy_now').val(1);
+				$('#buy_now_form').submit();
+			}else{
+				$('#quantity_buy_now').val($('.detail_qty').val());
+				$('#buy_now_form').submit();
+			}
 		});
 	//Buy Now End
 

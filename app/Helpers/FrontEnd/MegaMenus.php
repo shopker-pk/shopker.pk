@@ -24,7 +24,7 @@ function mega_menus(){
 		 	if(count($child_categories) > 0){
 		 		$html .= '
 	 			<li class="menu-item-has-children has-megamenu">
-					<a href="'.route('products_by_categories', $parent_category->parent_slug).'" class="ovic-menu-item-title" title="Laptop & Computer"><span class="icon"><img src="'.asset('public/assets/images/icon3.png').'" alt=""></span> '.$parent_category->parent_name.'</a>
+					<a href="'.route('products_by_categories', $parent_category->parent_slug).'" class="ovic-menu-item-title" title="'.$parent_category->parent_name.'">'.$parent_category->parent_name.'</a>
 					<a href="#" class="toggle-sub-menu"></a>
 					<div class="sub-menu sub-menu1 mega-menu">
 						<div class="row">
@@ -63,11 +63,7 @@ function mega_menus(){
 					</div>
 				</li>
 				';
-			}else{
-		 		$html .= '
-		 		<li><a href="#" class="ovic-menu-item-title" title="Tv & Audio"><span class="icon"><img src="'.asset('public/assets/images/icon3.png').'" alt=""></span> '.$parent_category->parent_name.'</a></li>
-		 		';
-		 	}
+			}
 	 	}
  	}
 	

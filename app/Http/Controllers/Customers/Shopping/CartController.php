@@ -30,6 +30,8 @@ class CartController extends Controller{
 
         $result['mega_menus'] = mega_menus();
         $result['site_settings'] = site_settings();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['customer_details'] = customer_details();
         $result['countries'] = countries(); 
         $result['shipping_prices'] = shipping_prices(); 
@@ -111,6 +113,8 @@ class CartController extends Controller{
 
         $result['mega_menus'] = mega_menus();
         $result['site_settings'] = site_settings();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
         $result['customer_details'] = customer_details();
         $result['countries'] = countries(); 
         $result['shipping_prices'] = shipping_prices(); 

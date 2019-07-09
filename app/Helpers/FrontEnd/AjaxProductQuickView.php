@@ -229,7 +229,7 @@ function ajax_product_quick_view($id){
         $prices = '';
         $asd = '';
         if(!empty($product->sale_price)){
-        $prices .= '<span class="del"><strike>Rs.'.$product->regural_price.'</span></strike><span class="ins">Rs.'.$product->sale_price.'</span>';
+        $prices .= '<span class="del"><strike>Rs.'.$product->regural_price.'</span></strike><span class="ins" style="margin-left: 10px;">Rs.'.$product->sale_price.'</span>';
         $asd .= '
         		<input type="hidden" id="product_price" name="product_price" value="'.$product->sale_price.'">
         		<input type="hidden" id="product_type" name="product_type" value="0">';

@@ -17,6 +17,8 @@ class ProfileController extends Controller{
 
             $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
+            $result['parent_categories_menus'] = parent_categories_menu();
+            $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
             $result['customer_details'] = customer_details();
             $result['countries'] = countries();
             $result['cities'] = all_cities();

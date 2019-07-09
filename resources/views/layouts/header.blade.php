@@ -6,6 +6,7 @@
 	<title>{{ $page_title }}</title>
 	<meta name="description" content="{{ $meta_description }}" />
     <meta name="keywords" content="{{ $meta_keywords }}" /> 
+    <link rel="icon" type="icon/gif" href="{{ $site_settings['favicon_image'] }}" alt="{{ $site_settings['site_title'] }}">
 	@include('layouts.style')
 </head>
 <body class="home">

@@ -18,6 +18,8 @@ class ProductsController extends Controller{
 
             $result['site_settings'] = site_settings();
             $result['mega_menus'] = mega_menus();
+            $result['parent_categories_menus'] = parent_categories_menu();
+            $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
             $result['customer_details'] = customer_details();
             $result['products_reviews'] = get_customers_products_reviews($request->session()->get('customer_details')['id']);
 

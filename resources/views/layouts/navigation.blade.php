@@ -17,6 +17,20 @@
                             <a href="{{ route('home') }}" class="kt-item-title ovic-menu-item-title" title="Home">HOME</a>
                         </li>
                         <li class="menu-item menu-item-has-children">
+                            <a href="javascript:void(0)" class="kt-item-title ovic-menu-item-title" title="Sub Menu"> Sub Menu </a>
+                            <ul class="sub-menu">
+                                {!! $parent_categories_menus !!}
+                            </ul>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
+                            <a href="javascript:void(0)" class="kt-item-title ovic-menu-item-title" title="Megamenu">Megamenu </a>
+                            <div class="sub-menu mega-menu mega-menu1" style="width: 1170px; left: -524.734px;">
+                                <div class="row">
+                                    {!! $child_subchildcategories_menu !!}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="menu-item menu-item-has-children">
                             <a href="#" class="kt-item-title ovic-menu-item-title" title="PAGES">My Account</a>
                             <ul class="sub-menu">
                                 @if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
