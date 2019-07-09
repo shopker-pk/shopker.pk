@@ -71,7 +71,7 @@
 									<div class="vertical-content hidden-content">
 										@include('layouts.mega_menus')
 										<div class="view-all-categori">
-											<a href="#" class="button">All Categories <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+											<a href="{{ route('all_categories') }}" class="">All Categories <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 										</div>
 									</div>
 								</div>

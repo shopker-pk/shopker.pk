@@ -452,4 +452,21 @@ $(document).ready(function(){
 			var url = window.location.replace(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/products/filter/variations/'+$('#from_price').val()+','+$('#to_price').val());
 		});
 	//Navigate To Search Page Clicking Variant End
+
+	//View More Btn For Index Page Start
+		$(document).on('click', '#view_more_btn_index', function(){
+			$.ajax({
+	            url : document.location.href.split('shopker.pk')[0].toString()+'shopker.pk/view-more-products',
+	            method : 'Get',
+
+	            success:function(response){
+	            	json_data = $.parseJSON(response);
+
+	            	if(json_data.ERROR == 'FALSE'){
+	            		$('#view_more_div_index').append(json_data.DATA);
+	            	}
+            	}
+	        });
+		});
+	//View More Btn For Index Page End
 });

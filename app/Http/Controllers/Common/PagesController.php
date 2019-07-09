@@ -211,4 +211,26 @@ class PagesController extends Controller{
         //Call Page
         return view('pages.pages', $result);
     }
+
+    function all_categories(Request $request){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => 'All Categories',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['site_settings'] = site_settings();
+        $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu(); 
+        $result['get_all_categories'] = get_all_categories(); 
+
+        //Call Page
+        return view('pages.all_categories', $result);
+    }
+
+    function view_more_products(Request $request){
+        return view_more_products();
+    }
 }

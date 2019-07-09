@@ -23,6 +23,7 @@
 	//Common Routes Start
 		Route::get('/get-ajax-cities/{id}', 'Common\CommonController@cities');
 		Route::get('/get-ajax-areas/{id}', 'Common\CommonController@areas');
+		Route::get('/view-more-products', 'Common\PagesController@view_more_products');
 	//Common Routes End
 	
 	//Vendor Registration Routes Start
@@ -100,6 +101,10 @@
 		Route::get('/search', 'Common\FiltersController@search_by_text')->name('search_products');
 		Route::get('/products/filter/variations/{slug}', 'Common\FiltersController@search_by_variations')->name('filter_products');
 	//Filters Routes En
+
+	//All Categories Start
+		Route::get('all-categories', 'Common\PagesController@all_categories')->name('all_categories');
+	//All Categories End
 
 	//Product Details Routes Start
 		Route::get('/{product_slug}', 'Common\PagesController@product_details')->name('product_details');

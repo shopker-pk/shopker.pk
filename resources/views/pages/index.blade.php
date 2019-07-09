@@ -556,7 +556,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-offset">
                                     <div class="categories-content">
-                                        <div class="product-container auto-clear grid-style equal-container box-has-content">
+                                        <div class="product-container auto-clear grid-style equal-container box-has-content" id="view_more_div_index">
                                             @if(!empty($latest_products))
                                                 @foreach($latest_products as $row)
                                             <div class="product-item latest-products layout1 col-ts-12 col-xs-6 col-sm-6 no-padding" style="width: 20%">
@@ -634,6 +634,13 @@
                                             @endif
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  text-center">
+                                    <button class="btn btn-success view-more-btn" id="view_more_btn_index">View More</button>
                                 </div>
                             </div>
                         </div>

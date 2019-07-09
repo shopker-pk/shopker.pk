@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 left-content">
                             <div class="coppy-right">
-                                <h3 class="content">© Copyright 2019 <span class="site-name"> Itechnocode</span> <span class="text">,</span>All rights reserved by Shopker.</h3>
+                                <h3 class="content">© Copyright 2019 <span class="site-name"> <a href="https://itechnocode.com/">Itechnocode</a></span> <span class="text">,</span>All rights reserved by Shopker.</h3>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 right-content">
