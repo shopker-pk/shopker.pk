@@ -243,11 +243,33 @@ $(document).ready(function(){
 
 				if($('#city_0 option:selected').text() == 'LAHORE'){
 					if($('.checkout_discount').attr('data-total-weight') <= '0.5'){
-						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-half-kg-0')));
 						$('#shipping_charges').val($('.checkout_discount').attr('data-half-kg-0'));
+						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-half-kg-0')));
+						
+						if($('.checkout_discount').text().split('%')[0] >= 0){
+							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+						}
 					}else if($('.checkout_discount').attr('data-total-weight') > '0.5' && $('.checkout_discount').attr('data-total-weight') <= '1'){
-						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-per-kg-0')));
 						$('#shipping_charges').val($('.checkout_discount').attr('data-per-kg-0'));
+						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-per-kg-0')));
+
+						if($('.checkout_discount').text().split('%')[0] >= 0){
+							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+						}
 					}else if($('.checkout_discount').attr('data-total-weight') > '1'){
 						var shipping_amount = 0;
 						for(var i = 0; i < $('.checkout_discount').attr('data-total-weight'); i++){
@@ -259,19 +281,44 @@ $(document).ready(function(){
 						
 						if($('.checkout_discount').text().split('%')[0] >= 0){
 							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text())) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
-							$('#total').val($('.checkout_grandtotal').text().split('Rs.')[1]);
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text())) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
 						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
 							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
-							$('#total').val($('.checkout_grandtotal').text().split('Rs.')[1]);
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
 						}
 					}
 				}else if($('#city_0 option:selected').text() != 'LAHORE'){
 					if($('.checkout_discount').attr('data-total-weight') <= '0.5'){
-						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-half-kg-1')));
 						$('#shipping_charges').val($('.checkout_discount').attr('data-half-kg-1'));
+						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-half-kg-1')));
+
+						if($('.checkout_discount').text().split('%')[0] >= 0){
+							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+						}
 					}else if($('.checkout_discount').attr('data-total-weight') > '0.5' && $('.checkout_discount').attr('data-total-weight') <= '1'){
-						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-per-kg-1')));
 						$('#shipping_charges').val($('.checkout_discount').attr('data-per-kg-1'));
+						$('.checkout_shipping_fee').text('Rs.'+($('.checkout_discount').attr('data-per-kg-1')));
+
+						if($('.checkout_discount').text().split('%')[0] >= 0){
+							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
+						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+						}
 					}else if($('.checkout_discount').attr('data-total-weight') > '1'){
 						var shipping_amount = 0;
 					  	for(var i = 0; i < $('.checkout_discount').attr('data-total-weight'); i++){
@@ -283,10 +330,13 @@ $(document).ready(function(){
 						
 						if($('.checkout_discount').text().split('%')[0] >= 0){
 							$('.checkout_grandtotal').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
-							$('#total').val($('.checkout_grandtotal').text().split('Rs.')[1]);
+							$('#total').text(parseInt($('.checkout_subtotal').text().split('Rs.')[1]) - (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) * (parseInt($('.checkout_discount').text().split('%')[0])) / 100) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]));
 						}else if($('.checkout_discount').text().split('Rs.')[1] != 'undefined'){
 							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
-							$('#total').val($('.checkout_grandtotal').text().split('Rs.')[1]);
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1]) - parseInt($('.checkout_discount').text().split('Rs.')[1])));
+						}else if($('.checkout_discount').text().split('Rs.')[1] == 0){
+							$('.checkout_grandtotal').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
+							$('#total').text('Rs.' + (parseInt($('.checkout_subtotal').text().split('Rs.')[1]) + parseInt($('.checkout_shipping_fee').text().split('Rs.')[1])));
 						}
 					}
 				}

@@ -197,14 +197,14 @@ class CartController extends Controller{
 
     function add_order(Request $request){
         if(!empty($request->session()->get('cart'))){
-            $cart = add_order($request->all());
-
             if(empty($request->session()->get('customer_details')['id'] && $request->session()->get('customer_details')['role'] == 3)){
                 //Flash Error Message
                 $request->session()->flash('alert-danger', 'You have to login first before proceeding to order.');
 
                 return redirect()->back();
             }else{
+                $cart = add_order($request->all());
+                
                 if(!empty($cart == 0)){
                     //Flash Success Message
                     $request->session()->flash('alert-success', 'Your order has been placed successfully.');

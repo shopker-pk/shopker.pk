@@ -7,14 +7,7 @@
                     @if(!empty($header_banners))
                         @foreach($header_banners as $row)
                     <div class="slide-item item1 item-background" data-background="{{ $row['image'] }}">
-                        <div class="slide-img"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:1170px; height:511px;"></div>
-                        <div class="slide-content">
-                            @if(!empty($row['url']))
-                            <a href="{{ $row['url'] }}" class="button">View More</a>
-                            @else
-                            <a href="javascript:void(0);" class="button">View More</a>
-                            @endif
-                        </div>
+                        @if(!empty($row['url']))<a href="{{ $row['url'] }}">@else<a href="javascript:void(0);">@endif<div class="slide-img"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:1170px; height:511px;"></div></a>
                     </div>
                         @endforeach
                     @endif
@@ -341,14 +334,14 @@
                 <div class="col-xs-12 col-sm-5">
                     <div class="banner banner-effect1">
                         @if($bottom_top_banners)
-                        <a href="{{ $bottom_top_banners['url'] }}"><img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
+                        @if(!empty($row['url']))<a href="{{ $bottom_top_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
                     <div class="banner banner-effect1">
                         @if($bottom_center_banners)
-                        <a href="{{ $bottom_center_banners['url'] }}"><img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
+                        @if(!empty($row['url']))<a href="{{ $bottom_center_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
