@@ -26,6 +26,8 @@ function latest_products(){
     //Check if Query is null or not
     if(!empty(count($products) > 0)){
         foreach($products as $row){
+            $last_id = $row->id;
+
             //Getting Total Stars
             if(!empty($stars[$row->id])){
                 $total_stars = explode('.', $stars[$row->id])[0];
@@ -53,7 +55,9 @@ function latest_products(){
                 'total_discount' => $discount,
             );
         }
-     
+        
+        Session::put('last_id', $last_id);
+        
         return $data;
     }
 }

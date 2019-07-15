@@ -6,6 +6,7 @@ function view_more_products(){
                  ->select('tbl_products_featured_images.featured_image', 'tbl_products.id', 'tbl_products.name', 'tbl_products.slug', 'tbl_products.regural_price', 'tbl_products.sale_price', 'tbl_products.from_date', 'tbl_products.to_date')
                  ->LeftJoin('tbl_products_featured_images', 'tbl_products_featured_images.product_id', '=', 'tbl_products.id')
                  ->where('tbl_products.status', 0)
+                 ->where('tbl_products.id', '<', Session::get('last_id'))
                  ->where('tbl_products.is_approved', 0)
                  ->orderBy('tbl_products.id', 'DESC')
                  ->limit(50);
@@ -32,6 +33,8 @@ function view_more_products(){
     //Check if Query is null or not
     if(!empty(count($products) > 0)){
         foreach($products as $row){
+        	$last_id = $row->id;
+
             //Getting Total Stars
             if(!empty($stars[$row->id])){
                 $total_stars = explode('.', $stars[$row->id])[0];
@@ -152,8 +155,10 @@ function view_more_products(){
 	                ';
 
         }
-     	
-     	$ajax_response_data = array(
+
+        Session::put('last_id', $last_id);
+
+        $ajax_response_data = array(
 	        'ERROR' => 'FALSE',
 	        'DATA' => $html,
 	    );
