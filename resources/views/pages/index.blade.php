@@ -633,7 +633,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  text-center">
-                                    <button class="btn btn-success view-more-btn" id="view_more_btn_index">View More</button>
+                                    <button class="btn btn-success view-more-btn" id="view_more_btn_index">Load More</button>
                                 </div>
                             </div>
                         </div>
