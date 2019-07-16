@@ -44,7 +44,7 @@ function daily_deals(){
                 'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
                 'image_alt' => $row->featured_image,
-                'name' => \Str::limit($row->name, 23),
+                'name' => \Str::limit($row->name, 20),
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
