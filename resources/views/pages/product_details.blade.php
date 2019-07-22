@@ -66,7 +66,7 @@
                                 </ul>
                                 <span class="count">{{ $product_details['total_ratings'] }} Review(s)</span>
                             </div>
-                            <p class="description">Brand: <a href="{{ route('search_products', $product_details['brand_slug']) }}" >{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0)";>More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</p>
+                            <p class="description">Brand: <a href="{{ route('search_products', $product_details['brand_slug']) }}" >{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0);">More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</a></p>
                             <div class="price">
                                 @if(!empty($product_details['sale_price']))
                                 <span class="del"><strike>Rs.{{ $product_details['cost_price'] }}</strike></span>

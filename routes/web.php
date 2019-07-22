@@ -58,8 +58,12 @@
 		Route::post('/update-cart', 'Customers\Shopping\CartController@update_cart')->name('update_cart');
 		Route::get('/apply-coupon', 'Customers\Shopping\CartController@apply_coupon');
 		Route::get('/check-out', 'Customers\Shopping\CartController@checkout')->name('checkout');
-		Route::post('/check-out/add-order', 'Customers\Shopping\CartController@add_order')->name('add_order');
+		Route::post('/do-payment', 'Customers\Shopping\CartController@do_payment')->name('do_payment');
 		Route::post('/buy-now', 'Customers\Shopping\CartController@buy_now')->name('buy_now');
+		Route::post('/check-out/add-order', 'Customers\Shopping\CartController@add_order')->name('add_order');
+		Route::post('/update-order', 'Customers\Shopping\CartController@update_order')->name('update_order');
+		Route::get('/insert-jazz-cash-order', 'Customers\Shopping\CartController@insert_order')->name('insert_order');
+		Route::get('/update-jazz-cash-order', 'Customers\Shopping\CartController@update_order')->name('update_order');
 	//Shopping Routes End
 	
 	//Customer Dashboard Route Start

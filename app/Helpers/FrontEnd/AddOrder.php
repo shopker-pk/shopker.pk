@@ -1,22 +1,7 @@
 <?php
 
 function add_order($params){
-	if(!empty($params)){
-		//Inputs Validation
-		$input_validations = Request::validate([
-		    'first_name' => 'required',
-		    'last_name' => 'required',
-		    'email' => 'required|email',
-		    'phone_no' => 'required',
-		    'country' => 'required',
-		    'city' => 'required|numeric',
-		    'area' => 'required|numeric',
-		    'address' => 'required',
-		    'coupon_id' => 'nullable',
-		    'shipping_charges' => 'required',
-		    'total' => 'required',
-		]);
-
+	if(!empty(\Session::get('cart') && \Session::get('shipping_details'))){
 		//Query For Getting Last Insert Order No
 		$query = \DB::table('tbl_orders')
 		              ->select('order_no')
@@ -47,7 +32,7 @@ function add_order($params){
                 'quantity' => $row['quantity'],
                 'product_amount' => $row['price'],
                 'type' => $row['type'],
-                'payment_method' => 2,
+                'payment_method' => Request::input('payment_method', 0),
                 'status' => 0, //0 for Pending, 1 for In Process, 2 for Ready to ship, 3 for shipped, 4 Delivered & 5 Canceled
                 'order_date' => date('Y-m-d'),
                 'order_time' => date('h:i:s'),
@@ -58,11 +43,11 @@ function add_order($params){
                             ->insertGetId($data);
         }
 
-        if(!empty($params['coupon_id'])){
+        if(!empty(\Session::get('shipping_details')['coupon_id'])){
         	//Set Field data according to table column
 	        $data = array(
 	            'order_no' => $order_no,
-	            'coupon_id' => $params['coupon_id'],
+	            'coupon_id' => \Session::get('shipping_details')['coupon_id'],
 	            'order_date' => date('Y-m-d'),
                 'order_time' => date('h:i:s'),
 	        );
@@ -75,14 +60,14 @@ function add_order($params){
       	//Set Field data according to table column
         $data = array(
             'order_no' => $order_no,
-            'first_name' => $params['first_name'],
-            'last_name' => $params['last_name'],
-            'email' => $params['email'],
-            'phone_no' => $params['phone_no'],
-            'country' => $params['country'],
-            'city' => $params['city'],
-            'area' => $params['area'],
-            'address' => $params['address'],
+            'first_name' => \Session::get('shipping_details')['first_name'],
+            'last_name' => \Session::get('shipping_details')['last_name'],
+            'email' => \Session::get('shipping_details')['email'],
+            'phone_no' => \Session::get('shipping_details')['phone_no'],
+            'country' => \Session::get('shipping_details')['country'],
+            'city' => \Session::get('shipping_details')['city'],
+            'area' => \Session::get('shipping_details')['area'],
+            'address' => \Session::get('shipping_details')['address'],
             'order_date' => date('Y-m-d'),
             'order_time' => date('h:i:s'),
         );
@@ -94,7 +79,7 @@ function add_order($params){
     	//Set Field data according to table column
         $data = array(
             'order_no' => $order_no,
-            'charges' => $params['shipping_charges'],
+            'charges' => \Session::get('shipping_details')['shipping_charges'],
             'order_date' => date('Y-m-d'),
             'order_time' => date('h:i:s'),
         );
@@ -108,8 +93,8 @@ function add_order($params){
             'order_no' => $order_no,
             'payer_id' => \Session::get('customer_details')['id'],
             'transaction_id' => uniqid(),
-            'total' => $params['total'],
-            'status' => 1,
+            'total' => \Session::get('shipping_details')['total'],
+            'status' => Request::input('payment_status', 1),
             'order_date' => date('Y-m-d'),
             'order_time' => date('h:i:s'),
         );
@@ -130,7 +115,7 @@ function add_order($params){
                          ->insertGetId($data); 
 
 		if(!empty($order_id && $shipping_details && $shipping_charges && $invoice_id && $review_id)){
-			$save_booking = 'http://cod.callcourier.com.pk/api/CallCourier/SaveBooking?loginId=LHR-02689&ConsigneeName='.urlEncode($params['first_name'].' '.$params['last_name']).'&ConsigneeRefNo='.$order_no.'&ConsigneeCellNo='.$params['phone_no'].'&Address='.urlEncode($params['address']).'&Origin=karachi&DestCityId='.$params['city'].'&ServiceTypeId=7&Pcs='.$total_products.'&Weight='.$total_products_weight.'&Description='.$order_no.'&SelOrigin=Domestic&CodAmount='.$params['total'].'&SpecialHandling=false&MyBoxId=1&Holiday=false&remarks='.$order_no.'&ShipperName=LHR-02689=&ShipperCellNo=03004128681&ShipperArea=185&ShipperCity=1&ShipperAddress='.urlEncode('Office# 602 Gold Center, Liberty Market, Gulberg III, Lahore, Pakistan').'&ShipperLandLineNo=34544343&ShipperEmail=info@shopker.pk';
+			$save_booking = 'http://cod.callcourier.com.pk/api/CallCourier/SaveBooking?loginId=LHR-02689&ConsigneeName='.urlEncode(\Session::get('shipping_details')['first_name'].' '.\Session::get('shipping_details')['last_name']).'&ConsigneeRefNo='.$order_no.'&ConsigneeCellNo='.(\Session::get('shipping_details')['phone_no']).'&Address='.urlEncode(\Session::get('shipping_details')['address']).'&Origin=karachi&DestCityId='.(\Session::get('shipping_details')['city']).'&ServiceTypeId=7&Pcs='.$total_products.'&Weight='.$total_products_weight.'&Description='.$order_no.'&SelOrigin=Domestic&CodAmount='.(\Session::get('shipping_details')['total']).'&SpecialHandling=false&MyBoxId=1&Holiday=false&remarks='.$order_no.'&ShipperName=LHR-02689=&ShipperCellNo=03004128681&ShipperArea=185&ShipperCity=1&ShipperAddress='.urlEncode('Office# 602 Gold Center, Liberty Market, Gulberg III, Lahore, Pakistan').'&ShipperLandLineNo=34544343&ShipperEmail=info@shopker.pk';
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $save_booking);
@@ -141,6 +126,7 @@ function add_order($params){
             curl_close($ch);
             
             \Session::forget('cart');
+            \Session::forget('shipping_details');
             return 0;
 		}else{
 			if(!empty($order_id)){

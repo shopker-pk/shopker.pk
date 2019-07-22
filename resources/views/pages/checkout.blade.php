@@ -4,11 +4,11 @@
 			@include('layouts.messages')
 			<div class="breadcrumbs">
 			</div>
+			@if(!empty($customer_details[0]['id']))
 			<div class="checkout-form content-form">
-				<form action="{{ route('add_order') }}" method="post">
+				<form action="{{ route('do_payment') }}" method="post">
                 	{{ csrf_field() }}
 					<h4 class="main-title">Shipping Address</h4>
-					@if(!empty($customer_details[0]['id']))
 					<div class="row">
 						<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 							<span class="label-text">First Name <span>*</span></span>
@@ -59,12 +59,6 @@
 							<input type="text" id="address" name="address" class="input-info" value="{{ $customer_details[0]['address'] }}">
 						</div>
 					</div>
-					@else
-						<span class="existing-customer">Existing Customer?</span>
-	                    <a href="{{ route('customer_sign_in') }}">Sign In HERE</a><br>
-	                    <span class="existing-customer">New Customer?</span>
-	                    <a href="{{ route('customer_registration') }}">Sign Up HERE</a>
-					@endif
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-4 coupen-section">
 							<div class="shipping-form">
@@ -86,13 +80,34 @@
 									<span class="text">Grand Total </span><span class="price checkout_grandtotal"> Rs.{{ $subtotal }}</span>
 								</div>
 								<div class="group-button">
-									<button class="button submit">Place Order Now</button>
+									<button class="button submit">Proceed To Pay</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
+			@else
+			<div class="checkout-form content-form">
+				<form action="{{ route('validating_credentials') }}" method="post">
+                    {{ csrf_field() }}
+                    <div class="register-form">
+                        <h4 class="main-title">Sign In</h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <span class="label-text">Email *</span>
+                                <input type="text" id="email" name="email" class="input-info">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <span class="label-text">Password *</span>
+                                <input type="password" id="password" name="password" class="input-info">  
+                            </div>
+                        </div>
+                        <div class="group-button"><button class="button submit">Sign In</button></div>        
+                    </div>
+				</form>
+			</div>
+			@endif
 		</div>
 	</div>
 @include('layouts.footer')
