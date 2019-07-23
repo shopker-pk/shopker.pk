@@ -23,13 +23,6 @@ $(document).ready(function(){
 		});
 	//Buy Now End
 
-	//Insert Jazz Cash Order Start
-		$(document).on('click', '#pay_with_jazz_cash', function(){
-			alert(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/insert-jazz-cash-order');
-			var url = window.location.replace(window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/insert-jazz-cash-order');
-		});
-	//Insert Jazz Cash Order End
-
 	//Search Start
 	$(document).on('click', '#search-button', function(){
 			$('#search-form').submit();
@@ -510,6 +503,24 @@ $(document).ready(function(){
 		});
 	//Navigate To Search Page Clicking Variant End
 
+	//Insert Jazz Cash Order Start
+		$(document).on('click', '#pay_with_jazz_cash', function(){
+			$.ajax({
+	            url : window.location.href.split('shopker.pk')[0].toString()+'shopker.pk/insert-jazz-order',
+	            method : 'Get',
+
+	            success:function(response){
+	            	json_data = $.parseJSON(response);
+
+	            	if(json_data.ERROR == 'FALSE'){
+	            		$('#pp_BillReference').val(json_data.DATA.order_no);
+	            		$('#pp_Description').val(json_data.DATA.order_no);
+	        		}
+            	}
+	        });
+		});
+	//Insert Jazz Cash Order End
+
 	//View More Btn For Index Page Start
 		$(document).on('click', '#view_more_btn_index', function(){
 			$.ajax({
@@ -524,6 +535,7 @@ $(document).ready(function(){
 	            	}
             	}
 	        });
+	        alert();
 		});
 	//View More Btn For Index Page End
 });

@@ -62,8 +62,8 @@
 		Route::post('/buy-now', 'Customers\Shopping\CartController@buy_now')->name('buy_now');
 		Route::post('/check-out/add-order', 'Customers\Shopping\CartController@add_order')->name('add_order');
 		Route::post('/update-order', 'Customers\Shopping\CartController@update_order')->name('update_order');
-		Route::get('/insert-jazz-cash-order', 'Customers\Shopping\CartController@insert_order')->name('insert_order');
-		Route::get('/update-jazz-cash-order', 'Customers\Shopping\CartController@update_order')->name('update_order');
+		Route::get('/insert-jazz-order', 'Customers\Shopping\CartController@insert_jazz_order')->name('insert_jazz_order');
+		Route::any('/update-jazz-order', 'Customers\Shopping\CartController@update_jazz_order')->name('update_jazz_order');
 	//Shopping Routes End
 	
 	//Customer Dashboard Route Start

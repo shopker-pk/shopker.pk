@@ -227,57 +227,64 @@ class CartController extends Controller{
     }
 
     function do_payment(Request $request){
-        //Header Data
-        $result = array(
-            'page_title' => 'Shopker | Do Payment',
-            'meta_keywords' => '',
-            'meta_description' => '',
-        );
+        if(!empty($request->session()->get('cart'))){
+            //Header Data
+            $result = array(
+                'page_title' => 'Shopker | Do Payment',
+                'meta_keywords' => '',
+                'meta_description' => '',
+            );
 
-        $result['mega_menus'] = mega_menus();
-        $result['site_settings'] = site_settings();
-        $result['parent_categories_menus'] = parent_categories_menu();
-        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
-        $result['countries'] = countries(); 
+            $result['mega_menus'] = mega_menus();
+            $result['site_settings'] = site_settings();
+            $result['parent_categories_menus'] = parent_categories_menu();
+            $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['countries'] = countries(); 
 
 
-        //Inputs Validation
-        $input_validations = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'phone_no' => 'required',
-            'country' => 'required',
-            'city' => 'required|numeric',
-            'area' => 'required|numeric',
-            'address' => 'required',
-            'coupon_id' => 'nullable',
-            'shipping_charges' => 'required',
-            'total' => 'required',
-        ]);
+            //Inputs Validation
+            $input_validations = $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email',
+                'phone_no' => 'required',
+                'country' => 'required',
+                'city' => 'required|numeric',
+                'area' => 'required|numeric',
+                'address' => 'required',
+                'coupon_id' => 'nullable',
+                'shipping_charges' => 'required',
+                'total' => 'required',
+            ]);
 
-        //Add Customer Details & Coupon Details In Sessoion
-        $array = array(
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'email' => $request->input('email'),
-            'phone_no' => $request->input('phone_no'),
-            'country' => $request->input('country'),
-            'city' => $request->input('city'),
-            'area' => $request->input('area'),
-            'address' => $request->input('address'),
-            'coupon_id' => $request->input('coupon_id'),
-            'shipping_charges' => $request->input('shipping_charges'),
-            'total' => $request->input('total'),
-        );
-        
-        $request->session()->put('shipping_details', $array);
-        
-        //call page
-        return view('pages.do_payment', $result);
+            //Add Customer Details & Coupon Details In Sessoion
+            $array = array(
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'phone_no' => $request->input('phone_no'),
+                'country' => $request->input('country'),
+                'city' => $request->input('city'),
+                'area' => $request->input('area'),
+                'address' => $request->input('address'),
+                'coupon_id' => $request->input('coupon_id'),
+                'shipping_charges' => $request->input('shipping_charges'),
+                'total' => $request->input('total'),
+            );
+            
+            $request->session()->put('shipping_details', $array);
+            
+            //call page
+            return view('pages.do_payment', $result);
+        }else{
+            //Flash Success Message
+            $request->session()->flash('alert-danger', "You don't have any product in cart for checkout.");
+
+            return redirect()->route('home');
+        }
     }
 
-    function insert_order(Request $request){
+    function insert_jazz_order(Request $request){
         if(!empty($request->session()->get('cart') && $request->session()->get('shipping_details'))){
             //Query For Getting Last Insert Order No
             $query = \DB::table('tbl_orders')
@@ -408,10 +415,16 @@ class CartController extends Controller{
 
                 $request->session()->put('order_no', $data);
 
-                //Flash Success Message
+                $ajax_response_data = array(
+                    'ERROR' => 'FALSE',
+                    'DATA' => $request->session()->get('order_no'),
+                );
+
+                return json_encode($ajax_response_data);
+                /*//Flash Success Message
                 $request->session()->flash('alert-success', "Your order has been placed successfully.");
 
-                return redirect()->route('home');
+                return redirect()->route('home');*/
             }else{
                 if(!empty($order_id)){
                     //Query For Deleting Last Insert Order
@@ -460,19 +473,18 @@ class CartController extends Controller{
         }
     }
 
-    function update_order(Request $request){
+    function update_jazz_order(Request $request){
         if(!empty($request->session()->get('order_no'))){
             $HashKey = "4t425f0547";
             $ResponseCode = $request->input('pp_ResponseCode');
-            $ResponseMessage = $request->input('pp_ResponseMessage');
+            $ResponseMessage = $request->input('pp_ResponseMessage').' ';
             $Response = "";
             $comment = "";
             $ReceivedSecureHash = $request->input('pp_SecureHash');
-            dd($_POST);
             $sortedResponseArray = array();
 
-            if(!empty($_POST)){
-                foreach($_POST as $key => $val){
+            if(!empty($request->all())){
+                foreach($request->all() as $key => $val){
                     $comment .= $key."[".$val."],<br/>";
                     $sortedResponseArray[$key] = $val;
                 }
@@ -483,8 +495,12 @@ class CartController extends Controller{
 
             $Response = $HashKey;
             foreach($sortedResponseArray as $key => $val){      
-                if($val != null && $val != ""){
-                    $Response .= '&'.$val;              
+                if($val != null and $val != ""){
+                    if($val == 'Thank you for Using JazzCash, your transaction was successful.'){
+                        $Response .= '&'.$val.' ';     
+                    }else{
+                        $Response .= '&'.$val;   
+                    }
                 }
             }   
             
@@ -497,7 +513,7 @@ class CartController extends Controller{
                 $reqBillref = $request->input('pp_BillReference');
                 $reqRetrivalRefNo = $request->input('pp_RetreivalReferenceNo');
                 
-                if($ResponseCode == '000'|| $ResponseCode == '121' || $ResponseCode == '200'){
+                if($ResponseCode == '000' || $ResponseCode == '121' || $ResponseCode == '200'){
                     //Update Payment Status
                     $query = DB::table('tbl_orders_invoices')
                                  ->where('order_no', $request->session()->get('order_no')['order_no'])
@@ -506,9 +522,11 @@ class CartController extends Controller{
                     //Flash Success Message
                     $request->session()->flash('alert-success',  "Thankyou for placing your Order, Your JazzCash Payment of Rs:".$reqAmount." has been successfull deducted. Your transaction id is ".$txnRefNo);
 
-                    return redirect()->route('home');
+                    $request->session()->forget('cart');
+                    $request->session()->forget('shipping_details');
+
                     //echo $ResponseCode." Transaction Message =".$ResponseMessage;
-                }else if($ResponseCode == '124' || $ResponseCode == '210'){
+                }elseif($ResponseCode == '124' || $ResponseCode == '210'){
                     //Update Payment Status
                     $query = DB::table('tbl_orders_invoices')
                                  ->where('order_no', $request->session()->get('order_no')['order_no'])
@@ -517,8 +535,10 @@ class CartController extends Controller{
                     //Flash Success Message
                     $request->session()->flash('alert-danger',  "Your voucher No is:".$reqRetrivalRefNo." of amount ".$reqAmount." has been successfully generated. Visit any JazzCash shop and pay the amount before the expiry date");
 
-                    return redirect()->route('home');
                     //echo $ResponseCode."Transaction Message=".$ResponseMessage;
+
+                    $request->session()->forget('cart');
+                    $request->session()->forget('shipping_details');
                 }else{
                     //Update Order Status
                     $query = DB::table('tbl_orders')
@@ -533,8 +553,10 @@ class CartController extends Controller{
                     //Flash Success Message
                     $request->session()->flash('alert-danger',  "Sorry, your Payment of Rs:".$reqAmount." against transaction id:".$txnRefNo." has been declined. please try again.");
 
-                    return redirect()->route('home');
                     //echo $ResponseCode." Transaction Message = ".$ResponseMessage;
+
+                    $request->session()->forget('cart');
+                    $request->session()->forget('shipping_details');
                 }                                                        
             }else{
                 //Update Order Status
@@ -549,14 +571,11 @@ class CartController extends Controller{
 
                 //Flash Success Message
                 $request->session()->flash('alert-danger', "mismatched, marked it suspicious or reject it");
-
-                return redirect()->route('home');              
             }
 
-            $request->session()->forget('cart');
-            $request->session()->forget('shipping_details');
-        }else{
             return redirect()->route('home');
+        }else{
+            return redirect()->back();
         }
     }
 }
