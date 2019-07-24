@@ -1,5 +1,4 @@
 <?php
-
 function best_selling(){
     //Query For Getting Best Selling Products
     $query = \DB::table('tbl_orders')
@@ -11,20 +10,17 @@ function best_selling(){
                  ->orderBy('tbl_orders.id', 'DESC')
                  ->groupBy('tbl_orders.product_id')
                  ->limit(12);
- 	$result = $query->get();
-
+    $result = $query->get();
     //Query For Getting those latest products who have ratings
     $query = DB::table('tbl_products_reviews')
                  ->select('product_id', DB::raw('AVG(tbl_products_reviews.buyer_stars) as total_stars'))
                  ->groupBy('product_id');
     $rated_products = $query->get();
-
     if(!empty($rated_products)){
         foreach($rated_products as $row){
             $stars[$row->product_id] = $row->total_stars;
         }
     } 
-
     //Check if Query is null or not
     if(!empty(count($result) > 0)){
         foreach($result as $row){
@@ -33,6 +29,13 @@ function best_selling(){
                 $total_stars = explode('.', $stars[$row->id])[0];
             }else{
                 $total_stars = 0;
+            }
+            
+            //Count Discount Percentage
+            if(!empty($row->sale_price)){
+                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
+            }else{
+                $discount = 0;
             }
             
             //Result Array
@@ -45,10 +48,10 @@ function best_selling(){
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => round(($row->regural_price - $row->sale_price * 100) / $row->regural_price), //Count Discount Percentage
+                'total_discount' => $discount,
             );
         }
         
-    	return $data;
+        return $data;
     }
 }

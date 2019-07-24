@@ -105,7 +105,7 @@ function product_details($slug){
 
         //Count Discount Percentage
         if(!empty($product->sale_price)){
-            $discount = explode('.', (($product->regural_price - $product->sale_price) * 100) / $product->regural_price)[0];
+            $discount = explode('.', (($product->regural_price - $product->sale_price) * 100) / $product->regural_price + 1)[0];
         }else{
             $discount = 0;
         }
@@ -167,7 +167,7 @@ function product_details($slug){
             'cost_price' => $product->regural_price,
             'sale_price' => $product->sale_price,
             'total_stars' => $total_stars,
-            'total_discount' => round(($product->regural_price - $product->sale_price * 100) / $product->regural_price),
+            'total_discount' => $discount,
             'total_ratings' => $ratings->total_ratings,
             'weight' => $product->weight,
             'meta_keywords' => $product->meta_keywords,
