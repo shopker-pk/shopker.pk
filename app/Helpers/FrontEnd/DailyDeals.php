@@ -36,9 +36,6 @@ function daily_deals(){
                 $total_stars = 0;
             }
 
-            //Count Discount Percentage
-            $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
-
             //Result Array
             $data[] = array(
                 'id' => $row->id,
@@ -49,7 +46,7 @@ function daily_deals(){
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => $discount,
+                'total_discount' => round(($row->regural_price - $row->sale_price * 100) / $row->regural_price), //Count Discount Percentage
                 'deal_hours' => date('H', strtotime($row->deal_start_time)),
                 'deal_minutes' => date('i', strtotime($row->deal_start_time)),
                 'deal_seconds' => date('s', strtotime($row->deal_start_time)),

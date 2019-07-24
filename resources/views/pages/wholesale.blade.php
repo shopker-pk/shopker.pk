@@ -6,7 +6,7 @@
             </div>
             <div class="row content-form ">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 map-content">
-                    <div class="map"><a href="#"><img src="{{ asset('public/assets/images/map1.jpg') }}" alt=""></a></div>
+                    <div class="map"><a href="#"><img src="{{ asset('public/assets/images/key.png') }}" alt="" style="width:570; height:363px;"></a></div>
                     <div class="information-form">
                         <h4 class=" main-title">Our Store</h4>
                         <div class="row">

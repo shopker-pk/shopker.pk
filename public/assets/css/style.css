@@ -1104,7 +1104,7 @@ input {
 }
 .main-menu .mega-menu1 {
   max-width: 1010px;
-  /*background-image: url('../images/bg1.jpg');*/
+  background-color: white;
   background-repeat: no-repeat;
   background-position: right bottom;
   padding: 25px 30px 0;
@@ -1152,7 +1152,7 @@ input {
 }
 .vertical-menu .sub-menu1 {
   max-width: 650px;
-  /*background-image: url('../images/bg2.jpg');*/
+  background-color: white;
   background-repeat: no-repeat;
   background-position: right bottom;
   padding: 30px 35px;
@@ -1161,7 +1161,7 @@ input {
 }
 .vertical-menu .sub-menu2 {
   max-width: 610px;
-  background-image: url('../images/bg3.jpg');
+  background-color: white;
   background-repeat: no-repeat;
   background-position: center bottom;
   padding: 35px 40px;
@@ -6069,6 +6069,17 @@ body.home5 {
 }
 @media(max-width: 991px) {
   /*Mobile header config*/
+ .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
+  .slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -130px;
+}
 .header-mobile,
 .mobile-config {
   display: block;
@@ -6526,9 +6537,23 @@ body.home5 {
 }
 }
 @media(max-width: 767px) {
+
+   .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
 .latest-products{
   width: 100% !important;
 }
+
+ .slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -13
+}
+
 .item-background {
   background-position: center;
   background-repeat: no-repeat;
@@ -6703,6 +6728,10 @@ body.home5 {
 }
 }
 @media(max-width: 639px) {
+ .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
+
 .header .mobile-config .search-form .search-block,
 .header.layout3 .mobile-config .search-form .search-block,
 .header.layout4 .mobile-config .search-form .search-block  {
@@ -6713,6 +6742,15 @@ body.home5 {
   width: 100%;
   text-align: center;
   float: none;
+}
+
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -13
 }
 
 .vertical-menu .sub-menu1 {
@@ -6819,6 +6857,7 @@ body.home5 {
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+  background-position: top;
 }
 .slideshow3 .slide-content {
   left: 50px;
@@ -6845,6 +6884,10 @@ body.home5 {
 } 
 }
 @media(max-width: 479px) {
+
+   .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
 .header-mobile .box-minicart .cart-block, 
 .header-mobile .menu-bar, 
 .header-top-menu-mobile {
@@ -6854,6 +6897,16 @@ body.home5 {
 .header.layout5 .search-form .search-choice {
   display: none;
 }
+
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -13
+}
+
 .menu-bar .icon {
   margin: 0;
 }
@@ -7013,6 +7066,18 @@ body.home5 {
 }
 @media(max-width: 360px) {
 /*HEADER LAYOUT1*/  
+ .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -13
+}
+
 .box-minicart .cart-inner {
   display: none;
 }
@@ -7070,6 +7135,9 @@ body.home5 {
 }
 }
 @media(max-width: 320px) {
+ .main-content-home2 .featrue-box-list{
+    margin-top: -200px;
+  }
 .header.layout2 .mobile-navigation .text {
   display: none;
 }
@@ -7079,6 +7147,15 @@ body.home5 {
   height: 25px;
   line-height: 25px;
   font-size: 18px;
+}
+
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-prev {
+  left: 20px;
+  margin-top: -130px;
+}
+.slideshow2  .owl-carousel.nav-style1:hover .owl-nav .owl-next {
+  right: 20px;
+  margin-top: -13
 }
 .owl-carousel.nav-style1 .owl-nav .owl-prev {
   left: 10px;

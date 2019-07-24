@@ -551,7 +551,7 @@ class CartController extends Controller{
                                  ->update(['status' => 1]);
 
                     //Flash Success Message
-                    $request->session()->flash('alert-danger',  "Sorry, your Payment of Rs:".$reqAmount." against transaction id:".$txnRefNo." has been declined. please try again.");
+                    $request->session()->flash('alert-success',  "Sorry, your Payment of Rs:".$reqAmount." against transaction id:".$txnRefNo." has been declined. please try again.");
 
                     //echo $ResponseCode." Transaction Message = ".$ResponseMessage;
 

@@ -1,8 +1,9 @@
 @include('layouts.header')
-	<div class="main-content shop-page main-content-detail">
-        <div class="container">
-        	<div class="breadcrumbs"></div>
-			{!! $get_all_categories !!}
+	<div class="main-content home-page main-content-home2">
+		<div class="wrapper">
+			<div class="masonry">
+				{!! $get_all_categories !!}
+    		</div>
 		</div>
 	</div>
 @include('layouts.footer')

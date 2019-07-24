@@ -21,8 +21,8 @@ function get_all_categories(){
 
          	if(count($result) > 0){
          		$html .= '
-         			<div class="widget-custom-menu col-xs-12 col-sm-12 col-md-12 col-lg-3">
-                        <a href="'.route('products_by_categories', $row->slug).'"><h5 class="title widgettitle">'.$row->name.'</h5></a>
+         			<div class="item">
+                        <a href="'.route('products_by_categories', $row->slug).'"><h4 class="title widgettitle">'.$row->name.'</h4></a>
                         <ul>
          		';
          		foreach($result as $sub_row){

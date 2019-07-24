@@ -535,7 +535,6 @@ $(document).ready(function(){
 	            	}
             	}
 	        });
-	        alert();
 		});
 	//View More Btn For Index Page End
 });
