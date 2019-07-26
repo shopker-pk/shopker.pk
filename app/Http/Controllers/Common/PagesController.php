@@ -69,7 +69,8 @@ class PagesController extends Controller{
             $result['product_images'] = product_images($result['product_details']['product_id']); 
             $result['product_reviews'] = product_reviews($result['product_details']['product_id']); 
             $result['related_products'] = related_products($result['product_details']['product_slug']); 
-
+            $result['customer_details'] = customer_details();
+            
             //Call Page
             return view('pages.product_details', $result);
         }else{

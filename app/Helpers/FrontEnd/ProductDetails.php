@@ -103,13 +103,6 @@ function product_details($slug){
             $one_stars = 0;
         }
 
-        //Count Discount Percentage
-        if(!empty($product->sale_price)){
-            $discount = explode('.', (($product->regural_price - $product->sale_price) * 100) / $product->regural_price + 1)[0];
-        }else{
-            $discount = 0;
-        }
-        
         //Get Warranty Type
         if($product->warranty_type == 0){
             $warranty_type = 'Brand warranty';
@@ -167,7 +160,7 @@ function product_details($slug){
             'cost_price' => $product->regural_price,
             'sale_price' => $product->sale_price,
             'total_stars' => $total_stars,
-            'total_discount' => $discount,
+            'total_discount' => floor(($product->regural_price - $product->sale_price) * 100 / $product->regural_price),
             'total_ratings' => $ratings->total_ratings,
             'weight' => $product->weight,
             'meta_keywords' => $product->meta_keywords,

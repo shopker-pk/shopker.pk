@@ -20,13 +20,7 @@ function get_customers_wishlist($id){
         }
 
         foreach($result as $row){
-        	if(!empty($row->sale_price)){
-                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
-            }else{
-                $discount = 0;
-            }
-            
-            //Result Array
+        	//Result Array
             $data[] = array(
                 'id' => $row->id,
                 'image' => env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image,
@@ -35,7 +29,7 @@ function get_customers_wishlist($id){
                 'slug' => $row->slug,
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
-                'total_discount' => $discount,
+                'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
                 'pagination' => $pagination,
             );
         }

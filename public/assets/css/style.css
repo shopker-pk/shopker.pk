@@ -7410,7 +7410,7 @@ and (max-device-width : 1024px){
     right: 6%;
   }
 .percent{
-  margin-top: -9px;
+  margin-top: 5px;
 }
 .custom-title{
   font-size: 24px !important;

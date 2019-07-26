@@ -110,13 +110,6 @@ function ajax_product_quick_view($id){
             $one_stars = 0;
         }
 
-        //Count Discount Percentage
-        if(!empty($product->sale_price)){
-            $discount = explode('.', (($product->regural_price - $product->sale_price) * 100) / $product->regural_price + 1)[0];
-        }else{
-            $discount = 0;
-        }
-        
         //Get Warranty Type
         if($product->warranty_type == 0){
             $warranty_type = 'Brand warranty';
@@ -230,12 +223,28 @@ function ajax_product_quick_view($id){
         $prices = '';
         $asd = '';
         if(!empty($product->sale_price)){
-        $prices .= '<span class="del"><strike>Rs.'.$product->regural_price.'</span></strike><span class="ins" style="margin-left: 10px;">Rs.'.$product->sale_price.'</span>';
+        $prices .= '
+            <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
+                <div class="price">
+                    <span class="del"><strike style="color: #e5534c;">Rs.'.$product->regural_price.'</strike></span>
+                    <span class="ins">Rs.'.$product->sale_price.'</span>
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+                <span class="badge">
+                    <div class="percent"> -'.floor(($product->regural_price - $product->sale_price) * 100 / $product->regural_price).'%</div>
+                </span>
+            </div>';
         $asd .= '
         		<input type="hidden" id="product_price" name="product_price" value="'.$product->sale_price.'">
         		<input type="hidden" id="product_type" name="product_type" value="0">';
         }else{
-    	$prices .= '<span class="ins">Rs.'.$product->regural_price.'</span>';
+    	$prices .= '
+            <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
+                <div class="price">
+                    <span class="ins">Rs.'.$product->regural_price.'</span>
+                </div>
+            </div>';
     	$asd .= '
     			<input type="hidden" id="product_price" name="product_price" value="'.$product->regural_price.'">
     			<input type="hidden" id="product_type" name="product_type" value="1">';	

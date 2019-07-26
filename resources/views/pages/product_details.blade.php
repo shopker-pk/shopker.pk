@@ -67,12 +67,25 @@
                                 <span class="count">{{ $product_details['total_ratings'] }} Review(s)</span>
                             </div>
                             <p class="description">Brand: <a href="{{ route('search_products', $product_details['brand_slug']) }}" >{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0);">More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</a></p>
-                            <div class="price">
+                            <div class="row">
                                 @if(!empty($product_details['sale_price']))
-                                <span class="del"><strike>Rs.{{ $product_details['cost_price'] }}</strike></span>
-                                <span class="ins">Rs.{{ $product_details['sale_price'] }}</span>
+                                <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
+                                    <div class="price">
+                                        <span class="del"><strike style="color: #e5534c;">Rs.{{ $product_details['cost_price'] }}</strike></span>
+                                        <span class="ins">Rs.{{ $product_details['sale_price'] }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+                                    <span class="badge">
+                                        <div class="percent"> -{{ $product_details['total_discount'] }}%</div>
+                                    </span>
+                                </div>
                                 @else
-                                <span class="ins">Rs.{{ $product_details['cost_price'] }}</span>
+                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                    <div class="price">
+                                        <span class="ins">Rs.{{ $product_details['cost_price'] }}</span>
+                                    </div>
+                                </div>
                                 @endif
                             </div>
                             <div class="group-social">
@@ -246,30 +259,22 @@
                                                 <h3 class="title supper-title">ADD A REVIEW</h3>
                                                 <form action="{{ route('insert_products_reviews') }}" method="post">
                                                     {{ csrf_field() }}
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                                        <input type="text" class="input-info" placeholder="Your name">
+                                                    <textarea rows="6" name="review" class="input-info input-content" placeholder="Your review"></textarea>
+                                                    <div class="rating">
+                                                        <span class="text">Your rating</span>
+                                                        <input type="hidden" id="product_id" name="product_id" value="{{ $product_details['product_id'] }}">
+                                                        <fieldset>
+                                                            <span class="star-cb-group">
+                                                                <input type="radio" id="rating-5" name="rate" value="5" /><label for="rating-5">5</label>
+                                                                <input type="radio" id="rating-4" name="rate" value="4" checked="checked" /><label for="rating-4">4</label>
+                                                                <input type="radio" id="rating-3" name="rate" value="3" /><label for="rating-3">3</label>
+                                                                <input type="radio" id="rating-2" name="rate" value="2" /><label for="rating-2">2</label>
+                                                                <input type="radio" id="rating-1" name="rate" value="1" /><label for="rating-1">1</label>
+                                                                <input type="radio" id="rating-0" name="rate" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+                                                            </span>
+                                                        </fieldset>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                                        <input type="text" class="input-info" placeholder="Your email">
-                                                    </div>
-                                                </div>
-                                                <textarea rows="6"  class="input-info input-content" placeholder="Your review"></textarea>
-                                                <div class="rating">
-                                                    <span class="text">Your rating</span>
-                                                    <input type="hidden" id="product_id" name="product_id" value="{{ $product_details['product_id'] }}">
-                                                    <fieldset>
-                                                        <span class="star-cb-group">
-                                                            <input type="radio" id="rating-5" name="rate" value="5" /><label for="rating-5">5</label>
-                                                            <input type="radio" id="rating-4" name="rate" value="4" checked="checked" /><label for="rating-4">4</label>
-                                                            <input type="radio" id="rating-3" name="rate" value="3" /><label for="rating-3">3</label>
-                                                            <input type="radio" id="rating-2" name="rate" value="2" /><label for="rating-2">2</label>
-                                                            <input type="radio" id="rating-1" name="rate" value="1" /><label for="rating-1">1</label>
-                                                            <input type="radio" id="rating-0" name="rate" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-                                                        </span>
-                                                    </fieldset>
-                                                </div>
-                                                <button class="submit btn btn-success">SUBMIT</button>
+                                                    <button class="submit btn btn-success">SUBMIT</button>
                                                 </form>
                                             </div>
                                         </div>

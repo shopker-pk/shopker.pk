@@ -114,7 +114,7 @@ html {
 */
 
 .icon {
-  height: 1em;
+  height: -2em;
   width: 1em;
   display: inline-block;
   vertical-align: middle;

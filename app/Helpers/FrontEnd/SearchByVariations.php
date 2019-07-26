@@ -58,13 +58,6 @@ function search_by_variations($slug){
             //Concatenating Image Path with image object
             $image = env('ADMIN_URL').'images/ecommerce/products/'.$row->featured_image;
                 
-            //Count Discount Percentage
-            if(!empty($row->sale_price)){
-                $discount = explode('.', (($row->cost_price - $row->sale_price) * 100) / $row->cost_price + 1)[0];
-            }else{
-                $discount = 0;
-            }
-            
             //Result Array
             $data[] = array(
                 'id' => $row->id,
@@ -75,7 +68,7 @@ function search_by_variations($slug){
                 'cost_price' => $row->cost_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => $discount,
+                'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
                 'pagination' => $pagination,
             );
         }

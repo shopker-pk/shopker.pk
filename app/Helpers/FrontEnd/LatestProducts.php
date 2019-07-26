@@ -45,7 +45,7 @@ function latest_products(){
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => round(($row->regural_price - $row->sale_price * 100) / $row->regural_price), //Count Discount Percentage
+                'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
             );
         }
         

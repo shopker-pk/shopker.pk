@@ -31,13 +31,6 @@ function best_selling(){
                 $total_stars = 0;
             }
             
-            //Count Discount Percentage
-            if(!empty($row->sale_price)){
-                $discount = explode('.', (($row->regural_price - $row->sale_price) * 100) / $row->regural_price + 1)[0];
-            }else{
-                $discount = 0;
-            }
-            
             //Result Array
             $data[] = array(
                 'id' => $row->id,
@@ -48,7 +41,7 @@ function best_selling(){
                 'cost_price' => $row->regural_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => $discount,
+                'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
             );
         }
         
