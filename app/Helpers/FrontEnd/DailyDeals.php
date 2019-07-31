@@ -3,7 +3,7 @@
 function daily_deals(){
     //Query For Getting Products For Daily Deals
     $query = \DB::table('tbl_products')
-                 ->select('tbl_products.id', 'tbl_products_featured_images.featured_image', 'tbl_products.id', 'tbl_products.name', 'tbl_products.slug', 'tbl_products.regural_price', 'tbl_products.sale_price', 'tbl_products.deal_start_time')
+                 ->select('tbl_products.id', 'tbl_products_featured_images.featured_image', 'tbl_products.id', 'tbl_products.name', 'tbl_products.slug', 'tbl_products.regural_price', 'tbl_products.sale_price', 'tbl_products.deal_start_time', 'tbl_products.deal_end_time')
                  ->LeftJoin('tbl_products_featured_images', 'tbl_products_featured_images.product_id', '=', 'tbl_products.id')
                  ->where('tbl_products.status', 0)
                  ->where('tbl_products.is_approved', 0)
@@ -47,11 +47,12 @@ function daily_deals(){
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
                 'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
-                'deal_hours' => date('H', strtotime($row->deal_start_time)),
-                'deal_minutes' => date('i', strtotime($row->deal_start_time)),
-                'deal_seconds' => date('s', strtotime($row->deal_start_time)),
+                'deal_hours' => date('G', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
+                'deal_minutes' => date('i', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
+                'deal_seconds' => date('s', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
             );
         }
+
     	return $data;
     }
 }

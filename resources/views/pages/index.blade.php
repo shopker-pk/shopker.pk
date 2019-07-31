@@ -216,7 +216,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="kt-countdown timer_1" data-y="{{ date('Y') }}" data-m="{{ date('m') }}" data-w="{{ date('d') }}" data-d="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                        <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
                                         <div class="group-button">
                                             <div class="inner">
                                                 <a href="{{ route('add_wishlists', $row['id']) }}" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -423,7 +423,7 @@
                                                         <span class="ins">Rs.{{ $row['cost_price'] }}</span>
                                                         @endif
                                                     </div>
-                                                    <div class="kt-countdown timer_1" data-y="{{ date('Y') }}" data-m="{{ date('m') }}" data-w="{{ date('d') }}" data-d="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                                    <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
                                                 </div>
                                                 <div class="group-button">
                                                     <div class="inner">

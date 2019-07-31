@@ -324,11 +324,11 @@ jQuery(document).ready(function ($) {
             var count = 0;
             $('.timer_1').each(function(){
                 $(this).countdown({
-                    until: new Date($(this).attr('data-y'), $(this).attr('data-m') - 1, $(this).attr('data-d'), $(this).attr('data-h_'+count), $(this).attr('data-i_'+count), $(this).attr('data-s_'+count)),
+                    until: new Date($(this).attr('data-y_'+count), $(this).attr('data-m_'+count), $(this).attr('data-d_'+count), $(this).attr('data-h_'+count), $(this).attr('data-i_'+count), $(this).attr('data-s_'+count)),
                     labels: [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ],
                     layout: '<span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>'
                 });
-                
+
                 count++;
             });
         }
