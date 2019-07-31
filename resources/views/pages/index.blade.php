@@ -15,7 +15,7 @@
             </div>
             <div class="featrue-box-list equal-container">
                 <div class="row">
-                    <div class="col-ss-12 col-xs-12 col-sm-4 col-md-4 col-lg-4 item">
+                    <div class="col-ss-12 col-xs-12 col-sm-4 col-md-4 col-lg-4 featrue-item">
                         <div class="featrue-box layout1 equal-elem">
                             <div class="block-icon"><a href="#"><span class="fa fa-truck"></span></a></div>
                             <div class="block-inner">
