@@ -120,6 +120,25 @@ function vendor_registration($data){
 	                  ->insertGetId($array);
 
 	  	if(!empty($vendor_id && $store_id && $cheque_id && $bank_id && $gender_id)){
+	  		//Query For Getting Logo
+	  		$query = DB::table('tbl_site_images')
+	  		             ->select('header_image');
+         	$result = $query->first();
+
+	  		$data = array(
+	  			'content' => 'Thank You For Sign Up Dear',
+	  			'website_url' => route('home'),
+	  			'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
+	  			'name' => $data['first_name'].' '.$data['last_name'],
+	  			'email' => $data['email'],
+	  		);
+
+	  		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
+	         	$message->to($data['email'], $data['name'])
+	         		    ->subject('Thank you for sign up.')
+	         			->from('info@shopker.pk', 'Shopker');
+ 			});
+ 			
 	  		return 0;
 	  	}else{
 	  		return 1;

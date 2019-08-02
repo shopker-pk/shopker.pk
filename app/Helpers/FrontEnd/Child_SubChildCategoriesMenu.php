@@ -4,9 +4,10 @@ function child_subchildcategories_menu(){
 	//Query For Getting Child Categories
 	$query = DB::table('tbl_child_categories')
 	             ->select('id', 'name', 'slug')
-	             ->whereIn('id', [9, 10, 11, 17, 18, 19, 37, 38])
 	             ->where('status', 0)
-	             ->orderBy('id', 'DESC');
+                 ->where('sorting_order', '!=', 0)
+	             ->orderBy('sorting_order', 'ASC')
+                 ->limit(8);
  	$result = $query->get();
 
  	$html = '';

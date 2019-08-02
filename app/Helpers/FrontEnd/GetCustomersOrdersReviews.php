@@ -8,7 +8,7 @@ function get_customers_orders_reviews($id){
 	              ->leftJoin('tbl_store_settings', 'tbl_store_settings.vendor_id', '=', 'tbl_orders.seller_id')
 	              ->where('tbl_orders_reviews.buyer_id', $id)
 	              ->where('tbl_orders.status', 4)
-	              ->orderBy('tbl_orders_reviews.order_no')
+	              ->orderBy('tbl_orders_reviews.order_no', 'DESC')
 	              ->groupBy('tbl_orders.order_no');
  	$result = $query->paginate(16);
 

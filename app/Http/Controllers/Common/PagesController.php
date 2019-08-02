@@ -234,4 +234,35 @@ class PagesController extends Controller{
     function view_more_products(Request $request){
         return view_more_products();
     }
+
+    function apply_for_job(Request $request){
+        //Necessary Page Data For header Page
+        $result = array(
+            'page_title' => 'Apply Career',
+            'meta_keywords' => '',
+            'meta_description' => '',
+        );
+
+        $result['site_settings'] = site_settings();
+        $result['mega_menus'] = mega_menus();
+        $result['parent_categories_menus'] = parent_categories_menu();
+        $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+
+        //Call Page
+        return view('pages.apply_for_job', $result);
+    }
+
+    function apply_job(Request $request){
+        $response = apply_job($request->all());
+
+        if($response == 'success'){
+            //Flash Success Message
+            $request->session()->flash('alert-success', 'Your cv has been sent successfully');
+        }elseif($response == 'error'){
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Something went wrong !!');
+        }
+
+        return redirect()->back();
+    }
 }

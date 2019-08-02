@@ -107,8 +107,13 @@
 	//Filters Routes En
 
 	//All Categories Start
-		Route::get('all-categories', 'Common\PagesController@all_categories')->name('all_categories');
+		Route::get('/all-categories', 'Common\PagesController@all_categories')->name('all_categories');
 	//All Categories End
+
+	//Apply Career Route Start
+		Route::get('/apply-for-job', 'Common\PagesController@apply_for_job')->name('apply_for_job');
+		Route::post('/apply-job', 'Common\PagesController@apply_job')->name('apply_job');
+	//Apply Career Route End
 
 	//Product Details Routes Start
 		Route::get('/{product_slug}', 'Common\PagesController@product_details')->name('product_details');

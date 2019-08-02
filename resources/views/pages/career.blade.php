@@ -32,9 +32,9 @@
                 </div>
                 <div class="row apply-job">
                     <div class="col-md-12">
-                        <button class="title btn btn-success view-more-button">
+                        <a class="title btn btn-success view-more-button" href="{{ route('apply_for_job') }}">
                             Apply for Job
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

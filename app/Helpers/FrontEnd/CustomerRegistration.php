@@ -17,7 +17,7 @@ function customer_registration($data){
 
 	if($data['password'] == $data['confirm_password']){
 		//Set Field data according to table column
-	    $array = array(
+	    $array1 = array(
 	    	'ip_address' => Request::ip(),
 	    	'varification_code' => rand(111111, 999999),
 	    	'first_name' => $data['first_name'],
@@ -37,7 +37,7 @@ function customer_registration($data){
 
 	    //Query For Inserting Personal Details
 	    $user_id = \DB::table('tbl_users')
-	                    ->insertGetId($array);
+	                    ->insertGetId($array1);
 
 	  	//Set Field data according to table column
 	    $array = array(
@@ -81,6 +81,25 @@ function customer_registration($data){
 	  	
 
 	  	if(!empty($user_id && $gender_id && $newsletter_id)){
+	  		//Query For Getting Logo
+	  		$query = DB::table('tbl_site_images')
+	  		             ->select('header_image');
+         	$result = $query->first();
+
+	  		$data = array(
+	  			'content' => 'Thank You For Sign Up Dear',
+	  			'website_url' => route('home'),
+	  			'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
+	  			'name' => $data['first_name'].' '.$data['last_name'],
+	  			'email' => $data['email'],
+	  		);
+
+	  		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
+	         	$message->to($data['email'], $data['name'])
+	         		    ->subject('Thank you for sign up.')
+	         			->from('info@shopker.pk', 'Shopker');
+ 			});
+
 	  		return 0;
 	  	}else{
 	  		return 1;

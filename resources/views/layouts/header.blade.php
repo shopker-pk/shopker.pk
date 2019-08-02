@@ -86,7 +86,7 @@
 												</select>
 											</div>
 											<div class="search-inner">
-												<input type="text" id="name" name="name" class="search-info" placeholder="Searh entire store here...">
+												<input type="text" id="name" name="name" class="search-info" placeholder="Search from store here...">
 											</div>
 											<a class="search-button" id="search-button"><i class="fa fa-search" aria-hidden="true"></i></a>
 										</div>
