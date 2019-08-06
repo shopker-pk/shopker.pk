@@ -41,6 +41,9 @@ class AuthController extends Controller{
             }elseif($response == 2){
                 //Flash Error Message
                 $request->session()->flash('alert-danger', 'Your password & confirm password was not matched successfully.');
+            }elseif($response == 3){
+                //Flash Error Message
+                $request->session()->flash('alert-danger', 'Email has already been taken.');
             }
 
             return redirect()->back();

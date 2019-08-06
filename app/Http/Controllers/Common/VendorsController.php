@@ -26,7 +26,7 @@ class VendorsController extends Controller{
     
 	function vendor_registeration(Request $request){
         $response = vendor_registration($request->all());
-
+        
         if($response == 0){
             //Flash Success Message
             $request->session()->flash('alert-success', 'Congratulations!! Your Store has been created successfully.');
@@ -36,6 +36,9 @@ class VendorsController extends Controller{
         }elseif($response == 2){
             //Flash Error Message
             $request->session()->flash('alert-danger', 'Your password & confirm password was not matched successfully.');
+        }elseif($response == 3){
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Email has already been taken.');
         }
 
         return redirect()->back();
