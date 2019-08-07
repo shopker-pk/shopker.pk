@@ -528,7 +528,7 @@
         <tr>
             <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
                 <center>
-                    @if(empty($order_no))
+                    @if(!empty($sign_up))
                     <table cellspacing="0" cellpadding="0" width="600" class="w320">
                         <tr>
                             <td class="header-lg">
@@ -571,7 +571,7 @@
                     <table cellspacing="0" cellpadding="0" width="600" class="w320">
                         <tr>
                             <td class="header-lg">
-                                <a href="{{ $website_url }}"><img width="137" height="47" src="{{ $logo }}" alt="logo"></a>s3.amazonaws.com/swu-filepicker/0zxBZVuORSxdc9ZCqotL_logo_03.gif" alt="logo"></a>
+                                <a href="{{ $website_url }}"><img width="137" height="47" src="{{ $logo }}" alt="logo"></a>
                             </td>
                         </tr>
                         <tr>

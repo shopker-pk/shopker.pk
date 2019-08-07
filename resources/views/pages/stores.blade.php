@@ -39,7 +39,7 @@
                                 @foreach($query as $row)
                             <div class="product-item layout1 col-ts-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 no-padding">
                                 <div class="product-inner equal-elem">
-                                    @if(!empty($row['total_discount']))
+                                    @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                     <ul class="group-flash">
                                         <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                     </ul>

@@ -1,7 +1,7 @@
 <?php
 
 function add_order($params){
-	if(!empty(\Session::get('cart') && \Session::get('shipping_details'))){
+    if(!empty(\Session::get('cart') && \Session::get('shipping_details'))){
 		//Query For Getting Last Insert Order No
 		$query = \DB::table('tbl_orders')
 		              ->select('order_no')
@@ -18,7 +18,21 @@ function add_order($params){
       	$count = 0;
         $total_products = 0;
         $total_products_weight = 0;
+        $total = array();
         foreach(Session::get('cart') as $row){
+            //Query For Getting Product Name
+            $query = DB::table('tbl_products')
+                         ->select('name')
+                         ->where('id', $row['id']);
+            $result = $query->first();
+
+            $products[] = array(
+                'product_name' => $result->name,
+                'qty' => $row['quantity'],
+                'price' => $row['price'],
+            );
+
+            $total[] = $row['price'];
             $total_products += $row['quantity'];
             $total_products_weight += $row['total_weight'];
 
@@ -120,16 +134,26 @@ function add_order($params){
                          ->select('header_image');
             $result = $query->first();
 
+            if(!empty(\Session::get('shipping_details')['coupon_id'])){
+                $coupon = 0;
+            }else{
+                $coupon = 1;
+            }
+
             $data = array(
                 'content' => 'Thank You For shopping Dear',
                 'website_url' => route('home'),
                 'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
                 'name' => \Session::get('shipping_details')['first_name'].' '.\Session::get('shipping_details')['last_name'],
-                'email' => $data['email'],
+                'email' => \Session::get('shipping_details')['email'],
                 'order_no' => $order_no,
                 'address' => \Session::get('shipping_details')['address'],
                 'order_date' => date('d F Y'),
-                //'products' => 
+                'products' => $products,
+                'sub_total' => \Session::get('shipping_details')['total'],
+                'discount' => floor(\Session::get('shipping_details')['total'] - \Session::get('shipping_details')['shipping_charges'] - array_sum($total)),
+                'shipping' => \Session::get('shipping_details')['shipping_charges'],
+                'total' => \Session::get('shipping_details')['total'],
             );
 
             \Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){

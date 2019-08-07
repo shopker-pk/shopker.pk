@@ -68,7 +68,7 @@
                             </div>
                             <p class="description">Brand: <a href="{{ route('search_products', $product_details['brand_slug']) }}" >{{ $product_details['brand_name'] }}</a> | <a href="javascript::void(0);">More {{ $product_details['sub_child_category'] }} from {{ $product_details['brand_name'] }}</a></p>
                             <div class="row">
-                                @if(!empty($product_details['sale_price']))
+                                @if(!empty($product_details['total_discount']) && $product_details['total_discount'] != '100')
                                 <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
                                     <div class="price">
                                         <span class="del"><strike style="color: #e5534c;">Rs.{{ $product_details['cost_price'] }}</strike></span>
@@ -331,7 +331,7 @@
                         <div class="row-item">
                             <div class="product-item layout1">
                                 <div class="product-inner equal-elem">
-                                    @if(!empty($row['total_discount']))
+                                    @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                     <ul class="group-flash">
                                         <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                     </ul>

@@ -56,7 +56,7 @@
                                     @foreach($best_selling as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']))
+                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -154,7 +154,7 @@
                                     @foreach($daily_deals as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']))
+                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -252,7 +252,7 @@
                                     @foreach($latest_products as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']))
+                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -362,7 +362,7 @@
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
-                                                @if(!empty($row['total_discount']))
+                                                @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                                 <ul class="group-flash">
                                                     <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                 </ul>
@@ -457,7 +457,7 @@
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
-                                                @if(!empty($row['total_discount']))
+                                                @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                                 <ul class="group-flash">
                                                     <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                 </ul>
@@ -554,7 +554,7 @@
                                                 @foreach($latest_products as $row)
                                             <div class="product-item latest-products layout1 col-ts-12 col-xs-6 col-sm-6 no-padding" style="width: 20%">
                                                 <div class="product-inner equal-elem">
-                                                    @if(!empty($row['total_discount']))
+                                                    @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
                                                     <ul class="group-flash">
                                                         <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                     </ul>

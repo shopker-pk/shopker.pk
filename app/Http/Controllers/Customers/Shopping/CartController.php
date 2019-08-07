@@ -204,7 +204,7 @@ class CartController extends Controller{
                 return redirect()->back();
             }else{
                 $cart = add_order($request->all());
-                
+
                 if(!empty($cart == 0)){
                     //Flash Success Message
                     $request->session()->flash('alert-success', 'Your order has been placed successfully.');

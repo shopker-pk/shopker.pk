@@ -100,6 +100,7 @@ function customer_registration($data){
 		  			'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
 		  			'name' => $data['first_name'].' '.$data['last_name'],
 		  			'email' => $data['email'],
+		  			'sign_up' => 'sign_up',
 		  		);
 
 		  		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){

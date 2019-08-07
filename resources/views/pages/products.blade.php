@@ -26,6 +26,11 @@
                                 @foreach($query as $row)
                             <div class="product-item layout1 col-ts-12 col-xs-6 col-sm-6 col-md-4 col-lg-4 no-padding">
                                 <div class="product-inner equal-elem">
+                                    @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                    <ul class="group-flash">
+                                        <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
+                                    </ul>
+                                    @endif
                                     <div class="thumb">
                                         <a href="javascript:void(0);" class="quickview-button" data-id="{{ $row['id'] }}"><span class="icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Quick View</a>
                                         <a href="{{ route('product_details', $row['slug']) }}" class="thumb-link"><img src="{{ $row['image'] }}" alt="{{ $row['image_alt'] }}" style="width:214px; height:214px;"></a>
