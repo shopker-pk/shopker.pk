@@ -269,7 +269,7 @@ function ajax_product_quick_view($id){
 					</ul>
 					<span class="count">'.$ratings->total_ratings.' Review(s)</span>
 				</div>
-				<p class="description">'.str_replace("\xc2\xa0",' ', html_entity_decode(strip_tags(\Str::limit($product->description, 450)))).'</p>
+				<p class="description">'.str_replace("\xc2\xa0",' ', html_entity_decode(strip_tags(\Str::limit($product->description, 400)))).'</p>
 	    		'.$prices.'
 		        <div class="group-button">
 	                <div class="inner">
