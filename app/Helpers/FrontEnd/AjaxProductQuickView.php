@@ -224,25 +224,29 @@ function ajax_product_quick_view($id){
         $asd = '';
         if(!empty($product->sale_price)){
         $prices .= '
-            <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
-                <div class="price">
-                    <span class="del"><strike style="color: #e5534c;">Rs.'.$product->regural_price.'</strike></span>
-                    <span class="ins">Rs.'.$product->sale_price.'</span>
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
+                    <div class="price">
+                        <span class="del"><strike style="color: #e5534c;">Rs.'.$product->regural_price.'</strike></span>
+                        <span class="ins">Rs.'.$product->sale_price.'</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
-                <span class="badge">
-                    <div class="percent"> -'.floor(($product->regural_price - $product->sale_price) * 100 / $product->regural_price).'%</div>
-                </span>
+                <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
+                    <span class="badge">
+                        <div class="percent"> -'.floor(($product->regural_price - $product->sale_price) * 100 / $product->regural_price).'%</div>
+                    </span>
+                </div>
             </div>';
         $asd .= '
         		<input type="hidden" id="product_price" name="product_price" value="'.$product->sale_price.'">
         		<input type="hidden" id="product_type" name="product_type" value="0">';
         }else{
     	$prices .= '
-            <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
-                <div class="price">
-                    <span class="ins">Rs.'.$product->regural_price.'</span>
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-md-10 col-lg-10 col-xs-12 col-sm-12">
+                    <div class="price">
+                        <span class="ins">Rs.'.$product->regural_price.'</span>
+                    </div>
                 </div>
             </div>';
     	$asd .= '
@@ -266,10 +270,8 @@ function ajax_product_quick_view($id){
 					<span class="count">'.$ratings->total_ratings.' Review(s)</span>
 				</div>
 				<p class="description">'.str_replace("\xc2\xa0",' ', html_entity_decode(strip_tags(\Str::limit($product->description, 450)))).'</p>
-	    		<div class="price">
-	            	'.$prices.'
-		        </div>
-	            <div class="group-button">
+	    		'.$prices.'
+		        <div class="group-button">
 	                <div class="inner">
 	                    <form method="post" action="'.route('add_to_cart').'" id="add_to_cart_form">
 	                    <input type="hidden" id="_token" name="_token" value="'.csrf_token().'">
