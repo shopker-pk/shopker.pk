@@ -20,7 +20,7 @@
                 @endif
             </ul>
             <div class="">
-                <a href="shopping-cart.html" class="btn btn-success view-more-button">View Wishlist</a>
+                <a href="{{ route('manage_wishlist') }}" class="btn btn-success view-more-button">View Wishlist</a>
             </div>
         </div>
     </div>

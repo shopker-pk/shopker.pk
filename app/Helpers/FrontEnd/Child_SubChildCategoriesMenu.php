@@ -6,7 +6,7 @@ function child_subchildcategories_menu(){
 	             ->select('id', 'name', 'slug')
 	             ->where('status', 0)
                  ->where('sorting_order', '!=', 0)
-	             ->orderBy('sorting_order', 'ASC')
+                 ->orderBy('sorting_order', 'ASC')
                  ->limit(8);
  	$result = $query->get();
 

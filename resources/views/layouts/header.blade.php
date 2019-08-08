@@ -80,11 +80,6 @@
 								<form action="{{ route('search_products') }}" method="get" id="search-form">
 									<div class="search-form layout2 box-has-content">
 										<div class="search-block">
-											<div class="search-choice parent-content">
-												<select data-placeholder="All Categories" class="chosen-select">
-													<option value="0">All categories</option>
-												</select>
-											</div>
 											<div class="search-inner">
 												<input type="text" id="name" name="name" class="search-info" placeholder="Search from store here...">
 											</div>

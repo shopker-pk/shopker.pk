@@ -32,6 +32,7 @@ class CartController extends Controller{
         $result['site_settings'] = site_settings();
         $result['parent_categories_menus'] = parent_categories_menu();
         $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+        $result['all_parent_categories'] = all_parent_categories();
         $result['customer_details'] = customer_details();
         $result['countries'] = countries(); 
         $result['shipping_prices'] = shipping_prices(); 
@@ -100,7 +101,7 @@ class CartController extends Controller{
             $request->session()->flash('alert-danger', 'Something went wrong !!');
         }
 
-        return redirect()->route('view_cart');
+        return redirect()->route('checkout');
     }
 
     function checkout(Request $request){
@@ -115,6 +116,7 @@ class CartController extends Controller{
         $result['site_settings'] = site_settings();
         $result['parent_categories_menus'] = parent_categories_menu();
         $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+        $result['all_parent_categories'] = all_parent_categories();
         $result['customer_details'] = customer_details();
         $result['countries'] = countries(); 
         $result['shipping_prices'] = shipping_prices(); 
@@ -239,6 +241,7 @@ class CartController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
 

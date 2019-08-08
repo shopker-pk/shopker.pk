@@ -22,6 +22,7 @@ function bottom_top_banners($page_id){
                 'url' => $row->url,
             );
         }
+        
         return $data;
     }
 }

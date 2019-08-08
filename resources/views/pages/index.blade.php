@@ -20,7 +20,7 @@
                             <div class="block-icon"><a href="#"><span class="fa fa-truck"></span></a></div>
                             <div class="block-inner">
                                 <a href="#" class="title">Free Shipping & Return</a>
-                                <p class="des">Free shipping on all orders over Rs.1999</p>
+                                <p class="des">Free shipping on all orders over Rs.4999</p>
                             </div>
                         </div>
                     </div>
@@ -334,14 +334,14 @@
                 <div class="col-xs-12 col-sm-5">
                     <div class="banner banner-effect1">
                         @if($bottom_top_banners)
-                        @if(!empty($row['url']))<a href="{{ $bottom_top_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
+                        @if(!empty($bottom_top_banners['url']))<a href="{{ $bottom_top_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
                     <div class="banner banner-effect1">
                         @if($bottom_center_banners)
-                        @if(!empty($row['url']))<a href="{{ $bottom_center_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
+                        @if(!empty($bottom_center_banners['url']))<a href="{{ $bottom_center_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
                         @endif
                     </div>
                 </div>

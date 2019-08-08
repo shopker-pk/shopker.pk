@@ -542,6 +542,20 @@
                         </tr>
                     </table>
                     @endif
+                    @if(!empty($subcribe))
+                    <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                        <tr>
+                            <td class="header-lg">
+                                <a href="{{ $website_url }}"><img width="137" height="47" src="{{ $logo }}" alt="logo"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="header-lg">
+                                {{ $content }} {{ $email }}.
+                            </td>
+                        </tr>
+                    </table>
+                    @endif
                     @if(!empty($subject))
                     <table cellspacing="0" cellpadding="0" width="600" class="w320">
                         <tr>

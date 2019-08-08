@@ -19,6 +19,7 @@ class AuthController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
             //Call Page
@@ -65,6 +66,7 @@ class AuthController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
             //Call Page
@@ -133,6 +135,7 @@ class AuthController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
             //Call Page
@@ -180,6 +183,7 @@ class AuthController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
             //Call Page
@@ -222,6 +226,7 @@ class AuthController extends Controller{
             $result['site_settings'] = site_settings();
             $result['parent_categories_menus'] = parent_categories_menu();
             $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+            $result['all_parent_categories'] = all_parent_categories();
             $result['countries'] = countries(); 
 
             //Call Page

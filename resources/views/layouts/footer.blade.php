@@ -53,12 +53,15 @@
                                             <p class="des">Get all the latest information on Events, Sales and Offers. Sign up for newsletter today.</p>
                                         </div>
                                         <div class="col-ts-12 col-xs-8 col-sm-12 col-md-6"> 
-                                            <div class="newsletter-block">
-                                                <div class="newsletter-inner">
-                                                    <input type="text" class="newsletter-info" placeholder="Enter Your e-mail...">
+                                            <form action="{{ route('subcribe_us') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <div class="newsletter-block">
+                                                    <div class="newsletter-inner">
+                                                        <input type="text" id="email" name="email" class="newsletter-info" placeholder="Enter Your e-mail...">
+                                                    </div>
+                                                    <button class="submit">Subscribe</button>
                                                 </div>
-                                                <a href="#" class="submit">Subscribe</a>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +126,6 @@
                         <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 right-content">
                             <ul class="list-payment">
                                 <li><a href="#"><img src="{{ asset('public/assets/images/jazzcash.png') }}" height="50" alt=""></a></li>
-                                <li><a href="#"><img src="{{ asset('public/assets/images/easypaisa.png') }}" height="30" alt=""></a></li>
                             </ul>
                         </div>
                     </div>

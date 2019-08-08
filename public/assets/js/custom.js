@@ -25,8 +25,14 @@ $(document).ready(function(){
 
 	//Search Start
 	$(document).on('click', '#search-button', function(){
+		$('#search-form').submit();
+	});
+
+	$(document).on('keydown', '#name', function(e){
+		if(e.which == 13){
 			$('#search-form').submit();
-		});
+		}
+	});
 	//Search End
 
 	//Update Product Quantity And product Amount And total Start

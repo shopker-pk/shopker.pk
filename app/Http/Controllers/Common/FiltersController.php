@@ -16,6 +16,7 @@ class FiltersController extends Controller{
         $result['mega_menus'] = mega_menus();
         $result['parent_categories_menus'] = parent_categories_menu();
         $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+        $result['all_parent_categories'] = all_parent_categories();
         $result['query'] = search();
         $result['side_filter'] = side_filter(utf8_encode($request->input('name')));
 
@@ -35,6 +36,7 @@ class FiltersController extends Controller{
         $result['mega_menus'] = mega_menus();
         $result['parent_categories_menus'] = parent_categories_menu();
         $result['child_subchildcategories_menu'] = child_subchildcategories_menu();
+        $result['all_parent_categories'] = all_parent_categories();
         $result['query'] = search_by_variations($slug);
         $result['side_filter'] = side_filter($slug);
 

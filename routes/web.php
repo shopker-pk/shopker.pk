@@ -115,6 +115,10 @@
 		Route::post('/apply-job', 'Common\PagesController@apply_job')->name('apply_job');
 	//Apply Career Route End
 
+	//Subcriber Email Routes Start
+		Route::post('/email/subcribe', 'Common\PagesController@subcribe_us')->name('subcribe_us');
+	//Subcriber Email Routes End
+
 	//Product Details Routes Start
 		Route::get('/{product_slug}', 'Common\PagesController@product_details')->name('product_details');
 	//Product Details Routes End
