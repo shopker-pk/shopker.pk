@@ -398,7 +398,7 @@ jQuery(document).ready(function ($) {
             if ( $('body').hasClass('home') ) {
                 $.magnificPopup.open({
                     items: {
-                        src: '<div class="kt-popup-newsletter "><div class="popup-content"><h4 class="sub-title">Sign up <br> our <span>newsletter</span><br>And get</h4><h5 class="title">25 <span>%</span> Off</h5><h5 class="small-title">first purchase On all online store items.</h5><div class="input-block inner-content dontshow_newletter_popup"><div class="input-inner"><input type="text" class="input-info" placeholder="Enter your email" name="input-info"><button class="submit">Subscribe</a></div></div><div class="dontshow dontshow_newletter_popup"><input type="checkbox" class="checkbox" id="check-email"><label for="check-email" class="text-label">Don’t show this popup again</span></div></div></div></div>',
+                        src: '<div class="kt-popup-newsletter "><div class="popup-content"><h4 class="sub-title">Sign up <br> our <span>newsletter</span><br>And get</h4><h5 class="title">10 <span>%</span> Off</h5><h5 class="small-title">first purchase On all online store items.</h5><div class="input-block inner-content dontshow_newletter_popup"><div class="input-inner"><input type="text" class="input-info" placeholder="Enter your email" name="input-info"><button class="submit">Subscribe</a></div></div><div class="dontshow dontshow_newletter_popup"><input type="checkbox" class="checkbox" id="check-email"><label for="check-email" class="text-label">Don’t show this popup again</span></div></div></div></div>',
                         type: 'inline'
                     }
                 });
