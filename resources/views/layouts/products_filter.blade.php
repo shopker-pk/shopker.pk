@@ -6,21 +6,27 @@
             @if(!empty($side_filter))
                 @foreach($side_filter as $rows)
                     @foreach($rows['parent_cateogries'] as $key => $value)
+                        @if(!empty($value))
             <li><input type="checkbox" id="cb_{{ $count }}" name="parent_category" class="variant" value="{{ $key }}"><label for="cb_{{ $count }}" class="label-text" data-count="{{ $count++ }}">{{ $value }}</label></li>
+                        @endif
                     @endforeach
                 @endforeach
             @endif
             @if(!empty($side_filter))
                 @foreach($side_filter as $rows)
                     @foreach($rows['child_cateogries'] as $key => $value)
+                        @if(!empty($value))
             <li><input type="checkbox" id="cb_{{ $count }}" name="parent_category" class="variant" value="{{ $key }}"><label for="cb_{{ $count }}" class="label-text" data-count="{{ $count++ }}">{{ $value }}</label></li>
+                        @endif
                     @endforeach
                 @endforeach
             @endif
             @if(!empty($side_filter))
                 @foreach($side_filter as $rows)
                     @foreach($rows['sub_child_cateogries'] as $key => $value)
+                        @if(!empty($value))
             <li><input type="checkbox" id="cb_{{ $count }}" name="parent_category" class="variant" value="{{ $key }}"><label for="cb_{{ $count }}" class="label-text" data-count="{{ $count++ }}">{{ $value }}</label></li>
+                        @endif
                     @endforeach
                 @endforeach
             @endif
@@ -32,7 +38,9 @@
             @if(!empty($side_filter))
                 @foreach($side_filter as $rows)
                     @foreach($rows['brands'] as $key => $value)
+                        @if(!empty($value))
             <li><input type="checkbox" id="cb_{{ $count }}" name="brands" class="variant" value="{{ $key }}"><label for="cb_{{ $count }}" class="label-text" data-count="{{ $count++ }}">{{ $value }}</label></li>
+                        @endif
                     @endforeach
                 @endforeach
             @endif
@@ -63,7 +71,9 @@
             @if(!empty($side_filter))
                 @foreach($side_filter as $rows)
                     @foreach($rows['variations'] as $key => $value)
+                        @if(!empty($value))
             <li><input type="checkbox" id="cb_{{ $count }}" name="variations" class="variant" value="{{ $value }}"><label for="cb_{{ $count }}" class="label-text" data-count="{{ $count++ }}">{{ $value }}</label></li>
+                        @endif
                     @endforeach
                 @endforeach
             @endif
