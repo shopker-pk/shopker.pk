@@ -232,7 +232,7 @@ function ajax_product_quick_view($id){
                     </div>
                 </div>
                 <div class="col-md-2 col-lg-2 col-xs-12 col-sm-12">
-                    <span class="badge">
+                    <span class="badge" style="right: 50%;">
                         <div class="percent"> -'.floor(($product->regural_price - $product->sale_price) * 100 / $product->regural_price).'%</div>
                     </span>
                 </div>
