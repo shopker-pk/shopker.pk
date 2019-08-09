@@ -45,7 +45,7 @@ function wholesale_email($data){
   		);
 
   		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
-         	$message->to('info@shopker.pk', 'Shopker')
+         	$message->to('admin@shopker.pk', 'Shopker')
          		    ->subject('Thank you for sign up.')
          			->from($data['email'], $data['name']);
 		});

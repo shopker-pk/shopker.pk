@@ -402,6 +402,28 @@ class CartController extends Controller{
                              ->insertGetId($data); 
 
             if(!empty($order_id && $shipping_details && $shipping_charges && $invoice_id && $review_id)){
+                $data = array(
+                    'content' => 'Thank You For shopping Dear',
+                    'website_url' => route('home'),
+                    'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
+                    'name' => \Session::get('shipping_details')['first_name'].' '.\Session::get('shipping_details')['last_name'],
+                    'email' => \Session::get('shipping_details')['email'],
+                    'order_no' => $order_no,
+                    'address' => \Session::get('shipping_details')['address'],
+                    'order_date' => date('d F Y'),
+                    'products' => $products,
+                    'sub_total' => \Session::get('shipping_details')['total'],
+                    'discount' => floor(\Session::get('shipping_details')['total'] - \Session::get('shipping_details')['shipping_charges'] - array_sum($total)),
+                    'shipping' => \Session::get('shipping_details')['shipping_charges'],
+                    'total' => \Session::get('shipping_details')['total'],
+                );
+
+                \Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
+                    $message->to($data['email'], $data['name'])
+                            ->subject('Thank you for sign up.')
+                            ->from('admin@shopker.pk', 'Shopker');
+                });
+                
                 $save_booking = 'http://cod.callcourier.com.pk/api/CallCourier/SaveBooking?loginId=LHR-02689&ConsigneeName='.urlEncode($request->session()->get('shipping_details')['first_name'].' '.$request->session()->get('shipping_details')['last_name']).'&ConsigneeRefNo='.$order_no.'&ConsigneeCellNo='.($request->session()->get('shipping_details')['phone_no']).'&Address='.urlEncode($request->session()->get('shipping_details')['address']).'&Origin=karachi&DestCityId='.($request->session()->get('shipping_details')['city']).'&ServiceTypeId=7&Pcs='.$total_products.'&Weight='.$total_products_weight.'&Description='.$order_no.'&SelOrigin=Domestic&CodAmount='.($request->session()->get('shipping_details')['total']).'&SpecialHandling=false&MyBoxId=1&Holiday=false&remarks='.$order_no.'&ShipperName=LHR-02689=&ShipperCellNo=03004128681&ShipperArea=185&ShipperCity=1&ShipperAddress='.urlEncode('Office# 602 Gold Center, Liberty Market, Gulberg III, Lahore, Pakistan').'&ShipperLandLineNo=34544343&ShipperEmail=info@shopker.pk';
 
                 $ch = curl_init();
@@ -424,10 +446,6 @@ class CartController extends Controller{
                 );
 
                 return json_encode($ajax_response_data);
-                /*//Flash Success Message
-                $request->session()->flash('alert-success', "Your order has been placed successfully.");
-
-                return redirect()->route('home');*/
             }else{
                 if(!empty($order_id)){
                     //Query For Deleting Last Insert Order

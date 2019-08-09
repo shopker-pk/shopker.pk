@@ -145,7 +145,7 @@ function vendor_registration($data){
 		  		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
 		         	$message->to($data['email'], $data['name'])
 		         		    ->subject('Thank you for sign up.')
-		         			->from('info@shopker.pk', 'Shopker');
+		         			->from('admin@shopker.pk', 'Shopker');
 	 			});
 	 			
 		  		return 0;

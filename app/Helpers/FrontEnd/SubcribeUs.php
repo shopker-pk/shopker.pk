@@ -16,7 +16,7 @@ function subcribe_us($params){
 	\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
 	    $message->to($data['email'], $data['email'])
 	            ->subject('Thank you for subcribed us.')
-	            ->from('info@shopker.pk', 'Shopker');
+	            ->from('admin@shopker.pk', 'Shopker');
 	});
 
 	if(\Mail::failures()){
