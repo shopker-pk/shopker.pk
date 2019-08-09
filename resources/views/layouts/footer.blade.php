@@ -71,12 +71,17 @@
                                     <div class="widget widget-custom-menu">
                                         <h3 class="widgettitle">My account</h3>
                                         <ul >
-                                            <li><a href="{{ route('customer_sign_in') }}">Sign In</a></li>
-                                            <li><a href="{{ route('view_cart') }}">View Cart</a></li>
-                                            @if(!empty($customer_details[0]['id']))
+                                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                                            @if(!empty(Session::get('customer_details')['id'] && Session::get('customer_details')['role'] == 3))
+                                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                            <li><a href="{{ route('view_cart') }}">Shopping Cart</a></li>
                                             <li><a href="{{ route('manage_wishlist') }}">My Wishlist</a></li>
-                                            <li><a href="{{ route('manage_orders') }}">Track My Order</a></li>
+                                            @else
+                                            <li><a href="{{ route('customer_sign_up') }}">Sign Up</a></li>
+                                            <li><a href="{{ route('customer_sign_in') }}">Sign In</a></li>
+                                            <li><a href="{{ route('forget_password') }}">Forget Password</a></li>
                                             @endif
+                                            <li><a href="{{ route('view_cart') }}">Shopping Cart</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -96,7 +101,7 @@
                                             <li><a href="{{ route('contact_us') }}">Contact us</a></li>
                                             <li><a href="{{ route('pages', 'refund-policy') }}">Refund Policy</a></li>
                                             <li><a href="{{ route('pages', 'return-policy') }}"> Return Policy</a></li>
-                                            <li><a href="#">Warranty Policy</a></li>
+                                            <li><a href="{{ route('pages', 'warranty-policy') }}">Warranty Policy</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -106,8 +111,8 @@
                                         <ul >
                                             <li><a href="{{ route('pages', 'about-us') }}">About</a></li>
                                             <li><a href="{{ route('career') }}">Careers</a></li>
-                                            <li><a href="#">Terms and Conditions</a></li>
-                                            <li><a href="#">Privacy Agreement</a></li>
+                                            <li><a href="{{ route('pages', 'terms-&-conditions') }}">Terms and Conditions</a></li>
+                                            <li><a href="{{ route('pages', 'privacy-agreement') }}">Privacy Agreement</a></li>
                                             <li><a href="#">NTN Number: 5270812-7</a></li>
                                         </ul>
                                     </div>
@@ -133,7 +138,7 @@
             </div>
         </div>
     </footer>
-    <a class="back-to-top" href="#"></a>
+    <a class="back-to-top" href="javascript:void(0);"></a>
     @include('layouts.script')
 </body>
 </html>
