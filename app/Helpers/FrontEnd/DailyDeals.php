@@ -36,6 +36,36 @@ function daily_deals(){
                 $total_stars = 0;
             }
 
+            $deal_start_hours = date('H', strtotime($row->deal_start_time));
+            $deal_end_hours = date('H', strtotime($row->deal_end_time));
+            $deal_hours = (24 - $deal_end_hours) +  $deal_start_hours;
+
+            if($deal_hours <= 9){
+                $deal_hours = '0'.$deal_hours;
+            }else{
+                $deal_hours = $deal_hours;
+            }
+
+            $deal_start_minutes = date('i', strtotime($row->deal_start_time));
+            $deal_end_minutes = date('i', strtotime($row->deal_end_time));
+            $deal_minutes = $deal_end_minutes - $deal_start_minutes;
+
+            if($deal_minutes <= 9){
+                $deal_minutes = '0'.$deal_minutes;
+            }else{
+                $deal_minutes = $deal_minutes;
+            }
+
+            $deal_start_seconds = date('s', strtotime($row->deal_start_time));
+            $deal_end_seconds = date('s', strtotime($row->deal_end_time));
+            $deal_seconds = $deal_end_seconds - $deal_start_seconds;
+
+            if($deal_seconds <= 9){
+                $deal_seconds = '0'.$deal_seconds;
+            }else{
+                $deal_seconds = $deal_seconds;
+            }
+
             //Result Array
             $data[] = array(
                 'id' => $row->id,
@@ -47,12 +77,12 @@ function daily_deals(){
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
                 'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
-                'deal_hours' => date('G', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
-                'deal_minutes' => date('i', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
-                'deal_seconds' => date('s', strtotime($row->deal_end_time) - strtotime($row->deal_start_time)),
+                'deal_hours' => $deal_hours,
+                'deal_minutes' => $deal_minutes,
+                'deal_seconds' => $deal_seconds,
             );
         }
 
-    	return $data;
+        return $data;
     }
 }
