@@ -656,8 +656,8 @@
                                             Total
                                         </td>
                                     </tr>
+                                    @foreach($products as $row)
                                     <tr>
-                                        @foreach($products as $row)
                                         <td class="item-col item">
                                             <table cellspacing="0" cellpadding="0" width="100%">
                                                 <tr>
@@ -673,8 +673,8 @@
                                         <td class="item-col">
                                             {{ $row['price'] }}
                                         </td>
-                                        @endforeach
                                     </tr>
+                                    @endforeach
                                     <tr>
                                         <td class="item-col item mobile-row-padding"></td>
                                         <td class="item-col quantity"></td>
