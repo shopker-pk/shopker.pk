@@ -68,7 +68,7 @@ function search_by_variations($slug){
                 'cost_price' => $row->cost_price,
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
-                'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
+                'total_discount' => floor(($row->cost_price - $row->sale_price) * 100 / $row->cost_price),
                 'pagination' => $pagination,
             );
         }
