@@ -38,7 +38,7 @@ function daily_deals(){
 
             $deal_start_hours = date('H', strtotime($row->deal_start_time));
             $deal_end_hours = date('H', strtotime($row->deal_end_time));
-            $deal_hours = (24 - $deal_end_hours) +  $deal_start_hours;
+            $deal_hours = $deal_end_hours - $deal_start_hours;
 
             if($deal_hours <= 9){
                 $deal_hours = '0'.$deal_hours;
