@@ -319,23 +319,87 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    function kt_countdown() {
-        if($('.timer_1').length > 0){
-            var count = 0;
-            $('.timer_1').each(function(){
-                $(this).countdown({
-                    until: new Date($(this).attr('data-y_'+count), $(this).attr('data-m_'+count), $(this).attr('data-d_'+count), $(this).attr('data-h_'+count), $(this).attr('data-i_'+count), $(this).attr('data-s_'+count)),
-                    labels: [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ],
-                    layout: '<span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>'
-                });
+    var timer = null;
+    var total_rows = $('.timer_1').length;
+    //console.log('total rows:'+total_rows);
 
-                console.log(new Date($(this).attr('data-y_'+count), $(this).attr('data-m_'+count), $(this).attr('data-d_'+count), $(this).attr('data-h_'+count), $(this).attr('data-i_'+count), $(this).attr('data-s_'+count)));
+    function kt_countdown(){
+        //var count = 1;
+        //$('.timer_1').each(function(row){
+            //row = row + 1;
+            var row = 1;
+            //row = row + 1;
 
-                count++;
-            });
-        }
+            //if(row <= 6){
+                var upgradeTime = $(this).attr('data-ts_'+row);
+                var seconds = upgradeTime;
+                var days = Math.floor(seconds/24/60/60);
+                var hoursLeft = Math.floor((seconds) - (days * 86400));
+                var hours = Math.floor(hoursLeft / 3600);
+                var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+                var minutes = Math.floor(minutesLeft / 60);
+                var remainingSeconds = seconds % 60;
+
+                if(hours < '10'){ 
+                    hours = '0' + hours; 
+                }
+
+                if(minutes < '10'){ 
+                    minutes = '0' + minutes; 
+                }
+
+                if(remainingSeconds < '10'){ 
+                    remainingSeconds = '0' + remainingSeconds; 
+                } 
+
+                $('.hours_'+row).text(hours);
+                $('.mints_'+row).text(minutes);
+                $('.seconds_'+row).text(remainingSeconds);
+                
+                console.log(remainingSeconds);
+                //console.log('method 1: '+$(this).attr('data-ts_'+row));
+                //console.log(total_rows);
+                /*console.log(hours);
+                console.log(minutes);
+                console.log(remainingSeconds);
+
+                /*if(seconds == 0){
+                    clearInterval(countdownTimer);
+                }else{
+                    seconds--;
+                }*/
+
+                //console.log(((row % 6)+1));
+                //console.log(count);
+                //console.log(row);
+                //console.log((count % total_rows) + 1);
+            //}else{
+                //clearInterval();
+                //row = 1;
+            //}
+            
+            //count++;
+        //});
     };
 
+    window.setInterval(function(){
+        kt_countdown();
+    }, 1000);
+
+    /*var count = 1;
+    window.setInterval(function(){ 
+        if(count <= 6){
+            console.log('1 :'+count);
+            kt_countdown();
+        }else{
+            count = 1;
+            //console.log('2 :'+count);
+            clearInterval();
+        }
+
+        count++;
+    }, 1000);*/
+    
     function slider_range_price() {
         // Price filter
         $('.slider-range-price').each(function () {

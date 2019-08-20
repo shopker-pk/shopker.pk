@@ -149,7 +149,7 @@
                             <h5 class="title">Daily Deals</h5>
                         </div>
                         <div class="content">
-                            <div class="owl-carousel nav-style2" data-autoplay="false" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="800" data-margin="0.1"  data-responsive = '{"0":{"items":1}, "560":{"items":2}, "768":{"items":1}, "1024":{"items":1}, "1200":{"items":1}}' data-count="{{ $count = 0 }}">
+                            <div class="owl-carousel nav-style2" data-autoplay="false" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="800" data-margin="0.1"  data-responsive = '{"0":{"items":1}, "560":{"items":2}, "768":{"items":1}, "1024":{"items":1}, "1200":{"items":1}}' data-count="{{ $count = 1 }}">
                                 @if(!empty($daily_deals))
                                     @foreach($daily_deals as $row)
                                 <div class="product-item layout1">
@@ -216,7 +216,26 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                        <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-mm_{{ $count }}="{{ date('M') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-ts_{{ $count }}="{{ $row['total_seconds'] }}">
+                                            <span class="box-count hrs">
+                                                <ul>
+                                                    <li class="number hours_{{ $count }}"></li>
+                                                    <li class="text">hrs</li>
+                                                </ul>
+                                            </span>
+                                            <span class="box-count min">
+                                                <ul>
+                                                    <li class="number mints_{{ $count }}"></li>
+                                                    <li class="text">Mins</li>
+                                                </ul>
+                                            </span>
+                                            <span class="box-count secs">
+                                                <ul>
+                                                    <li class="number seconds_{{ $count }}" data-increment="{{ $count++ }}"></li>
+                                                    <li class="text">Secs</li>
+                                                </ul>
+                                            </span>
+                                        </div>
                                         <div class="group-button">
                                             <div class="inner">
                                                 <a href="{{ route('add_wishlists', $row['id']) }}" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -423,7 +442,26 @@
                                                         <span class="ins">Rs.{{ $row['cost_price'] }}</span>
                                                         @endif
                                                     </div>
-                                                    <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                                    <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-mm_{{ $count }}="{{ date('M') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-ts_{{ $count }}="{{ $row['total_seconds'] }}">
+                                                        <span class="box-count hrs">
+                                                            <ul>
+                                                                <li class="number hours_{{ $count }}"></li>
+                                                                <li class="text">hrs</li>
+                                                            </ul>
+                                                        </span>
+                                                        <span class="box-count min">
+                                                            <ul>
+                                                                <li class="number mints_{{ $count }}"></li>
+                                                                <li class="text">Mins</li>
+                                                            </ul>
+                                                        </span>
+                                                        <span class="box-count secs">
+                                                            <ul>
+                                                                <li class="number seconds_{{ $count }}" data-increment="{{ $count++ }}"></li>
+                                                                <li class="text">Secs</li>
+                                                            </ul>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <div class="group-button">
                                                     <div class="inner">

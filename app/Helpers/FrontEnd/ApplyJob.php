@@ -25,10 +25,39 @@ function apply_job($params){
     );
 
     //Insert data in table
-    $query = DB::table('tbl_careers')
+    $last_id = DB::table('tbl_careers')
                  ->insertGetId($data);
 
- 	if(!empty($query)){
+ 	if(!empty($last_id)){
+        //Query For Getting Logo
+        $query = DB::table('tbl_site_images')
+                     ->select('header_image');
+        $site_details = $query->first();
+
+        //Query For Getting CV
+        $query = DB::table('tbl_careers')
+                     ->select('cv')
+                     ->where('id', $last_id);
+        $cv = $query->first();
+
+        $data = array(
+            'content' => 'Thank you for applying at <a href="https://shopker.pk/">Shopker.pk</a>.',
+            'website_url' => route('home'),
+            'logo' => env('ADMIN_URL').'images/settings/logo/'.$site_details->header_image,
+            'name' => $params['name'],
+            'email' => $params['email'],
+            'job_title' => $params['job_title'],
+            'phone_no' => $params['phone_no'],
+            'message' => $params['message'],
+            'cv' => env('ADMIN_URL').'careers/'.$cv->cv,
+        );
+
+        \Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
+            $message->to('admin@shopker.pk', 'Shopker')
+                    ->subject('Thank you for Shopping.')
+                    ->from($data['email'], $data['name']);
+        });
+
  		return 'success';
  	}else{
  		return 'error';

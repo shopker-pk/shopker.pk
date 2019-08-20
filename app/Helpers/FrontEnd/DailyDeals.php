@@ -38,7 +38,7 @@ function daily_deals(){
 
             $deal_start_hours = date('H', strtotime($row->deal_start_time));
             $deal_end_hours = date('H', strtotime($row->deal_end_time));
-            $deal_hours = $deal_end_hours - $deal_start_hours;
+            $deal_hours = (23 - $deal_end_hours) + $deal_start_hours;
 
             if($deal_hours <= 9){
                 $deal_hours = '0'.$deal_hours;
@@ -66,6 +66,10 @@ function daily_deals(){
                 $deal_seconds = $deal_seconds;
             }
 
+            $str_time = $deal_hours.':'.$deal_minutes.':'.$deal_seconds;
+            sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
+            $total_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;
+
             //Result Array
             $data[] = array(
                 'id' => $row->id,
@@ -80,6 +84,7 @@ function daily_deals(){
                 'deal_hours' => $deal_hours,
                 'deal_minutes' => $deal_minutes,
                 'deal_seconds' => $deal_seconds,
+                'total_seconds' => $total_seconds,
             );
         }
 
