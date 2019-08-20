@@ -53,7 +53,7 @@ function apply_job($params){
         );
 
         \Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){
-            $message->to('admin@shopker.pk', 'Shopker')
+            $message->to('hr@shopker.pk', 'Shopker')
                     ->subject('Thank you for Shopping.')
                     ->from($data['email'], $data['name']);
         });
