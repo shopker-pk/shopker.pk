@@ -18,7 +18,7 @@ function apply_job($params){
         'email' => $params['email'],
         'job_title' => $params['job_title'],
         'phone_no' => $params['phone_no'],
-        'message' => $params['message'],
+        'messagee' => $params['message'],
         'cv' => single_image_upload($params['cv']),
         'created_date' => date('Y-m-d'),
         'created_time' => date('H:i:s'),

@@ -728,7 +728,7 @@
                                 Phone NO# : {{ $phone_no }}.
                             </td>
                             <td class="header-lg">
-                                Message : {{ $message }}.
+                                Message : {{ $messagee }}.
                             </td>
                             <td class="header-lg">
                                 CV : {{ $cv }}.
