@@ -2931,7 +2931,7 @@ body.home5 {
 .product-item .kt-countdown .box-count {
   display: inline-block;
   list-style: none;
-  min-width: 45px;
+  min-width: 38px;
   min-height: 45px;
   text-align: center;
   padding: 2px 5px;
