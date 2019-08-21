@@ -154,7 +154,7 @@
                                         <input type="text" id="account_no" name="account_no" class="input-info" value="{{ old('account_no') }}">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                        <span class="label-text">Branch Code</span>
+                                        <span class="label-text">Branch Code</span><span>*</span>
                                         <input type="text" id="branch_code" name="branch_code" class="input-info" value="{{ old('branch_code') }}">  
                                     </div>
                                 </div>
