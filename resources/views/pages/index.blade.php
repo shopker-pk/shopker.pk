@@ -20,7 +20,7 @@
                             <div class="block-icon"><a href="#"><span class="fa fa-truck"></span></a></div>
                             <div class="block-inner">
                                 <a href="#" class="title">Free Shipping & Return</a>
-                                <p class="des">Free shipping on all orders over Rs.4999</p>
+                                <p class="des">Free shipping on all orders over Rs.1999</p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                     @foreach($best_selling as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                        @if(!empty($row['total_discount']))
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -154,7 +154,7 @@
                                     @foreach($daily_deals as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                        @if(!empty($row['total_discount']))
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -216,26 +216,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-mm_{{ $count }}="{{ date('M') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-ts_{{ $count }}="{{ $row['total_seconds'] }}">
-                                            <span class="box-count hrs">
-                                                <ul>
-                                                    <li class="number hours_{{ $count }}"></li>
-                                                    <li class="text">hrs</li>
-                                                </ul>
-                                            </span>
-                                            <span class="box-count min">
-                                                <ul>
-                                                    <li class="number mints_{{ $count }}"></li>
-                                                    <li class="text">Mins</li>
-                                                </ul>
-                                            </span>
-                                            <span class="box-count secs">
-                                                <ul>
-                                                    <li class="number seconds_{{ $count }}" data-increment="{{ $count++ }}"></li>
-                                                    <li class="text">Secs</li>
-                                                </ul>
-                                            </span>
-                                        </div>
+                                        <div class="kt-countdown" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-d_{{ $count }}="{{ $row['deal_days'] }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
                                         <div class="group-button">
                                             <div class="inner">
                                                 <a href="{{ route('add_wishlists', $row['id']) }}" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -271,7 +252,7 @@
                                     @foreach($latest_products as $row)
                                 <div class="product-item layout1">
                                     <div class="product-inner equal-elem">
-                                        @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                        @if(!empty($row['total_discount']))
                                         <ul class="group-flash">
                                             <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                         </ul>
@@ -353,14 +334,14 @@
                 <div class="col-xs-12 col-sm-5">
                     <div class="banner banner-effect1">
                         @if($bottom_top_banners)
-                        @if(!empty($bottom_top_banners['url']))<a href="{{ $bottom_top_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
+                        @if(!empty($row['url']))<a href="{{ $bottom_top_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_top_banners['image'] }}" alt="{{ $bottom_top_banners['image_alt'] }}" style="width:470px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-7">
                     <div class="banner banner-effect1">
                         @if($bottom_center_banners)
-                        @if(!empty($bottom_center_banners['url']))<a href="{{ $bottom_center_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
+                        @if(!empty($row['url']))<a href="{{ $bottom_center_banners['url'] }}">@else<a href="javascript:void(0);">@endif<img src="{{ $bottom_center_banners['image'] }}" alt="{{ $bottom_center_banners['image_alt'] }}" style="width:690px; height:191px;"></a>
                         @endif
                     </div>
                 </div>
@@ -381,7 +362,7 @@
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
-                                                @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                                @if(!empty($row['total_discount']))
                                                 <ul class="group-flash">
                                                     <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                 </ul>
@@ -442,26 +423,7 @@
                                                         <span class="ins">Rs.{{ $row['cost_price'] }}</span>
                                                         @endif
                                                     </div>
-                                                    <div class="kt-countdown timer_1" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-mm_{{ $count }}="{{ date('M') }}" data-w_{{ $count }}="{{ date('d') }}" data-d_{{ $count }}="{{ date('d') }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-ts_{{ $count }}="{{ $row['total_seconds'] }}">
-                                                        <span class="box-count hrs">
-                                                            <ul>
-                                                                <li class="number hours_{{ $count }}"></li>
-                                                                <li class="text">hrs</li>
-                                                            </ul>
-                                                        </span>
-                                                        <span class="box-count min">
-                                                            <ul>
-                                                                <li class="number mints_{{ $count }}"></li>
-                                                                <li class="text">Mins</li>
-                                                            </ul>
-                                                        </span>
-                                                        <span class="box-count secs">
-                                                            <ul>
-                                                                <li class="number seconds_{{ $count }}" data-increment="{{ $count++ }}"></li>
-                                                                <li class="text">Secs</li>
-                                                            </ul>
-                                                        </span>
-                                                    </div>
+                                                    <div class="kt-countdown" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-d_{{ $count }}="{{ $row['deal_days'] }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
                                                 </div>
                                                 <div class="group-button">
                                                     <div class="inner">
@@ -495,7 +457,7 @@
                                     <div class="row-item">
                                         <div class="product-item layout1">
                                             <div class="product-inner equal-elem">
-                                                @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                                @if(!empty($row['total_discount']))
                                                 <ul class="group-flash">
                                                     <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                 </ul>
@@ -592,7 +554,7 @@
                                                 @foreach($latest_products as $row)
                                             <div class="product-item latest-products layout1 col-ts-12 col-xs-6 col-sm-6 no-padding" style="width: 20%">
                                                 <div class="product-inner equal-elem">
-                                                    @if(!empty($row['total_discount']) && $row['total_discount'] != '100')
+                                                    @if(!empty($row['total_discount']))
                                                     <ul class="group-flash">
                                                         <li><span class="sale flash">-{{ $row['total_discount'] }}%</span></li>
                                                     </ul>

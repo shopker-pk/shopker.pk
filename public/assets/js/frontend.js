@@ -319,86 +319,35 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    var timer = null;
-    var total_rows = $('.timer_1').length;
-    //console.log('total rows:'+total_rows);
-
     function kt_countdown(){
-        //var count = 1;
-        //$('.timer_1').each(function(row){
-            //row = row + 1;
-            var row = 1;
-            //row = row + 1;
-
-            //if(row <= 6){
-                var upgradeTime = $(this).attr('data-ts_'+row);
-                var seconds = upgradeTime;
-                var days = Math.floor(seconds/24/60/60);
-                var hoursLeft = Math.floor((seconds) - (days * 86400));
-                var hours = Math.floor(hoursLeft / 3600);
-                var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
-                var minutes = Math.floor(minutesLeft / 60);
-                var remainingSeconds = seconds % 60;
-
-                if(hours < '10'){ 
-                    hours = '0' + hours; 
-                }
-
-                if(minutes < '10'){ 
-                    minutes = '0' + minutes; 
-                }
-
-                if(remainingSeconds < '10'){ 
-                    remainingSeconds = '0' + remainingSeconds; 
-                } 
-
-                $('.hours_'+row).text(hours);
-                $('.mints_'+row).text(minutes);
-                $('.seconds_'+row).text(remainingSeconds);
+        if($('.kt-countdown').length > 0 ){
+            var count = 1;
+            $('.kt-countdown').each(function (){
+                $(this).countdown({
+                    until: new Date($(this).data('y_'+count), $(this).data('m_'+count) - 1, $(this).data('d_'+count), $(this).data('h_'+count), $(this).data('i_'+count), $(this).data('s_'+count)),
+                    labels: [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ],
+                    layout: '<span class="box-count day"><ul><li class="number">{dnn}</li> <li class="text">Days</li></ul></span><span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>'
+                });
                 
-                console.log(remainingSeconds);
-                //console.log('method 1: '+$(this).attr('data-ts_'+row));
-                //console.log(total_rows);
-                /*console.log(hours);
-                console.log(minutes);
-                console.log(remainingSeconds);
-
-                /*if(seconds == 0){
-                    clearInterval(countdownTimer);
-                }else{
-                    seconds--;
-                }*/
-
-                //console.log(((row % 6)+1));
-                //console.log(count);
-                //console.log(row);
-                //console.log((count % total_rows) + 1);
-            //}else{
-                //clearInterval();
-                //row = 1;
-            //}
-            
-            //count++;
-        //});
+                count++;
+            });
+        }
     };
 
-    window.setInterval(function(){
-        kt_countdown();
-    }, 1000);
-
-    /*var count = 1;
-    window.setInterval(function(){ 
-        if(count <= 6){
-            console.log('1 :'+count);
-            kt_countdown();
-        }else{
-            count = 1;
-            //console.log('2 :'+count);
-            clearInterval();
+    /*function kt_countdown(){
+        if ($('.kt-countdown').length > 0 ){
+            var labels = [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ];
+            var layout = '<span class="box-count day"><ul><li class="number">{dnn}</li> <li class="text">Days</li></ul></span><span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>';
+            $('.kt-countdown').each(function (){
+                var austDay = new Date($(this).data('y'), $(this).data('m') - 1, $(this).data('d'), $(this).data('h'), $(this).data('i'), $(this).data('s'));
+                $(this).countdown({
+                    until: austDay,
+                    labels: labels,
+                    layout: layout
+                });
+            });
         }
-
-        count++;
-    }, 1000);*/
+    };*/
     
     function slider_range_price() {
         // Price filter

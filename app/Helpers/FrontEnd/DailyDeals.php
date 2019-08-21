@@ -3,7 +3,7 @@
 function daily_deals(){
     //Query For Getting Products For Daily Deals
     $query = \DB::table('tbl_products')
-                 ->select('tbl_products.id', 'tbl_products_featured_images.featured_image', 'tbl_products.id', 'tbl_products.name', 'tbl_products.slug', 'tbl_products.regural_price', 'tbl_products.sale_price', 'tbl_products.deal_start_time', 'tbl_products.deal_end_time')
+                 ->select('tbl_products.id', 'tbl_products_featured_images.featured_image', 'tbl_products.id', 'tbl_products.name', 'tbl_products.slug', 'tbl_products.regural_price', 'tbl_products.sale_price', 'tbl_products.from_date', 'tbl_products.deal_start_time', 'tbl_products.to_date', 'tbl_products.deal_end_time')
                  ->LeftJoin('tbl_products_featured_images', 'tbl_products_featured_images.product_id', '=', 'tbl_products.id')
                  ->where('tbl_products.status', 0)
                  ->where('tbl_products.is_approved', 0)
@@ -36,9 +36,19 @@ function daily_deals(){
                 $total_stars = 0;
             }
 
+            //$deal_start_date = date('d', strtotime($row->from_date));
+            $deal_end_date = date('d', strtotime($row->to_date));
+            $deal_date = $deal_end_date;
+
+            if($deal_date <= 9){
+                $deal_date = '0'.$deal_date;
+            }else{
+                $deal_date = $deal_date;
+            }
+
             $deal_start_hours = date('H', strtotime($row->deal_start_time));
             $deal_end_hours = date('H', strtotime($row->deal_end_time));
-            $deal_hours = (23 - $deal_end_hours) + $deal_start_hours;
+            $deal_hours = 24 - ($deal_end_hours - $deal_start_hours);
 
             if($deal_hours <= 9){
                 $deal_hours = '0'.$deal_hours;
@@ -46,9 +56,9 @@ function daily_deals(){
                 $deal_hours = $deal_hours;
             }
 
-            $deal_start_minutes = date('i', strtotime($row->deal_start_time));
+            //$deal_start_minutes = date('i', strtotime($row->deal_start_time));
             $deal_end_minutes = date('i', strtotime($row->deal_end_time));
-            $deal_minutes = $deal_end_minutes - $deal_start_minutes;
+            $deal_minutes = date('i') - $deal_end_minutes;
 
             if($deal_minutes <= 9){
                 $deal_minutes = '0'.$deal_minutes;
@@ -58,17 +68,13 @@ function daily_deals(){
 
             $deal_start_seconds = date('s', strtotime($row->deal_start_time));
             $deal_end_seconds = date('s', strtotime($row->deal_end_time));
-            $deal_seconds = $deal_end_seconds - $deal_start_seconds;
+            $deal_seconds = date('s') - $deal_end_seconds;
 
             if($deal_seconds <= 9){
                 $deal_seconds = '0'.$deal_seconds;
             }else{
                 $deal_seconds = $deal_seconds;
             }
-
-            $str_time = $deal_hours.':'.$deal_minutes.':'.$deal_seconds;
-            sscanf($str_time, "%d:%d:%d", $hours, $minutes, $seconds);
-            $total_seconds = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;
 
             //Result Array
             $data[] = array(
@@ -81,10 +87,10 @@ function daily_deals(){
                 'sale_price' => $row->sale_price,
                 'total_stars' => $total_stars,
                 'total_discount' => floor(($row->regural_price - $row->sale_price) * 100 / $row->regural_price),
+                'deal_days' => $deal_date,
                 'deal_hours' => $deal_hours,
                 'deal_minutes' => $deal_minutes,
                 'deal_seconds' => $deal_seconds,
-                'total_seconds' => $total_seconds,
             );
         }
 
