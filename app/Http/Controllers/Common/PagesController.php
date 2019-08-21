@@ -283,7 +283,7 @@ class PagesController extends Controller{
 
         if($response == 'success'){
             //Flash Success Message
-            $request->session()->flash('alert-success', 'Your cv has been sent successfully');
+            $request->session()->flash('alert-success', "You have subcribe us successfully.");
         }elseif($response == 'error'){
             //Flash Error Message
             $request->session()->flash('alert-danger', 'Something went wrong !!');
