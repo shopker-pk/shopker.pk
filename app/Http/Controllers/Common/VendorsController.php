@@ -42,6 +42,6 @@ class VendorsController extends Controller{
             $request->session()->flash('alert-danger', 'Email has already been taken.');
         }
 
-        return redirect()->back();
+        return redirect()->back()->withInput();
     }
 }

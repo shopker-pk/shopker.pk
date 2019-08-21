@@ -277,4 +277,18 @@ class PagesController extends Controller{
 
         return redirect()->back();
     }
+
+    function subcribe_us(Request $request){
+        $response = subcribe_us($request->all());
+
+        if($response == 'success'){
+            //Flash Success Message
+            $request->session()->flash('alert-success', 'Your cv has been sent successfully');
+        }elseif($response == 'error'){
+            //Flash Error Message
+            $request->session()->flash('alert-danger', 'Something went wrong !!');
+        }
+
+        return redirect()->back();
+    }
 }
