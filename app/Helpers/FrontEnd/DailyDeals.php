@@ -10,8 +10,6 @@ function daily_deals(){
                  ->where('tbl_products.is_daily_deal', 0)
                  ->where('tbl_products.from_date', '<=', date('Y-m-d'))
                  ->where('tbl_products.to_date', '>=', date('Y-m-d'))
-                 ->where('tbl_products.deal_start_time', '>=', date('H:i:s'))
-                 ->where('tbl_products.deal_end_time', '>=', date('H:i:s'))
                  ->orderBy('tbl_products.id', 'DESC')
                  ->limit(12);
  	$result = $query->get();
