@@ -321,21 +321,6 @@ jQuery(document).ready(function ($) {
 
     function kt_countdown(){
         if($('.kt-countdown').length > 0 ){
-            var count = 1;
-            $('.kt-countdown').each(function (){
-                $(this).countdown({
-                    until: new Date($(this).data('y_'+count), $(this).data('m_'+count) - 1, $(this).data('d_'+count), $(this).data('h_'+count), $(this).data('i_'+count), $(this).data('s_'+count)),
-                    labels: [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ],
-                    layout: '<span class="box-count day"><ul><li class="number">{dnn}</li> <li class="text">Days</li></ul></span><span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>'
-                });
-                
-                count++;
-            });
-        }
-    };
-
-    /*function kt_countdown(){
-        if ($('.kt-countdown').length > 0 ){
             var labels = [ 'Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs' ];
             var layout = '<span class="box-count day"><ul><li class="number">{dnn}</li> <li class="text">Days</li></ul></span><span class="box-count hrs"><ul><li class="number">{hnn}</li> <li class="text">hrs</li></ul></span><span class="box-count min"><ul><li class="number">{mnn}</li> <li class="text">Mins</li></ul></span><span class="box-count secs"><ul><li class="number">{snn}</li> <li class="text">Secs</li></ul></span>';
             $('.kt-countdown').each(function (){
@@ -347,7 +332,7 @@ jQuery(document).ready(function ($) {
                 });
             });
         }
-    };*/
+    };
     
     function slider_range_price() {
         // Price filter
@@ -584,7 +569,7 @@ jQuery(document).ready(function ($) {
     });
     $(window).load(function () {
         if(decodeURIComponent(document.cookie).split('dont_show_newletter_popup_again')[0] != 'newletter_popup='){
-            newletter_popup()
+            newletter_popup();
         }
         better_equal_elems();
         kt_innit_carousel();

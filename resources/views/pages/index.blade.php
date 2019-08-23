@@ -149,7 +149,7 @@
                             <h5 class="title">Daily Deals</h5>
                         </div>
                         <div class="content">
-                            <div class="owl-carousel nav-style2" data-autoplay="false" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="800" data-margin="0.1"  data-responsive = '{"0":{"items":1}, "560":{"items":2}, "768":{"items":1}, "1024":{"items":1}, "1200":{"items":1}}' data-count="{{ $count = 1 }}">
+                            <div class="owl-carousel nav-style2" data-autoplay="false" data-nav="true" data-dots="false" data-loop="true" data-slidespeed="800" data-margin="0.1"  data-responsive = '{"0":{"items":1}, "560":{"items":2}, "768":{"items":1}, "1024":{"items":1}, "1200":{"items":1}}'>
                                 @if(!empty($daily_deals))
                                     @foreach($daily_deals as $row)
                                 <div class="product-item layout1">
@@ -216,7 +216,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="kt-countdown" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-d_{{ $count }}="{{ $row['deal_days'] }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                        <div class="kt-countdown" data-y="{{ date('Y') }}" data-m="{{ date('m') }}" data-d="{{ $row['deal_days'] }}" data-h="{{ $row['deal_hours'] }}" data-i="{{ $row['deal_minutes'] }}" data-s="{{ $row['deal_seconds'] }}"></div>
                                         <div class="group-button">
                                             <div class="inner">
                                                 <a href="{{ route('add_wishlists', $row['id']) }}" class="wishlist-button"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -423,7 +423,7 @@
                                                         <span class="ins">Rs.{{ $row['cost_price'] }}</span>
                                                         @endif
                                                     </div>
-                                                    <div class="kt-countdown" data-y_{{ $count }}="{{ date('Y') }}" data-m_{{ $count }}="{{ date('m') }}" data-d_{{ $count }}="{{ $row['deal_days'] }}" data-h_{{ $count }}="{{ $row['deal_hours'] }}" data-i_{{ $count }}="{{ $row['deal_minutes'] }}" data-s_{{ $count }}="{{ $row['deal_seconds'] }}" data-increment="{{ $count++ }}"></div>
+                                                    <div class="kt-countdown" data-y="{{ date('Y') }}" data-m="{{ date('m') }}" data-d="{{ $row['deal_days'] }}" data-h="{{ $row['deal_hours'] }}" data-i="{{ $row['deal_minutes'] }}" data-s="{{ $row['deal_seconds'] }}"></div>
                                                 </div>
                                                 <div class="group-button">
                                                     <div class="inner">
