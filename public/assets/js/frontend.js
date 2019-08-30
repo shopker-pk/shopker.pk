@@ -391,7 +391,7 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    function newletter_popup() {
+    /*function newletter_popup() {
         var window_size = parseFloat(jQuery('body').innerWidth());
         window_size += kt_get_scrollbar_width();
         if ( window_size > 767 ) {
@@ -404,7 +404,7 @@ jQuery(document).ready(function ($) {
                 });
             }
         }
-    }
+    }*/
 
     function quickview_popup() {
         var window_size = parseFloat(jQuery('body').innerWidth());
@@ -568,9 +568,9 @@ jQuery(document).ready(function ($) {
         hover_product_item();
     });
     $(window).load(function () {
-        if(decodeURIComponent(document.cookie).split('dont_show_newletter_popup_again')[0] != 'newletter_popup='){
+        /*if(decodeURIComponent(document.cookie).split('dont_show_newletter_popup_again')[0] != 'newletter_popup='){
             newletter_popup();
-        }
+        }*/
         better_equal_elems();
         kt_innit_carousel();
         quickview_popup();
@@ -587,10 +587,10 @@ $("#change").click(function(){
     $(".change-city").toggle();
 });
 
-$(document).on('click', '.dontshow_newletter_popup', function(){
+/*$(document).on('click', '.dontshow_newletter_popup', function(){
     document.cookie = 'newletter_popup=dont_show_newletter_popup_again';
     $.magnificPopup.close();
-});
+});*/
 
   var logID = 'log',
     log = $('<div id="'+logID+'"></div>');
