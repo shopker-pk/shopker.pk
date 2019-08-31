@@ -41,7 +41,7 @@ function contact_us_email($data){
   			'email' => $data['email'],
   			'subject' => $data['subject'],
   			'phone_no' => $data['phone_no'],
-  			'message' => $data['message'],
+  			'messagee' => $data['message'],
   		);
 
   		\Mail::send(['html' => 'email_templates.template1'], $data, function($message) use ($data){

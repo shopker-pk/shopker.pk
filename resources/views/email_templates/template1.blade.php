@@ -576,7 +576,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Message : {{ $message }}
+                                Message : {{ $messagee }}
                             </td> 
                         </tr>
                     </table>
