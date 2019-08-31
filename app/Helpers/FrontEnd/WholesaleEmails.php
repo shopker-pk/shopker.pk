@@ -37,7 +37,7 @@ function wholesale_email($data){
   			'content' => 'Thank You For Contact Us Dear',
   			'website_url' => route('home'),
   			'logo' => env('ADMIN_URL').'images/settings/logo/'.$result->header_image,
-  			'name' => $data['first_name'].' '.$data['last_name'],
+  			'name' => $data['name'],
   			'email' => $data['email'],
   			'subject' => $data['subject'],
   			'phone_no' => $data['phone_no'],
