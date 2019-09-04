@@ -20,7 +20,7 @@
                             <div class="block-icon"><a href="#"><span class="fa fa-truck"></span></a></div>
                             <div class="block-inner">
                                 <a href="#" class="title">Free Shipping & Return</a>
-                                <p class="des">Free shipping on all orders over Rs.1999</p>
+                                <p class="des">Free shipping on all orders over Rs.4999</p>
                             </div>
                         </div>
                     </div>
